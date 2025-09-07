@@ -1,5 +1,5 @@
 export const siteConfig = {
-  title: "Etrant – Learn fast with reels",
+  title: "Etrant | Learn fast with reels",
   name: "Etrant",
   description:
     "Etrant is an AI-powered learning platform that turns Wikipedia summaries, news, and exam-focused questions into scrollable reels. Learn faster and prepare smarter for UPSC, JEE, NEET, and more.",

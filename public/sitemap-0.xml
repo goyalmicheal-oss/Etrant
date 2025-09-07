@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://wiki.akkhil.dev/manifest.json</loc><lastmod>2025-09-07T11:12:32.317Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://wiki.akkhil.dev/user/profile</loc><lastmod>2025-09-07T11:12:32.318Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://wiki.akkhil.dev/auth</loc><lastmod>2025-09-07T11:12:32.318Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://wiki.akkhil.dev</loc><lastmod>2025-09-07T11:12:32.318Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
-<url><loc>https://wiki.akkhil.dev/privacy-policy</loc><lastmod>2025-09-07T11:12:32.318Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://wiki.akkhil.dev/articles</loc><lastmod>2025-09-07T11:12:32.318Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://wiki.akkhil.dev/terms-and-conditions</loc><lastmod>2025-09-07T11:12:32.318Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://wiki.akkhil.dev/interest</loc><lastmod>2025-09-07T11:12:32.318Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://wiki.akkhil.dev/subscription</loc><lastmod>2025-09-07T11:12:32.318Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://wiki.akkhil.dev/subscription/success</loc><lastmod>2025-09-07T11:12:32.318Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://wiki.akkhil.dev/leaderboard</loc><lastmod>2025-09-07T11:12:32.318Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://wiki.akkhil.dev/daily-digest</loc><lastmod>2025-09-07T11:12:32.318Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://wiki.akkhil.dev/user-feedback</loc><lastmod>2025-09-07T11:12:32.318Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://wiki.akkhil.dev/pricing</loc><lastmod>2025-09-07T11:12:32.318Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-<url><loc>https://wiki.akkhil.dev/how-it-works</loc><lastmod>2025-09-07T11:12:32.318Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://etrant.akkhil.dev/manifest.json</loc><lastmod>2025-09-07T12:26:36.575Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://etrant.akkhil.dev/terms-and-conditions</loc><lastmod>2025-09-07T12:26:36.575Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://etrant.akkhil.dev/privacy-policy</loc><lastmod>2025-09-07T12:26:36.575Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://etrant.akkhil.dev/articles</loc><lastmod>2025-09-07T12:26:36.575Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://etrant.akkhil.dev/daily-digest</loc><lastmod>2025-09-07T12:26:36.575Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://etrant.akkhil.dev/leaderboard</loc><lastmod>2025-09-07T12:26:36.575Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://etrant.akkhil.dev/auth</loc><lastmod>2025-09-07T12:26:36.575Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://etrant.akkhil.dev/interest</loc><lastmod>2025-09-07T12:26:36.575Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://etrant.akkhil.dev</loc><lastmod>2025-09-07T12:26:36.575Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://etrant.akkhil.dev/how-it-works</loc><lastmod>2025-09-07T12:26:36.575Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://etrant.akkhil.dev/subscription/success</loc><lastmod>2025-09-07T12:26:36.575Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://etrant.akkhil.dev/user-feedback</loc><lastmod>2025-09-07T12:26:36.575Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://etrant.akkhil.dev/subscription</loc><lastmod>2025-09-07T12:26:36.575Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://etrant.akkhil.dev/user/profile</loc><lastmod>2025-09-07T12:26:36.575Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://etrant.akkhil.dev/pricing</loc><lastmod>2025-09-07T12:26:36.575Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
 </urlset>

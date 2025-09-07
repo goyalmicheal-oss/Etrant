@@ -1,5 +1,5 @@
 {
-  "name": "Etrant – AI Learning Platform",
+  "name": "Etrant | AI Learning Platform",
   "short_name": "Etrant",
   "description": "Etrant is an AI-powered learning platform that turns Wikipedia summaries, quizzes, and knowledge reels into a fast, interactive study experience.",
   "start_url": "/",
@@ -7,7 +7,7 @@
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#000000",
-  "theme_color": "#000",
+  "theme_color": "#111",
   "lang": "en",
   "dir": "ltr",
   "icons": [

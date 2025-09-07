@@ -4,12 +4,11 @@ Allow: /
 
 # *
 User-agent: *
-Disallow: /auth
 Disallow: /api
-Disallow: /protected
+Disallow: /(protected)
 
 # Host
-Host: https://wiki.akkhil.dev
+Host: https://etrant.akkhil.dev
 
 # Sitemaps
-Sitemap: https://wiki.akkhil.dev/sitemap.xml
+Sitemap: https://etrant.akkhil.dev/sitemap.xml
