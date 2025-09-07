@@ -10,7 +10,20 @@ import getSingleDigest from "@/actions/get-single-digest";
 import { IUser } from "@/types";
 import { getUserData } from "@/actions/getInterest";
 import LockedPage from "@/components/locked-page";
+import { getDailyDigest } from "@/lib/db/get-daily-digest";
 
+interface IArticle {
+  id: number;
+  title: string;
+  is_relevant: boolean;
+  summary: string;
+  relevant_questions: {
+    question: string;
+    answer: string;
+  }[];
+  source_url: string;
+  topic: string;
+}
 export default async function DailyDigestPage({
   params,
 }: {
@@ -109,9 +122,9 @@ export async function generateMetadata({
   };
 }
 
-// Generate static params for known digest IDs
 // export async function generateStaticParams() {
-//   return Object.keys(digest).map((id) => ({
-//     id: id,
+//   const digests = (await getDailyDigest()) as IArticle[];
+//   return digests?.map((digest) => ({
+//     id: digest.id,
 //   }));
 // }
