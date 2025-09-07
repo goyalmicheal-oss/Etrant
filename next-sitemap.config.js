@@ -1,11 +1,11 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: "https://wiki.akkhil.dev",
+  siteUrl: "https://etrant.akkhil.dev",
   generateRobotsTxt: true, // create robots.txt
   sitemapSize: 7000,
 
   // Exclude private/non-SEO pages
-  exclude: ["/auth/*", "/api/*", "/protected/*"],
+  exclude: ["/auth/*", "/api/*", "/(protected)/*"],
 
   transform: async (config, path) => {
     return {
@@ -19,7 +19,7 @@ module.exports = {
   robotsTxtOptions: {
     policies: [
       { userAgent: "*", allow: "/" },
-      { userAgent: "*", disallow: ["/auth", "/api", "/protected"] },
+      { userAgent: "*", disallow: ["/api", "/(protected)"] },
     ],
   },
 };
