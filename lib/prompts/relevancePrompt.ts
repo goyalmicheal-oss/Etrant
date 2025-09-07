@@ -26,9 +26,9 @@ INSTRUCTIONS:
 2. Consider potential examination questions that could arise from this news
 3. Include diverse topics - avoid bias toward any single domain
 4. Return ONLY valid JSON format as specified
-5. relevant_questions array length must be between 2-5
+5. relevant_questions array length must be between 4-8
 6. Match titles exactly as provided
-7. Summary must be exactly 80-120 words
+7. Summary must be exactly 150-200 words
 8. Structure each summary: start with main event, then key details, end with implications
 9.- Connect to exam-relevant topics: governance, economy, polity, etc.
 
