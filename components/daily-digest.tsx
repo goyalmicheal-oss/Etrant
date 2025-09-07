@@ -26,18 +26,18 @@ export default async function DailyDigests() {
   return (
     <>
       {articles?.map((article) => (
-        <Link href={"/daily-digest"} key={article?.title}>
-          <div className="bg-gray-800 p-4 rounded-xl border border-gray-600 hover:border-gray-500 duration-500">
+        <Link href={`/daily-digest/${article.id}`} key={article?.title}>
+          <div className="bg-gray-800 p-4 rounded-xl border border-gray-700 hover:border-gray-500 duration-500">
             <div className="border-b border-gray-500">
               <h2 className="text-lg md:text-2xl">{article?.title}</h2>
               <div className="flex items-center gap-2 my-4">
                 {article?.topic?.split(",")?.map((topic: any) => {
                   const colors = [
-                    "bg-green-600",
-                    "bg-orange-600",
-                    "bg-indigo-600",
-                    "bg-yellow-600",
-                    "bg-blue-600",
+                    "bg-green-700",
+                    "bg-orange-700",
+                    "bg-indigo-700",
+                    "bg-yellow-700",
+                    "bg-blue-700",
                   ];
                   const randomColor =
                     colors[Math.floor(Math.random() * colors.length)];
@@ -52,15 +52,9 @@ export default async function DailyDigests() {
                 })}
               </div>
             </div>
-            <p className="mt-4 text-gray-300">{article?.summary}</p>
-            <div className="flex justify-end">
-              <Link
-                href={`/daily-digest/${article?.id}`}
-                className="text-blue-400 hover:underline-offset-2 hover:text-blue-200 hover:underline duration-200"
-              >
-                Details
-              </Link>
-            </div>
+            <p className="mt-4 text-gray-300">
+              {article?.summary.slice(0, 300)}...
+            </p>
           </div>
         </Link>
       ))}
