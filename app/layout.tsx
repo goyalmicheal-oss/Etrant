@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     site: "@akhil_web",
     description: siteConfig.description,
     images: [
-      "https://raw.githubusercontent.com/akhil683/wiki-reel/refs/heads/main/public/og-image.png",
+      "https://raw.githubusercontent.com/akhil683/Etrant/refs/heads/main/public/og-image.png",
     ],
     creator: "@akkhil_dev",
   },
