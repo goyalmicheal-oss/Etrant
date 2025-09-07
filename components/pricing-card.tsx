@@ -51,17 +51,15 @@ const PayCard = ({ plan }: { plan: IPlan }) => {
           "https://raw.githubusercontent.com/akhil683/wiki-reel/refs/heads/main/public/etrant.png",
         handler: async function (response: any) {
           setAfterLoading(true);
-          // console.log("Payment success:", response);
 
           const verify = await fetch("/api/subscription/verify", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(response),
+            body: JSON.stringify({ ...response, userId: user?.id }),
           });
 
           const result = await verify.json();
           setLoading(false);
-          // console.log("result", result);
           if (result.success) {
             window.location.href = `subscription/success?payment_id=${response.razorpay_payment_id}`;
           } else {

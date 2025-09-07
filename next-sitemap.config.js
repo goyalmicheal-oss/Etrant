@@ -1,7 +1,7 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: "https://etrant.akkhil.dev",
-  generateRobotsTxt: true, // create robots.txt
+  generateRobotsTxt: true,
   sitemapSize: 7000,
 
   // Exclude private/non-SEO pages
