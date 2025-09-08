@@ -44,7 +44,7 @@ export function UserMenu() {
   };
 
   if (status === "loading") {
-    return <div></div>;
+    return <div className="w-8 h-8 bg-gray-600 rounded-full animate-pulse" />;
   }
   if (!session) {
     return (

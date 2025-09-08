@@ -83,7 +83,6 @@ export const userStats = pgTable(
   (t) => [primaryKey({ columns: [t.userId] })],
 );
 // -------------------- DAILY DIGEST  --------------------
-
 export const dailyDigest = pgTable("daily_digest", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),

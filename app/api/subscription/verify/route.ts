@@ -6,6 +6,7 @@ import { payments } from "@/lib/db/schema";
 export async function POST(req: Request) {
   const keySecret = process.env.RAZORPAY_KEY_SECRET!;
   const body = await req.json();
+  console.log("body", body);
   const {
     razorpay_payment_id,
     razorpay_subscription_id,
@@ -14,7 +15,7 @@ export async function POST(req: Request) {
   } = body;
 
   if (
-    razorpay_subscription_id ||
+    !razorpay_subscription_id ||
     !userId ||
     !razorpay_payment_id ||
     !razorpay_signature

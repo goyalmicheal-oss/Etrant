@@ -59,7 +59,8 @@ const PayCard = ({ plan }: { plan: IPlan }) => {
           });
 
           const result = await verify.json();
-          setLoading(false);
+          console.log("result", result);
+          setAfterLoading(false);
           if (result.success) {
             window.location.href = `subscription/success?payment_id=${response.razorpay_payment_id}`;
           } else {
