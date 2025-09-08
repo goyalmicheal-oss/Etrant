@@ -7,30 +7,20 @@ import {
 } from "@/components/ui/accordion";
 import { notFound } from "next/navigation";
 import getSingleDigest from "@/actions/get-single-digest";
-import { IUser } from "@/types";
-import { getUserData } from "@/actions/getInterest";
+import { IDailyDigest, IUser } from "@/types";
 import LockedPage from "@/components/locked-page";
 import { getDailyDigest } from "@/lib/db/get-daily-digest";
+import { getUserData } from "@/actions/getInterest";
 
-interface IArticle {
-  id: number;
-  title: string;
-  is_relevant: boolean;
-  summary: string;
-  relevant_questions: {
-    question: string;
-    answer: string;
-  }[];
-  source_url: string;
-  topic: string;
-}
 export default async function DailyDigestPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  console.log("id", id);
   const digest = await getSingleDigest(id);
+  console.log("digest", digest);
   if (!digest) {
     notFound();
   }
@@ -122,9 +112,10 @@ export async function generateMetadata({
   };
 }
 
-// export async function generateStaticParams() {
-//   const digests = (await getDailyDigest()) as IArticle[];
-//   return digests?.map((digest) => ({
-//     id: digest.id,
-//   }));
-// }
+export async function generateStaticParams() {
+  const digest = (await getDailyDigest()) as IDailyDigest[];
+  if (!digest) return [];
+  return digest?.map((post) => ({
+    postId: post.id,
+  }));
+}

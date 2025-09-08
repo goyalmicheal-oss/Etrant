@@ -1,25 +1,25 @@
-"use server";
-
 import { auth } from "@/auth";
-import { db } from "@/lib/db/db";
-import { users } from "@/lib/db/schema";
 import { IUser } from "@/types";
-import { eq } from "drizzle-orm";
 
 export const getUserData = async () => {
-  const session = await auth();
-  const email = session?.user?.email;
+  try {
+    const session = await auth();
+    const res = await fetch(`${process.env.NEXT_BASE_URL}/api/user`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId: session?.user?.id }),
+    });
+    const user = await res.json();
+    console.log("res", user);
 
-  const user = await db
-    .select()
-    .from(users)
-    .where(eq(users.email, email as string));
-
-  if (!user) {
+    if (user) {
+      return user as IUser;
+    }
+    return null;
+  } catch (error) {
+    console.log("Unexpected error occured.");
     return null;
   }
-  if (user) {
-    return user[0] as IUser;
-  }
-  return null;
 };
