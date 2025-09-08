@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 import { db } from "@/lib/db/db";
-import { users } from "@/lib/db/schema";
+import { payments, users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { format } from "date-fns";
 import { subscriptions } from "@/data/subscription-plan";
@@ -37,10 +37,17 @@ export async function POST(req: NextRequest) {
     const event = JSON.parse(body);
     const subscription = event.payload?.subscription?.entity;
     console.log("subscription", subscription);
-    const userMail = subscription?.notes?.userMail;
+    // const userMail = subscription?.notes?.userMail;
     const planId = subscription?.plan_id;
 
-    if (!userMail) {
+    const payment = (
+      await db
+        .select()
+        .from(payments)
+        .where(eq(payments.razorpayPaymentId, subscription.id))
+    )[0];
+
+    if (!payment) {
       console.error("Missing customer_id in event");
       return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
     }
@@ -64,7 +71,7 @@ export async function POST(req: NextRequest) {
               "dd-MM-yyyy",
             ),
           })
-          .where(eq(users.email, userMail));
+          .where(eq(users.id, payment.id));
         break;
       }
 
@@ -78,7 +85,7 @@ export async function POST(req: NextRequest) {
               "dd-MM-yyyy",
             ),
           })
-          .where(eq(users.email, userMail));
+          .where(eq(users.id, payment.id));
         break;
       }
 
@@ -87,7 +94,7 @@ export async function POST(req: NextRequest) {
         await db
           .update(users)
           .set({ subscriptionActive: false })
-          .where(eq(users.email, userMail));
+          .where(eq(users.id, payment.id));
         break;
       }
 
@@ -96,7 +103,7 @@ export async function POST(req: NextRequest) {
         await db
           .update(users)
           .set({ subscriptionActive: false })
-          .where(eq(users.email, userMail));
+          .where(eq(users.id, payment.id));
         break;
       }
 
