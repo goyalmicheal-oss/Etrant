@@ -8,6 +8,18 @@ export interface Article {
   createdAt: Date;
 }
 
+export interface IDailyDigest {
+  id: number;
+  title: string;
+  is_relevant: boolean;
+  summary: string;
+  relevant_questions: {
+    question: string;
+    answer: string;
+  }[];
+  source_url: string;
+  topic: string;
+}
 interface User {
   id: string;
   name: string;

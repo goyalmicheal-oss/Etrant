@@ -12,18 +12,19 @@ const protectedRoutes = [
   "/user",
   "/interest",
   "/daily-digest",
+  "/user-feedback",
 ];
 
 export default async function middleware(req: NextRequest) {
   const session = await auth();
   const { pathname } = req.nextUrl;
 
-  // ✅ Rule 1: Logged-in users should not see public pages
+  //Logged-in users should not see public pages
   if (session && publicRoutes.includes(pathname)) {
-    return NextResponse.redirect(new URL("/articles", req.url));
+    return NextResponse.redirect(new URL("/daily-digest", req.url));
   }
 
-  // ✅ Rule 2: Guests should not see protected pages
+  //  Guests should not see protected pages
   if (!session && isProtectedRoute(pathname)) {
     return NextResponse.redirect(new URL("/auth", req.url));
   }
