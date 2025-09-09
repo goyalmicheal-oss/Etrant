@@ -9,9 +9,8 @@ import {
 } from "@/components/ui/accordion";
 import { notFound } from "next/navigation";
 import getSingleDigest from "@/actions/get-single-digest";
-import { IDailyDigest, IUser } from "@/types";
+import { IUser } from "@/types";
 import LockedPage from "@/components/locked-page";
-// import { getDailyDigest } from "@/lib/db/get-daily-digest";
 import { getUserData } from "@/actions/getInterest";
 
 export default async function DailyDigestPage({
@@ -26,6 +25,7 @@ export default async function DailyDigestPage({
     return <LockedPage />;
   }
   const digest = await getSingleDigest(id);
+
   if (!digest) {
     notFound();
   }
@@ -111,11 +111,3 @@ export async function generateMetadata({
     },
   };
 }
-
-// export async function generateStaticParams() {
-//   const digest = (await getDailyDigest()) as IDailyDigest[];
-//   if (!digest) return [];
-//   return digest?.map((post) => ({
-//     postId: post.id,
-//   }));
-// }
