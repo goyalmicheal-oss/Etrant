@@ -77,7 +77,7 @@ export default function FeaturesGrid() {
           <h2 className="text-3xl md:text-5xl font-black text-white mb-6">
             {" "}
             {/* Changed text color */}
-            Why Students Love
+            Why should you use
             <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               {" "}
               Etrant

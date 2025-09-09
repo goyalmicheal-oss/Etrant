@@ -24,13 +24,13 @@ export default function Navbar() {
         </Link>
 
         {/* Sign In Button */}
-        <div className="flex items-center gap-4">
-          <Link href={"/auth"}>
-            <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white md:px-5 md:py-2 px-3 py-1 rounded-lg md:font-medium shadow-md">
-              Sign Up
-            </Button>
-          </Link>
-        </div>
+        {/* <div className="flex items-center gap-4"> */}
+        {/*   <Link href={"/auth"}> */}
+        {/*     <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white md:px-5 md:py-2 px-3 py-1 rounded-lg md:font-medium shadow-md"> */}
+        {/*       Sign Up */}
+        {/*     </Button> */}
+        {/*   </Link> */}
+        {/* </div> */}
       </div>
     </nav>
   );

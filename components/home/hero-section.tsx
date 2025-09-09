@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Logo from "@/public/etrant.png";
 import Link from "next/link";
+import WaitlistForm from "../waitlist";
 
 export default function HeroSection() {
   return (
@@ -50,26 +51,27 @@ export default function HeroSection() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href={"/auth"}>
-                  <Button
-                    size="lg"
-                    className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white md:font-bold px-6 py-2 md:px-8 md:py-4 md:text-lg rounded-full shadow-2xl transform transition-all"
-                  >
-                    Start Learning Free
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-                <Link href={"/how-it-works"}>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-2 border-white/30 bg-white text-black hover:text-white hover:bg-white/10 px-6 py-2 md:px-8 md:py-4 md:text-lg rounded-full backdrop-blur-sm"
-                  >
-                    See How It Works
-                  </Button>
-                </Link>
-              </div>
+              <WaitlistForm />
+              {/* <div className="flex flex-col sm:flex-row gap-4"> */}
+              {/*   <Link href={"/auth"}> */}
+              {/*     <Button */}
+              {/*       size="lg" */}
+              {/*       className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white md:font-bold px-6 py-2 md:px-8 md:py-4 md:text-lg rounded-full shadow-2xl transform transition-all" */}
+              {/*     > */}
+              {/*       Start Learning Free */}
+              {/*       <ArrowRight className="ml-2 h-5 w-5" /> */}
+              {/*     </Button> */}
+              {/*   </Link> */}
+              {/*   <Link href={"/how-it-works"}> */}
+              {/*     <Button */}
+              {/*       size="lg" */}
+              {/*       variant="outline" */}
+              {/*       className="border-2 border-white/30 bg-white text-black hover:text-white hover:bg-white/10 px-6 py-2 md:px-8 md:py-4 md:text-lg rounded-full backdrop-blur-sm" */}
+              {/*     > */}
+              {/*       See How It Works */}
+              {/*     </Button> */}
+              {/*   </Link> */}
+              {/* </div> */}
             </div>
 
             {/* Right content - iPhone 16 Pro with dark theme website */}
@@ -90,7 +92,7 @@ export default function HeroSection() {
                           <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
                             <div className="w-2 h-2 bg-white rounded-full"></div>
                           </div>
-                          <span className="font-medium">wiki.akkhil.dev</span>
+                          <span className="font-medium">etrant.akkhil.dev</span>
                         </div>
                       </div>
                     </div>
