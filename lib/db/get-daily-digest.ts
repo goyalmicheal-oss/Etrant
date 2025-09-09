@@ -11,7 +11,6 @@ export async function getDailyDigest() {
         title: dailyDigest.title,
         is_relevant: dailyDigest.isRelevant,
         summary: dailyDigest.summary,
-        relevant_questions: dailyDigest.relevantQuestions,
         source_url: dailyDigest.sourceUrl,
         topic: dailyDigest.topic,
         date: dailyDigest.date,
