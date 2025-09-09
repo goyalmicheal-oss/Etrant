@@ -70,6 +70,11 @@ export async function POST(req: NextRequest) {
           user?.name,
           current_plan?.name,
         );
+        await db.update(payments).set({
+          webhookConfirmed: true,
+          method: payment.method,
+          updatedAt: new Date(),
+        });
         await db
           .update(users)
           .set({

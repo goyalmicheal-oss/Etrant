@@ -57,7 +57,7 @@ export const plans: IPlan[] = [
     description: "Best for serious learners and exam preparation",
     features: [
       "2000 reels per month",
-      "Advanced AI quizzes (coming soon)",
+      "Advanced AI quizzes",
       "Full current affairs access",
       "Detailed analytics",
       "Priority support",
