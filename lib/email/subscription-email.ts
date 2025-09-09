@@ -20,7 +20,7 @@ export default async function sendSubscriptionEmail(
       
       <!-- Header -->
       <div style="text-align: center; padding: 20px; background-color: #1a73e8;">
-        <img src="https://raw.githubusercontent.com/akhil683/wiki-reel/refs/heads/main/public/wiki_logo_low.png" alt="Etrant Logo" style="max-width: 120px;" />
+        <img src="https://raw.githubusercontent.com/akhil683/Etrant/refs/heads/main/public/etrant.png" alt="Etrant Logo" style="max-width: 120px;" />
       </div>
       
       <!-- Body -->
@@ -40,7 +40,6 @@ export default async function sendSubscriptionEmail(
           <li><strong>Premium Knowledge Maps</strong> — Explore advanced connections between topics.</li>
           <li><strong>Exclusive Pro/Max MCQs</strong> — Higher quality, exam-ready questions.</li>
           <li><strong>Priority Updates</strong> — Be the first to access new features.</li>
-          ${plan === "Max" ? "<li><strong>1-on-1 Learning Insights</strong> — Personalized recommendations just for you.</li>" : ""}
         </ul>
 
         <div style="text-align: center; margin: 30px 0;">
