@@ -9,7 +9,7 @@ import { notFound } from "next/navigation";
 import getSingleDigest from "@/actions/get-single-digest";
 import { IDailyDigest, IUser } from "@/types";
 import LockedPage from "@/components/locked-page";
-import { getDailyDigest } from "@/lib/db/get-daily-digest";
+// import { getDailyDigest } from "@/lib/db/get-daily-digest";
 import { getUserData } from "@/actions/getInterest";
 
 export default async function DailyDigestPage({
@@ -18,29 +18,27 @@ export default async function DailyDigestPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  console.log("id", id);
-  const digest = await getSingleDigest(id);
-  console.log("digest", digest);
-  if (!digest) {
-    notFound();
-  }
-
   const userData: IUser | null = await getUserData();
 
   if (userData?.subscriptionActive !== true) {
     return <LockedPage />;
   }
+  const digest = await getSingleDigest(id);
+  if (!digest) {
+    notFound();
+  }
+
   return (
     <div>
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Header Section */}
         <div className="mb-8 border-b">
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-100 mb-4 leading-tight">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-100 mb-2 md:mb-4 leading-tight">
             {digest?.title}
           </h1>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-8">
+          <div className="flex flex-wrap gap-2 mb-4 md:mb-8">
             {digest?.topic?.split(",").map((tag) => (
               <Badge
                 key={tag}
@@ -112,10 +110,10 @@ export async function generateMetadata({
   };
 }
 
-export async function generateStaticParams() {
-  const digest = (await getDailyDigest()) as IDailyDigest[];
-  if (!digest) return [];
-  return digest?.map((post) => ({
-    postId: post.id,
-  }));
-}
+// export async function generateStaticParams() {
+//   const digest = (await getDailyDigest()) as IDailyDigest[];
+//   if (!digest) return [];
+//   return digest?.map((post) => ({
+//     postId: post.id,
+//   }));
+// }

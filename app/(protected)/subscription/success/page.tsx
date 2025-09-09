@@ -52,6 +52,9 @@ export default function SuccessPage() {
             </Button>
           </Link>
         </div>
+        <p className="mt-12 text-gray-500">
+          Please wait few seconds, if not awarded access.
+        </p>
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ export default async function DailyDigests() {
       </div>
     );
   }
+  console.log(articles);
 
   return (
     <>

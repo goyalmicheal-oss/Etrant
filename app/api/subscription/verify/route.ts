@@ -32,7 +32,7 @@ export async function POST(req: Request) {
 
   if (generated_signature === razorpay_signature) {
     await db.insert(payments).values({
-      razorpayPaymentId: razorpay_payment_id,
+      razorpayPaymentId: razorpay_subscription_id,
       userId: userId,
       webhookConfirmed: false, // Will be true when webhook processes
     });
