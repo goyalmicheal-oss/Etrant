@@ -20,12 +20,12 @@ export default async function PricingPage() {
             Choose the perfect plan for your learning journey. Start free and
             upgrade anytime.
           </p>
-          <div className="inline-flex items-center gap-2 bg-green-900/20 border border-green-700/30 rounded-full px-4 py-2">
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <span className="text-green-400 text-xs md:text-sm font-medium">
-              7-day free trial on all paid plans
-            </span>
-          </div>
+          {/* <div className="inline-flex items-center gap-2 bg-green-900/20 border border-green-700/30 rounded-full px-4 py-2"> */}
+          {/*   <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div> */}
+          {/*   <span className="text-green-400 text-xs md:text-sm font-medium"> */}
+          {/*     7-day free trial on all paid plans */}
+          {/*   </span> */}
+          {/* </div> */}
         </div>
 
         {/* Pricing Cards */}
