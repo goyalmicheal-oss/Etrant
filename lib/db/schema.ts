@@ -59,6 +59,10 @@ export const payments = pgTable("payments", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
+export const waitlist = pgTable("waitlist", {
+  email: text("email").notNull(),
+  createdAt: timestamp("created_at"),
+});
 // -------------------- FEEDBACK --------------------
 export const feedbacks = pgTable("feedbacks", {
   id: serial("id").primaryKey(),
