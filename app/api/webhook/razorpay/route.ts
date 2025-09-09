@@ -5,6 +5,7 @@ import { payments, users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { format } from "date-fns";
 import { subscriptions } from "@/data/subscription-plan";
+import sendSubscriptionEmail from "@/lib/email/subscription-email";
 
 export async function POST(req: NextRequest) {
   try {
@@ -61,6 +62,7 @@ export async function POST(req: NextRequest) {
 
     switch (event.event) {
       case "subscription.activated": {
+        //TODO: await sendSubscriptionEmail(current_plan.name)
         await db
           .update(users)
           .set({

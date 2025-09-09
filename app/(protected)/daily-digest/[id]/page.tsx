@@ -9,7 +9,7 @@ import { notFound } from "next/navigation";
 import getSingleDigest from "@/actions/get-single-digest";
 import { IDailyDigest, IUser } from "@/types";
 import LockedPage from "@/components/locked-page";
-import { getDailyDigest } from "@/lib/db/get-daily-digest";
+// import { getDailyDigest } from "@/lib/db/get-daily-digest";
 import { getUserData } from "@/actions/getInterest";
 
 export default async function DailyDigestPage({
@@ -18,18 +18,16 @@ export default async function DailyDigestPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  console.log("id", id);
-  const digest = await getSingleDigest(id);
-  console.log("digest", digest);
-  if (!digest) {
-    notFound();
-  }
-
   const userData: IUser | null = await getUserData();
 
   if (userData?.subscriptionActive !== true) {
     return <LockedPage />;
   }
+  const digest = await getSingleDigest(id);
+  if (!digest) {
+    notFound();
+  }
+
   return (
     <div>
       <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -112,10 +110,10 @@ export async function generateMetadata({
   };
 }
 
-export async function generateStaticParams() {
-  const digest = (await getDailyDigest()) as IDailyDigest[];
-  if (!digest) return [];
-  return digest?.map((post) => ({
-    postId: post.id,
-  }));
-}
+// export async function generateStaticParams() {
+//   const digest = (await getDailyDigest()) as IDailyDigest[];
+//   if (!digest) return [];
+//   return digest?.map((post) => ({
+//     postId: post.id,
+//   }));
+// }
