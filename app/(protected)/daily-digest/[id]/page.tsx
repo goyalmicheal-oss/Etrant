@@ -1,3 +1,5 @@
+export const revalidate = 60;
+
 import { Badge } from "@/components/ui/badge";
 import {
   Accordion,

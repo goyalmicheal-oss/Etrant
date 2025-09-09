@@ -13,7 +13,7 @@ export interface IDailyDigest {
   title: string;
   is_relevant: boolean;
   summary: string;
-  relevant_questions: {
+  relevant_questions?: {
     question: string;
     answer: string;
   }[];
