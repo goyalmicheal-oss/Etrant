@@ -33,12 +33,12 @@ export default async function DailyDigestPage({
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Header Section */}
         <div className="mb-8 border-b">
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-100 mb-4 leading-tight">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-100 mb-2 md:mb-4 leading-tight">
             {digest?.title}
           </h1>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-8">
+          <div className="flex flex-wrap gap-2 mb-4 md:mb-8">
             {digest?.topic?.split(",").map((tag) => (
               <Badge
                 key={tag}

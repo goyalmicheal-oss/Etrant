@@ -20,10 +20,13 @@ export async function POST(req: NextRequest) {
 
     const body = await req.text();
     const signature = req.headers.get("x-razorpay-signature") as string;
-
     if (!signature) {
       return NextResponse.json({ error: "Missing signature" }, { status: 400 });
     }
+
+    const event = JSON.parse(body);
+    const subscription = event.payload?.subscription?.entity;
+    const planId = subscription?.plan_id;
 
     const expected = crypto
       .createHmac("sha256", secret)
@@ -35,19 +38,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
     }
 
-    const event = JSON.parse(body);
-    const subscription = event.payload?.subscription?.entity;
-    console.log("subscription", subscription);
-    // const userMail = subscription?.notes?.userMail;
-    const planId = subscription?.plan_id;
-
     const payment = (
       await db
         .select()
         .from(payments)
         .where(eq(payments.razorpayPaymentId, subscription.id))
     )[0];
-
+    console.log("payment schema", payment);
     if (!payment) {
       console.error("Missing customer_id in event");
       return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
@@ -62,7 +59,17 @@ export async function POST(req: NextRequest) {
 
     switch (event.event) {
       case "subscription.activated": {
-        //TODO: await sendSubscriptionEmail(current_plan.name)
+        const user = (
+          await db
+            .select()
+            .from(users)
+            .where(eq(users.id, payment.userId as string))
+        )[0];
+        await sendSubscriptionEmail(
+          user?.email,
+          user?.name,
+          current_plan?.name,
+        );
         await db
           .update(users)
           .set({
@@ -73,7 +80,7 @@ export async function POST(req: NextRequest) {
               "dd-MM-yyyy",
             ),
           })
-          .where(eq(users.id, payment.id));
+          .where(eq(users.id, payment.userId as string));
         break;
       }
 
@@ -87,7 +94,7 @@ export async function POST(req: NextRequest) {
               "dd-MM-yyyy",
             ),
           })
-          .where(eq(users.id, payment.id));
+          .where(eq(users.id, payment.userId as string));
         break;
       }
 
@@ -96,7 +103,7 @@ export async function POST(req: NextRequest) {
         await db
           .update(users)
           .set({ subscriptionActive: false })
-          .where(eq(users.id, payment.id));
+          .where(eq(users.id, payment.userId as string));
         break;
       }
 
@@ -105,7 +112,7 @@ export async function POST(req: NextRequest) {
         await db
           .update(users)
           .set({ subscriptionActive: false })
-          .where(eq(users.id, payment.id));
+          .where(eq(users.id, payment.userId as string));
         break;
       }
 

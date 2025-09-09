@@ -36,7 +36,7 @@ export const plans: IPlan[] = [
     description: "Perfect for getting started with Etrant",
     features: [
       "100 reels per month",
-      "Basic quizzes",
+      "No quizzes",
       "Limited current affairs",
       "Basic progress tracking",
       "Community access",
@@ -57,10 +57,9 @@ export const plans: IPlan[] = [
     description: "Best for serious learners and exam preparation",
     features: [
       "2000 reels per month",
-      "Advanced AI quizzes",
+      "Advanced AI quizzes (coming soon)",
       "Full current affairs access",
       "Detailed analytics",
-      "Offline downloads",
       "Priority support",
       "Custom study plans",
       "Progress insights",
@@ -83,7 +82,6 @@ export const plans: IPlan[] = [
       "Custom exam simulations",
       "Priority content requests",
       "Early access to new features",
-      "Performance coaching",
     ],
     limitations: [],
     buttonText: "Go Max",

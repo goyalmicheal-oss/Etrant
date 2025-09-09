@@ -1,9 +1,9 @@
 import { transporter } from "../config/nodemailer";
 
 export default async function sendSubscriptionEmail(
-  email: string,
-  name: string,
-  plan: "Pro" | "Max",
+  email: string | null,
+  name: string | null,
+  plan: string | null,
 ) {
   try {
     if (!email) {
@@ -13,7 +13,7 @@ export default async function sendSubscriptionEmail(
     await transporter.sendMail({
       from: `"Etrant" <${process.env.SMTP_USER}>`,
       to: email,
-      subject: `🎉 Welcome to Etrant ${plan}!`,
+      subject: `🎉 Welcome to Etrant ${plan || "Subscription"}!`,
       html: `
   <div style="font-family: Arial, sans-serif; background-color: #f7f8fa; padding: 20px;">
     <div style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
