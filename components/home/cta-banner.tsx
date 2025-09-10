@@ -45,19 +45,19 @@ export default function CTABanner() {
               in just 7 days.
             </p>
 
-            <WaitlistForm />
-            {/* <div className="flex flex-col sm:flex-row gap-6 justify-center items-center"> */}
-            {/*   <Link href={"/auth"}> */}
-            {/*     <Button */}
-            {/*       size="lg" */}
-            {/*       className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold px-10 py-5 md:text-xl rounded-full shadow-2xl transform hover:scale-105 transition-all" */}
-            {/*     > */}
-            {/*       <Smartphone className="md:mr-3 mr-2 md:h-6 md:w-6 h-5 w-5" /> */}
-            {/*       Sign Up - It's Free! */}
-            {/*       <ArrowRight className="md:ml-3 mr-2 h-6 w-6" /> */}
-            {/*     </Button> */}
-            {/*   </Link> */}
-            {/* </div> */}
+            {/* <WaitlistForm /> */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <Link href={"/auth"}>
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold px-10 py-5 md:text-xl rounded-full shadow-2xl transform hover:scale-105 transition-all"
+                >
+                  <Smartphone className="md:mr-3 mr-2 md:h-6 md:w-6 h-5 w-5" />
+                  Sign Up - It's Free!
+                  <ArrowRight className="md:ml-3 mr-2 h-6 w-6" />
+                </Button>
+              </Link>
+            </div>
           </motion.div>
         </div>
       </div>
