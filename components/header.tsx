@@ -9,7 +9,7 @@ import Logo from "@/public/etrant.png";
 export default function Header() {
   const { user } = useUserStore();
   return (
-    <div className="sticky top-0 z-50 backdrop-blur-sm border-b border-gray-900">
+    <div className="md:hidden sticky top-0 z-50 backdrop-blur-sm border-b border-gray-900">
       <div className="flex items-center justify-between p-4 max-w-7xl mx-auto">
         <h1 className="md:text-lg font-semibold text-white">
           <Link href="/" className="flex items-center gap-2">
@@ -22,12 +22,14 @@ export default function Header() {
           </Link>
         </h1>
         <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2 bg-yellow-600/20 px-3 py-1 rounded-full">
-            <Trophy className="md:w-4 md:h-4 w-3 h-3 text-yellow-400" />
-            <span className="md:text-sm text-xs font-medium text-yellow-400">
-              {user?.points || 0}
-            </span>
-          </div>
+          {user?.points && (
+            <div className="flex items-center space-x-2 bg-yellow-600/20 px-3 py-1 rounded-full">
+              <Trophy className="md:w-4 md:h-4 w-3 h-3 text-yellow-400" />
+              <span className="md:text-sm text-xs font-medium text-yellow-400">
+                {user?.points || 0}
+              </span>
+            </div>
+          )}
           <UserMenu />
         </div>
       </div>

@@ -1,7 +1,12 @@
 import {
+  AlarmClockCheck,
+  BadgeDollarSign,
+  Book,
+  BookDown,
   BookOpen,
   Brain,
   Crown,
+  FormInput,
   Smartphone,
   Star,
   Target,
@@ -170,5 +175,38 @@ export const stepsHowItWorks = [
     icon: Trophy,
     color: "from-yellow-500 to-orange-500",
     features: ["Points & XP system", "Streak rewards", "Global leaderboards"],
+  },
+];
+
+export const sidebarLinks = [
+  {
+    name: "AI Questions",
+    icon: BookDown,
+    link: "/ai-questions",
+  },
+  {
+    name: "Article Reel",
+    icon: AlarmClockCheck,
+    link: "/articles",
+  },
+  {
+    name: "Daily Digest",
+    icon: Book,
+    link: "/daily-digest",
+  },
+  {
+    name: "Subscription",
+    icon: BadgeDollarSign,
+    link: "/subscription",
+  },
+  {
+    name: "Leaderboard",
+    icon: Trophy,
+    link: "/leaderboard",
+  },
+  {
+    name: "Feedback",
+    icon: FormInput,
+    link: "/user-feedback",
   },
 ];
