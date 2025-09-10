@@ -6,6 +6,7 @@ import {
   BookOpen,
   Brain,
   Crown,
+  File,
   FormInput,
   Smartphone,
   Star,
@@ -193,6 +194,11 @@ export const sidebarLinks = [
     name: "Daily Digest",
     icon: Book,
     link: "/daily-digest",
+  },
+  {
+    name: "File Analzyer",
+    icon: File,
+    link: "/file-analyzer",
   },
   {
     name: "Subscription",
