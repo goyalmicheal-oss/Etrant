@@ -88,8 +88,10 @@ const PayCard = ({ plan }: { plan: IPlan }) => {
     <>
       <Card
         key={plan.name}
-        className={`relative bg-gray-900/50 border-gray-800 hover:border-gray-700 transition-all duration-300 ${
-          plan.popular ? "ring-2 ring-blue-500/50 scale-105" : ""
+        className={`relative bg-gray-300/50 dark:bg-gray-900/50 border-gray-400 dark:border-gray-800 hover:border-gray-700 transition-all duration-300 ${
+          plan.popular
+            ? "ring-2 ring-blue-700 dark:ring-blue-500/50 scale-105"
+            : ""
         }`}
       >
         {plan.popular && (
@@ -114,16 +116,20 @@ const PayCard = ({ plan }: { plan: IPlan }) => {
               <plan.icon className="h-8 w-8 text-white" />
             </div>
           </div>
-          <CardTitle className="text-2xl font-bold text-white mb-2">
+          <CardTitle className="text-2xl font-bold text-gray-950 dark:text-white mb-2">
             {plan.name}
           </CardTitle>
           <div className="mb-4">
-            <span className="text-4xl font-black text-white">
+            <span className="text-4xl font-black text-gray-950 dark:text-white">
               ₹{plan.price}
             </span>
-            <span className="text-gray-400 ml-1">/month</span>
+            <span className="text-gray-700 dark:text-gray-400 ml-1">
+              /month
+            </span>
           </div>
-          <p className="text-gray-400 text-sm">{plan.description}</p>
+          <p className="text-gray-700 dark:text-gray-400 text-sm">
+            {plan.description}
+          </p>
         </CardHeader>
 
         <CardContent className="space-y-6">
@@ -131,8 +137,10 @@ const PayCard = ({ plan }: { plan: IPlan }) => {
           <div className="space-y-3">
             {plan.features.map((feature: string) => (
               <div key={feature} className="flex items-start gap-3">
-                <Check className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-300 text-sm">{feature}</span>
+                <Check className="h-5 w-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                <span className="text-gray-600 dark:text-gray-300 text-sm">
+                  {feature}
+                </span>
               </div>
             ))}
           </div>
@@ -146,7 +154,7 @@ const PayCard = ({ plan }: { plan: IPlan }) => {
               className={`w-full py-3 text-base font-semibold ${
                 plan.buttonVariant === "default"
                   ? "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
-                  : "border-gray-600 text-gray-300 hover:bg-gray-800 bg-transparent"
+                  : "border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-500 dark:hover:bg-gray-800 bg-transparent"
               }`}
             >
               {user?.plan === plan.name ? (

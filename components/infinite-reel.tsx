@@ -185,7 +185,7 @@ export function InfiniteReel() {
   return (
     <div
       ref={containerRef}
-      className="h-[calc(100vh-73px)] overflow-y-auto snap-y snap-mandatory scroll-smooth"
+      className="h-[calc(100vh-73px)] md:h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth"
       style={{
         scrollbarWidth: "none",
         msOverflowStyle: "none",

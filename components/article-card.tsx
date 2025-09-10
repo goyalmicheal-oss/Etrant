@@ -40,7 +40,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-purple-900/50 to-blue-900/50" />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-500 dark:from-black via-gray-700/10 dark:via-black/50 to-transparent" />
       </div>
 
       {/* Content */}

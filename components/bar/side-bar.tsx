@@ -26,15 +26,15 @@ export default function Sidebar() {
   };
 
   return (
-    <section className="max-md:hidden sticky top-0 h-screen lg:min-w-[15vw] py-12 px-4 bg-gray-950 border-r  z-50">
+    <section className="max-md:hidden sticky top-0 h-screen lg:min-w-[15vw] py-12 px-4 bg-gray-200 dark:bg-gray-950 border-r border-gray-300 dark:border-gray-500 z-50">
       <div className="h-full flex flex-col justify-between">
-        <div>
+        <div className="flex flex-col max-lg:justify-center max-lg:items-center">
           <h1 className="md:text-lg font-semibold text-white mb-6">
             <Link href="/" className="flex items-center gap-3">
               <div className="md:w-9 md:h-9 w-8 h-8 rounded-lg flex items-center justify-center">
                 <Image src={Logo} className="w-full h-full" alt="Etrant Logo" />
               </div>
-              <span className="md:text-2xl text-xl font-black text-white">
+              <span className="max-lg:hidden md:text-2xl text-xl font-black text-gray-950 dark:text-white">
                 Etrant
               </span>
             </Link>
@@ -49,30 +49,20 @@ export default function Sidebar() {
                   className="cursor-pointer"
                 >
                   <div
-                    className={`flex gap-4 p-3 rounded-lg items-center duration-200 
-                      ${
-                        isActive
-                          ? "bg-indigo-600/50 text-white font-bold"
-                          : "text-gray-200 hover:text-gray-100 hover:bg-gray-700"
-                      }`}
+                    className={`flex gap-4 p-3 text-sm rounded-lg max-lg:justify-center items-center duration-200 dark:text-gray-100 
+                      ${isActive ? "bg-indigo-600/70 text-white" : " hover:bg-gray-300 dark:hover:bg-gray-800 text-gray-950"}`}
                   >
-                    <link.icon />
-                    <span className="font-semibold">{link.name}</span>
+                    <link.icon className="w-5 h-5" />
+                    <span className="max-lg:hidden">{link.name}</span>
                   </div>
                 </Link>
               );
             })}
           </div>
         </div>
-        <div className="flex flex-col gap-2">
-          <div className="flex items-center justify-center space-x-2 bg-yellow-600/20 px-3 py-2 rounded-full">
-            <Trophy className="md:w-4 md:h-4 w-3 h-3 text-yellow-400" />
-            <span className="md:text-sm text-xs font-medium text-yellow-400">
-              {user?.points || 0}
-            </span>
-          </div>
+        <div className="flex flex-col gap-4">
           <Link href="/user/profile" className="cursor-pointer">
-            <div className="flex gap-4 p-3 rounded-lg items-center duration-200 hover:bg-gray-700">
+            <div className="flex gap-4 px-3 py-2 rounded-lg items-center duration-200 hover:bg-gray-300 dark:hover:bg-gray-700">
               {user?.image ? (
                 <Button
                   variant="ghost"
@@ -100,15 +90,26 @@ export default function Sidebar() {
               ) : (
                 <div className="w-8 h-8 rounded-full bg-gray-600" />
               )}
-              <span className="font-semibold">Account</span>
+              <p className="max-lg:hidden dark:font-semibold leading-4 dark:text-white flex flex-col text-gray-950">
+                Account
+                <span className="text-xs text-gray-700">{user?.name}</span>
+              </p>
             </div>
           </Link>
+          <div className="flex items-center justify-center space-x-2 dark:bg-yellow-600/20 bg-yellow-600 px-3 py-2 rounded-lg">
+            <Trophy className="max-lg:hidden md:w-4 md:h-4 w-3 h-3 text-yellow-200 dark:text-yellow-400" />
+            <span className="lg:text-sm text-xs font-medium text-yellow-200 dark:text-yellow-400">
+              {user?.points || 0}
+            </span>
+          </div>
           <Button
             onClick={handleSignOut}
             className="flex bg-indigo-500 items-center gap-2 cursor-pointer text-gray-100 hover:bg-indigo-600 duration-200"
           >
             <LogOut />
-            <span>{loading ? "Signing out..." : "Sign Out"}</span>
+            <span className="max-lg:hidden">
+              {loading ? "Signing out..." : "Sign Out"}
+            </span>
           </Button>
         </div>
       </div>

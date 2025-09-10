@@ -11,7 +11,7 @@ export default async function ArticlePage() {
   return (
     <ErrorBoundary>
       <Suspense fallback={<Loading />}>
-        <main className="min-h-screen bg-black">
+        <main className="min-h-screen dark:bg-black">
           <InfiniteReel />
         </main>
       </Suspense>

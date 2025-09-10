@@ -41,7 +41,7 @@ export default function FeedbackForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-gray-900 border border-gray-700 text-white p-4 md:p-6 rounded-2xl shadow-md w-full max-w-md"
+      className="bg-gray-900 border border-gray-700 text-white p-4 md:p-6 rounded-2xl shadow-md w-full max-w-xl md:min-w-xl"
     >
       <h2 className="text-xl font-semibold text-gray-100 mb-4">
         We value your feedback
