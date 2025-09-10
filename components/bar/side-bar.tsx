@@ -26,7 +26,7 @@ export default function Sidebar() {
   };
 
   return (
-    <section className="max-md:hidden sticky top-0 h-screen lg:min-w-[15vw] py-12 px-4 bg-gray-200 dark:bg-gray-950 border-r border-gray-300 dark:border-gray-500 z-50">
+    <section className="max-md:hidden sticky top-0 h-screen lg:min-w-[15vw] py-12 px-4 bg-gray-200 dark:bg-gray-950 border-r border-gray-300 dark:border-gray-800 z-50">
       <div className="h-full flex flex-col justify-between">
         <div className="flex flex-col max-lg:justify-center max-lg:items-center">
           <h1 className="md:text-lg font-semibold text-white mb-6">
@@ -34,7 +34,7 @@ export default function Sidebar() {
               <div className="md:w-9 md:h-9 w-8 h-8 rounded-lg flex items-center justify-center">
                 <Image src={Logo} className="w-full h-full" alt="Etrant Logo" />
               </div>
-              <span className="max-lg:hidden md:text-2xl text-xl font-black text-gray-950 dark:text-white">
+              <span className="max-lg:hidden md:text-2xl text-xl font-bold text-gray-950 dark:text-white">
                 Etrant
               </span>
             </Link>
@@ -49,8 +49,8 @@ export default function Sidebar() {
                   className="cursor-pointer"
                 >
                   <div
-                    className={`flex gap-4 p-3 text-sm rounded-lg max-lg:justify-center items-center duration-200 dark:text-gray-100 
-                      ${isActive ? "bg-indigo-600/70 text-white" : " hover:bg-gray-300 dark:hover:bg-gray-800 text-gray-950"}`}
+                    className={`flex gap-3 p-3 text-sm rounded-lg max-lg:justify-center items-center duration-200 dark:text-gray-100 
+                      ${isActive ? "bg-indigo-600 text-white" : " hover:bg-gray-300 dark:hover:bg-gray-800 text-gray-950"}`}
                   >
                     <link.icon className="w-5 h-5" />
                     <span className="max-lg:hidden">{link.name}</span>
@@ -92,7 +92,9 @@ export default function Sidebar() {
               )}
               <p className="max-lg:hidden dark:font-semibold leading-4 dark:text-white flex flex-col text-gray-950">
                 Account
-                <span className="text-xs text-gray-700">{user?.name}</span>
+                <span className="text-xs dark:text-gray-400 text-gray-700">
+                  {user?.name}
+                </span>
               </p>
             </div>
           </Link>

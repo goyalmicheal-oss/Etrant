@@ -20,7 +20,7 @@ export default async function DailyDigests() {
         <Link href={`/daily-digest/${article.id}`} key={article?.title}>
           <div className="bg-gray-300 dark:bg-gray-900 p-4 rounded-xl border border-gray-400 dark:border-gray-700 hover:border-gray-500 duration-500">
             <div className="border-b border-gray-500">
-              <h2 className="text-lg md:text-2xl text-gray-950 dark:text-gray-100">
+              <h2 className="text-lg md:text-xl text-gray-950 dark:text-gray-100">
                 {article?.title}
               </h2>
               <div className="flex items-center flex-wrap gap-2 my-4">

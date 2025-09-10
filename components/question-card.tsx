@@ -72,7 +72,7 @@ export function McqCard({
               <div className="flex justify-center gap-2">
                 <Badge
                   variant="outline"
-                  className="bg-white/20 text-white border-white/30 text-xs"
+                  className="bg-gray-950/20 dark:bg-white/20 text-gray-950 dark:text-white border-gray-950/30 dark:border-white/30 text-xs"
                 >
                   {currentQuestion.tags[0]}
                 </Badge>
@@ -80,7 +80,7 @@ export function McqCard({
                 {currentQuestion.previousYearQuestion !== "" && (
                   <Badge
                     variant="outline"
-                    className="bg-red-800/20 text-white border-white/30 text-xs"
+                    className="bg-red-800/20 text-gray-950 dark:text-white border-red-800/50 dark:border-white/30 text-xs"
                   >
                     {currentQuestion.previousYearQuestion}
                   </Badge>
@@ -88,7 +88,7 @@ export function McqCard({
               </div>
             </div>
 
-            <h2 className="md:text-2xl text-xl font-semibold leading-relaxed">
+            <h2 className="md:text-2xl dark:text-gray-100 text-gray-950 text-xl font-semibold leading-relaxed">
               {currentQuestion.question}
             </h2>
           </div>
@@ -130,12 +130,12 @@ export function McqCard({
                     disabled={isAnswered}
                     className={buttonClass}
                   >
-                    <div className="flex p-4 bg-black/60 items-center justify-between md:text-lg">
+                    <div className="flex p-4 bg-gray-400/40 dark:bg-black/60 items-center justify-between md:text-lg">
                       <div className="flex items-center space-x-3">
-                        <div className="min-w-6 min-h-6 md:min-w-8 md:min-h-8 rounded-full bg-gradient-to-r from-purple-100 to-pink-100 flex items-center justify-center text-sm font-bold text-gray-800">
+                        <div className="min-w-6 min-h-6 md:min-w-8 md:min-h-8 rounded-full bg-indigo-600 text-gray-100 flex items-center justify-center text-sm font-bold">
                           {String.fromCharCode(65 + index)}
                         </div>
-                        <span className="font-medium text-white">
+                        <span className="font-medium text-gray-950 dark:text-white">
                           {option.name}
                         </span>
                       </div>
