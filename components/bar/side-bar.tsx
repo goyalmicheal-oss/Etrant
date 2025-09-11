@@ -26,7 +26,7 @@ export default function Sidebar() {
   };
 
   return (
-    <section className="max-md:hidden sticky top-0 h-screen lg:min-w-[15vw] py-12 px-4 bg-gray-200 dark:bg-gray-950 border-r border-gray-300 dark:border-gray-800 z-50">
+    <section className="max-md:hidden sticky top-0 h-screen lg:min-w-[15vw] py-8 px-4 bg-gray-200 dark:bg-gray-950 border-r border-gray-300 dark:border-gray-800 z-50">
       <div className="h-full flex flex-col justify-between">
         <div className="flex flex-col max-lg:justify-center max-lg:items-center">
           <h1 className="md:text-lg font-semibold text-white mb-6">

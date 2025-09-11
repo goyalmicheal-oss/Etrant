@@ -14,26 +14,8 @@ import {
   Trophy,
   Zap,
 } from "lucide-react";
+import { IPlan } from "@/types";
 
-export interface IPlan {
-  name: string;
-  price: number;
-  icon: any;
-  description: string;
-  features: string[];
-  limitations: string[];
-  buttonText: string;
-  buttonVariant:
-    | "link"
-    | "default"
-    | "destructive"
-    | "outline"
-    | "secondary"
-    | "ghost"
-    | null
-    | undefined;
-  popular: boolean;
-}
 export const plans: IPlan[] = [
   {
     name: "Free",
@@ -201,14 +183,19 @@ export const sidebarLinks = [
     link: "/file-analyzer",
   },
   {
-    name: "Subscription",
-    icon: BadgeDollarSign,
-    link: "/subscription",
+    name: "Interest",
+    icon: Star,
+    link: "/interest",
   },
   {
     name: "Leaderboard",
     icon: Trophy,
     link: "/leaderboard",
+  },
+  {
+    name: "Subscription",
+    icon: BadgeDollarSign,
+    link: "/subscription",
   },
   {
     name: "Feedback",
