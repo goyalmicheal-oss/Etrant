@@ -14,7 +14,6 @@ import {
 import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 import type { AdapterAccountType } from "@auth/core/adapters";
-import { useId } from "react";
 
 const connectionString = process.env.DATABASE_URL as string;
 if (!connectionString) {
@@ -107,7 +106,7 @@ export const dailyPoints = pgTable("daily_points", {
     .references(() => users.id, { onDelete: "cascade" }),
   day: text("day"), // e.g. Mon
   date: date("date"),
-  points: integer("points"),
+  points: integer("pois"),
 });
 
 // -------------------- WEEKLY ACTIVITY --------------------
