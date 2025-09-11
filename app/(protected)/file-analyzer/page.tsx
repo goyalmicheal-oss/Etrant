@@ -13,16 +13,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import {
-  Upload,
-  FileText,
-  Brain,
-  CheckCircle,
-  XCircle,
-  RotateCcw,
-  BookOpen,
-} from "lucide-react";
+import { Upload, FileText, Brain, RotateCcw, BookOpen } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { IAnalysisResult } from "@/types";
+import McqQuestion from "@/components/file-analyzer/mcq-question";
+import FileAnalysis from "@/components/file-analyzer/Analysis";
 
 interface MCQQuestion {
   id: number;
@@ -33,19 +28,10 @@ interface MCQQuestion {
   difficulty: "Easy" | "Medium" | "Hard";
 }
 
-interface AnalysisResult {
-  summary: string;
-  keyPoints: string[];
-  topics: string[];
-  difficulty: string;
-  wordCount: number;
-}
-
-export default function FileAnalyzer() {
+export default function FileAnalyzerPage() {
   const [file, setFile] = useState<File | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [isGeneratingMCQ, setIsGeneratingMCQ] = useState(false);
-  const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(
+  const [analysisResult, setAnalysisResult] = useState<IAnalysisResult | null>(
     null,
   );
   const [mcqQuestions, setMcqQuestions] = useState<MCQQuestion[]>([]);
@@ -104,7 +90,7 @@ export default function FileAnalyzer() {
       await new Promise((resolve) => setTimeout(resolve, 3000));
 
       // Mock analysis result based on file type
-      const mockResult: AnalysisResult = {
+      const mockResult: IAnalysisResult = {
         summary:
           "This document covers fundamental concepts in machine learning, including supervised and unsupervised learning algorithms, neural networks, and practical applications in various industries. The content is structured to provide both theoretical understanding and practical implementation guidance.",
         keyPoints: [
@@ -144,105 +130,6 @@ export default function FileAnalyzer() {
   };
 
   // Generate MCQ questions using Gemini AI
-  const generateMCQQuestions = async () => {
-    if (!analysisResult) return;
-
-    setIsGeneratingMCQ(true);
-
-    try {
-      // Simulate API call to Gemini AI for MCQ generation
-      await new Promise((resolve) => setTimeout(resolve, 2500));
-
-      // Mock MCQ questions based on analysis
-      const mockQuestions: MCQQuestion[] = [
-        {
-          id: 1,
-          question:
-            "What is the primary difference between supervised and unsupervised learning?",
-          options: [
-            "Supervised learning uses labeled data, unsupervised learning uses unlabeled data",
-            "Supervised learning is faster than unsupervised learning",
-            "Supervised learning only works with numerical data",
-            "There is no significant difference between them",
-          ],
-          correctAnswer: 0,
-          explanation:
-            "Supervised learning algorithms learn from labeled training data to make predictions, while unsupervised learning finds patterns in data without labeled examples.",
-          difficulty: "Easy",
-        },
-        {
-          id: 2,
-          question:
-            "Which of the following is NOT a common evaluation metric for classification models?",
-          options: ["Accuracy", "Precision", "Mean Squared Error", "F1-Score"],
-          correctAnswer: 2,
-          explanation:
-            "Mean Squared Error is typically used for regression problems, not classification. Classification models use metrics like accuracy, precision, recall, and F1-score.",
-          difficulty: "Medium",
-        },
-        {
-          id: 3,
-          question:
-            "In neural networks, what is the purpose of the activation function?",
-          options: [
-            "To initialize weights randomly",
-            "To introduce non-linearity into the model",
-            "To reduce overfitting",
-            "To normalize input data",
-          ],
-          correctAnswer: 1,
-          explanation:
-            "Activation functions introduce non-linearity into neural networks, allowing them to learn complex patterns and relationships in data that linear models cannot capture.",
-          difficulty: "Medium",
-        },
-        {
-          id: 4,
-          question:
-            "What technique is commonly used to prevent overfitting in machine learning models?",
-          options: [
-            "Increasing the learning rate",
-            "Adding more features",
-            "Cross-validation and regularization",
-            "Using smaller datasets",
-          ],
-          correctAnswer: 2,
-          explanation:
-            "Cross-validation helps assess model performance on unseen data, while regularization techniques (L1, L2) add penalties to prevent the model from becoming too complex.",
-          difficulty: "Hard",
-        },
-        {
-          id: 5,
-          question:
-            "Which clustering algorithm requires you to specify the number of clusters beforehand?",
-          options: [
-            "DBSCAN",
-            "Hierarchical clustering",
-            "K-means",
-            "Mean shift",
-          ],
-          correctAnswer: 2,
-          explanation:
-            "K-means clustering requires you to specify the number of clusters (k) as a parameter before running the algorithm, unlike DBSCAN or hierarchical clustering.",
-          difficulty: "Easy",
-        },
-      ];
-
-      setMcqQuestions(mockQuestions);
-      toast({
-        title: "Questions generated!",
-        description: `${mockQuestions.length} MCQ questions have been created based on your file.`,
-      });
-    } catch (error) {
-      toast({
-        title: "Generation failed",
-        description:
-          "There was an error generating questions. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsGeneratingMCQ(false);
-    }
-  };
 
   // Handle answer selection
   const handleAnswerSelect = (questionId: number, answerIndex: number) => {
@@ -272,20 +159,6 @@ export default function FileAnalyzer() {
     setUserAnswers({});
     setShowResults(false);
     setScore(0);
-  };
-
-  // Get difficulty color for dark theme
-  const getDifficultyColor = (difficulty: string) => {
-    switch (difficulty) {
-      case "Easy":
-        return "bg-green-500/20 text-green-400 border-green-500/30";
-      case "Medium":
-        return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
-      case "Hard":
-        return "bg-red-500/20 text-red-400 border-red-500/30";
-      default:
-        return "bg-gray-500/20 text-gray-400 border-gray-500/30";
-    }
   };
 
   return (
@@ -379,104 +252,7 @@ export default function FileAnalyzer() {
         </Card>
 
         {/* Analysis Results */}
-        {analysisResult && (
-          <Card className="bg-indigo-200/30 dark:bg-gray-800 border-indigo-200 dark:border-gray-700">
-            <CardHeader>
-              <CardTitle className="flex text-lg md:text-xl items-center gap-2 text-gray-950 dark:text-white">
-                <Brain className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
-                AI Analysis Results
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              {/* Summary */}
-              <div>
-                <h3 className="font-semibold mb-2 text-gray-950 dark:text-white">
-                  Summary
-                </h3>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  {analysisResult.summary}
-                </p>
-              </div>
-
-              {/* Key Points */}
-              <div>
-                <h3 className="font-semibold mb-2 text-gray-950 dark:text-white">
-                  Key Points
-                </h3>
-                <ul className="space-y-2">
-                  {analysisResult.keyPoints.map((point, index) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700 dark:text-gray-300">
-                        {point}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Topics and Stats */}
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="font-semibold mb-2 text-gray-700 dark:text-white">
-                    Topics Covered
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {analysisResult.topics.map((topic, index) => (
-                      <Badge
-                        key={index}
-                        className="bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border-indigo-500/30"
-                      >
-                        {topic}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-gray-700 dark:text-gray-400">
-                      Difficulty Level:
-                    </span>
-                    <Badge
-                      className={getDifficultyColor(analysisResult.difficulty)}
-                    >
-                      {analysisResult.difficulty}
-                    </Badge>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-700 dark:text-gray-400">
-                      Word Count:
-                    </span>
-                    <span className="font-medium text-gray-950 dark:text-white">
-                      {analysisResult.wordCount.toLocaleString()}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Generate MCQ Button */}
-              <div className="pt-4 border-t border-gray-300 dark:border-gray-700">
-                <Button
-                  onClick={generateMCQQuestions}
-                  disabled={isGeneratingMCQ}
-                  className="w-full bg-indigo-600 hover:bg-indigo-700"
-                >
-                  {isGeneratingMCQ ? (
-                    <>
-                      <Brain className="h-4 w-4 mr-2 animate-spin" />
-                      Generating Questions...
-                    </>
-                  ) : (
-                    <>
-                      <Brain className="h-4 w-4 mr-2" />
-                      Generate MCQ Questions
-                    </>
-                  )}
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        )}
+        {analysisResult && <FileAnalysis analysisResult={analysisResult} />}
 
         {/* MCQ Questions */}
         {mcqQuestions.length > 0 && (
@@ -524,88 +300,14 @@ export default function FileAnalyzer() {
               <ScrollArea className="h-[600px] pr-4">
                 <div className="space-y-6">
                   {mcqQuestions.map((question, questionIndex) => (
-                    <div
-                      key={question.id}
-                      className="border border-gray-700 rounded-lg p-4 space-y-4 bg-gray-200 dark:bg-gray-800/50"
-                    >
-                      {/* Question Header */}
-                      <div className="flex items-start justify-between gap-4">
-                        <h3 className="font-medium text-lg leading-relaxed text-gray-950 dark:text-white">
-                          {questionIndex + 1}. {question.question}
-                        </h3>
-                        <Badge
-                          className={getDifficultyColor(question.difficulty)}
-                        >
-                          {question.difficulty}
-                        </Badge>
-                      </div>
-
-                      {/* Options */}
-                      <div className="space-y-2">
-                        {question.options.map((option, optionIndex) => {
-                          const isSelected =
-                            userAnswers[question.id] === optionIndex;
-                          const isCorrect =
-                            optionIndex === question.correctAnswer;
-                          const isWrong =
-                            showResults && isSelected && !isCorrect;
-                          const shouldHighlight = showResults && isCorrect;
-
-                          return (
-                            <button
-                              key={optionIndex}
-                              onClick={() =>
-                                handleAnswerSelect(question.id, optionIndex)
-                              }
-                              disabled={showResults}
-                              className={`w-full text-left p-3 rounded-lg border transition-all ${
-                                isSelected && !showResults
-                                  ? "border-blue-500 bg-blue-500/10"
-                                  : shouldHighlight
-                                    ? "border-green-500 bg-green-500/10"
-                                    : isWrong
-                                      ? "border-red-500 bg-red-500/10"
-                                      : "border-gray-600 hover:border-gray-500 hover:bg-gray-700/50"
-                              } ${showResults ? "cursor-default" : "cursor-pointer"}`}
-                            >
-                              <div className="flex items-center gap-3">
-                                <span
-                                  className={`w-6 h-6 rounded-full border-2 flex items-center justify-center text-sm font-medium ${
-                                    shouldHighlight
-                                      ? "border-green-500 bg-green-500 text-white"
-                                      : isWrong
-                                        ? "border-red-500 bg-red-500 text-white"
-                                        : isSelected
-                                          ? "border-blue-500 bg-blue-500 text-white"
-                                          : "border-gray-500 text-gray-700 dark:text-gray-400"
-                                  }`}
-                                >
-                                  {String.fromCharCode(65 + optionIndex)}
-                                </span>
-                                <span className="flex-1 text-gray-700 dark:text-gray-300">
-                                  {option}
-                                </span>
-                                {showResults && shouldHighlight && (
-                                  <CheckCircle className="h-5 w-5 text-green-400" />
-                                )}
-                                {showResults && isWrong && (
-                                  <XCircle className="h-5 w-5 text-red-400" />
-                                )}
-                              </div>
-                            </button>
-                          );
-                        })}
-                      </div>
-
-                      {/* Explanation */}
-                      {showResults && (
-                        <div className="mt-4 p-3 bg-blue-500/10 rounded-lg border-l-4 border-blue-500">
-                          <p className="text-sm text-blue-300">
-                            <strong>Explanation:</strong> {question.explanation}
-                          </p>
-                        </div>
-                      )}
-                    </div>
+                    <McqQuestion
+                      key={questionIndex}
+                      handleAnswerSelect={handleAnswerSelect}
+                      question={question}
+                      userAnswers={userAnswers}
+                      showResults={showResults}
+                      questionIndex={questionIndex}
+                    />
                   ))}
                 </div>
               </ScrollArea>

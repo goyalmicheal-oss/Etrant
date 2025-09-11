@@ -74,7 +74,13 @@ export interface ISubscriptions {
   plan_id: string;
   name: string;
 }
-
+export interface IAnalysisResult {
+  summary: string;
+  keyPoints: string[];
+  topics: string[];
+  difficulty: string;
+  wordCount: number;
+}
 export interface LeaderboardEntry {
   id: string;
   name: string;
