@@ -480,11 +480,11 @@ export default function FileAnalyzer() {
 
         {/* MCQ Questions */}
         {mcqQuestions.length > 0 && (
-          <Card className="bg-gray-800 border-gray-700">
+          <Card className="bg-indigo-200/20 dark:bg-gray-800 border-indigo-200 dark:border-gray-700">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="flex items-center gap-2 text-white">
-                  <BookOpen className="h-5 w-5 text-green-400" />
+                <CardTitle className="flex text-lg md:text-xl items-center gap-2 text-gray-950 dark:text-white">
+                  <BookOpen className="h-5 w-5 text-green-600 dark:text-green-400" />
                   Practice Questions ({mcqQuestions.length})
                 </CardTitle>
                 <div className="flex gap-2">
@@ -516,7 +516,7 @@ export default function FileAnalyzer() {
                   )}
                 </div>
               </div>
-              <CardDescription className="text-gray-400">
+              <CardDescription className="text-gray-700 dark:text-gray-400">
                 Test your understanding with AI-generated questions
               </CardDescription>
             </CardHeader>
@@ -526,11 +526,11 @@ export default function FileAnalyzer() {
                   {mcqQuestions.map((question, questionIndex) => (
                     <div
                       key={question.id}
-                      className="border border-gray-700 rounded-lg p-4 space-y-4 bg-gray-800/50"
+                      className="border border-gray-700 rounded-lg p-4 space-y-4 bg-gray-200 dark:bg-gray-800/50"
                     >
                       {/* Question Header */}
                       <div className="flex items-start justify-between gap-4">
-                        <h3 className="font-medium text-lg leading-relaxed text-white">
+                        <h3 className="font-medium text-lg leading-relaxed text-gray-950 dark:text-white">
                           {questionIndex + 1}. {question.question}
                         </h3>
                         <Badge
@@ -577,12 +577,12 @@ export default function FileAnalyzer() {
                                         ? "border-red-500 bg-red-500 text-white"
                                         : isSelected
                                           ? "border-blue-500 bg-blue-500 text-white"
-                                          : "border-gray-500 text-gray-400"
+                                          : "border-gray-500 text-gray-700 dark:text-gray-400"
                                   }`}
                                 >
                                   {String.fromCharCode(65 + optionIndex)}
                                 </span>
-                                <span className="flex-1 text-gray-300">
+                                <span className="flex-1 text-gray-700 dark:text-gray-300">
                                   {option}
                                 </span>
                                 {showResults && shouldHighlight && (
