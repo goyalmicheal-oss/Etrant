@@ -50,6 +50,30 @@ export interface Quiz {
   timeLimit: number;
   difficulty: "easy" | "medium" | "hard";
 }
+export interface IPlan {
+  name: string;
+  price: number;
+  icon: any;
+  description: string;
+  features: string[];
+  limitations: string[];
+  buttonText: string;
+  buttonVariant:
+    | "link"
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | null
+    | undefined;
+  popular: boolean;
+}
+
+export interface ISubscriptions {
+  plan_id: string;
+  name: string;
+}
 
 export interface LeaderboardEntry {
   id: string;

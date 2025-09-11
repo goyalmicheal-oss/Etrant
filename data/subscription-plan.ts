@@ -1,8 +1,4 @@
-export interface ISubscriptions {
-  plan_id: string;
-  name: string;
-}
-
+import { ISubscriptions } from "@/types";
 const environment = process.env.NEXT_ENVIRONMENT!;
 
 const test: ISubscriptions[] = [
