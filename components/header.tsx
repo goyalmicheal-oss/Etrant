@@ -1,5 +1,5 @@
 "use client";
-import { Menu, Trophy, X } from "lucide-react";
+import { Loader2, LogOut, Menu, Trophy, X } from "lucide-react";
 import Link from "next/link";
 import { useUserStore } from "@/lib/store/useUserStore";
 import Image from "next/image";
@@ -7,9 +7,22 @@ import Logo from "@/public/etrant.png";
 import { Button } from "./ui/button";
 import { useState } from "react";
 import { sidebarLinks } from "@/data/data";
+import { signOut } from "next-auth/react";
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 
 export default function Header() {
   const { user } = useUserStore();
+  const [loading, setLoading] = useState(false);
+
+  const handleSignOut = async () => {
+    setLoading(true);
+    try {
+      await signOut({ callbackUrl: "/" });
+      setIsMobileMenuOpen(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -96,7 +109,7 @@ export default function Header() {
         {/* Mobile Menu Content */}
         <div className="flex flex-col p-6 space-y-4">
           {sidebarLinks.map((link) => (
-            <Link href={link.link} onClick={closeMobileMenu}>
+            <Link key={link.link} href={link.link} onClick={closeMobileMenu}>
               <Button
                 variant="ghost"
                 className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-800 px-4 py-3 rounded-lg font-medium text-left"
@@ -107,20 +120,66 @@ export default function Header() {
             </Link>
           ))}
           {/* Mobile Sign Up Button */}
-          <div className="pt-4 border-t border-gray-800">
-            <Link href="/auth" onClick={closeMobileMenu}>
-              <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-5 py-3 rounded-lg font-medium shadow-md">
-                Sign Up
-              </Button>
-            </Link>
-          </div>
         </div>
 
-        {/* Mobile Menu Footer */}
-        <div className="absolute bottom-16 left-0 right-0 p-6 border-t border-gray-800">
-          <div className="text-center text-gray-400 text-xs">
-            <p>© 2025 Etrant</p>
-            <p className="mt-1">Transform your learning experience</p>
+        <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-800">
+          <div className="flex flex-col gap-4">
+            <Link
+              href="/user/profile"
+              onClick={closeMobileMenu}
+              className="cursor-pointer"
+            >
+              <div className="flex gap-4 px-3 py-2 rounded-lg items-center duration-200 hover:bg-gray-300 dark:hover:bg-gray-700">
+                {user?.image ? (
+                  <Button
+                    variant="ghost"
+                    className="relative h-8 w-8 rounded-full"
+                  >
+                    {user?.subscriptionActive === true && (
+                      <p className="bg-yellow-700 text-[8px] px-1 py-0 rounded-full absolute z-30 top-0 -right-2">
+                        {user?.plan}
+                      </p>
+                    )}
+                    <Avatar
+                      className={`min:w-8 h-8 border-2 ${user?.subscriptionActive === true ? "border-yellow-600" : "border-transparent"}`}
+                    >
+                      <AvatarImage
+                        src={user?.image || ""}
+                        alt={user?.name || ""}
+                        width={100}
+                        height={100}
+                        className="w-8 h-8"
+                      />
+                      <AvatarFallback>
+                        {user?.name?.charAt(0) || "U"}
+                      </AvatarFallback>
+                    </Avatar>
+                  </Button>
+                ) : (
+                  <div className="w-8 h-8 rounded-full bg-gray-600" />
+                )}
+                <p className="dark:font-semibold leading-4 dark:text-white flex flex-col text-gray-950">
+                  Account
+                  <span className="text-xs dark:text-gray-400 text-gray-700">
+                    {user?.name}
+                  </span>
+                </p>
+              </div>
+            </Link>
+            <Button
+              onClick={handleSignOut}
+              disabled={loading}
+              className="w-full flex bg-indigo-500 items-center gap-2 cursor-pointer text-gray-100 hover:bg-indigo-600 duration-200"
+            >
+              {loading ? (
+                <Loader2 className="animate-spin" />
+              ) : (
+                <>
+                  <LogOut />
+                  <span>{loading ? "Signing out..." : "Sign Out"}</span>
+                </>
+              )}
+            </Button>
           </div>
         </div>
       </div>

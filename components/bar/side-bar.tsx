@@ -12,9 +12,9 @@ import { useUserStore } from "@/lib/store/useUserStore";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Sidebar() {
-  const [loading, setLoading] = useState(false);
   const { user } = useUserStore();
   const pathname = usePathname();
+  const [loading, setLoading] = useState(false);
 
   const handleSignOut = async () => {
     setLoading(true);
