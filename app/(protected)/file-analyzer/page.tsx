@@ -162,19 +162,19 @@ export default function FileAnalyzerPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 w-full">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-950 w-full">
       {/* Hero Section with Geometric Background */}
       <div className="relative pt-24 pb-12 overflow-hidden">
         <div className="relative max-w-4xl mx-auto px-6 text-center space-y-6">
           <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
-              <Brain className="h-6 w-6 text-white" />
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
+              <Brain className="h-5 w-5 md:h-6 md:w-6 text-white" />
             </div>
-            <h1 className="text-4xl font-black text-gray-950 dark:text-white">
+            <h1 className="text-2xl md:text-4xl font-black text-gray-950 dark:text-white">
               AI File Analyzer
             </h1>
           </div>
-          <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm md:text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
             Upload your notes or books and get AI-powered analysis with custom
             MCQ questions to test your knowledge
           </p>
@@ -183,7 +183,7 @@ export default function FileAnalyzerPage() {
 
       <div className="max-w-4xl mx-auto px-6 pb-12 space-y-8">
         {/* File Upload Section */}
-        <Card className="bg-indigo-200/30 dark:bg-gray-800 border-indigo-200 dark:border-gray-700">
+        <Card className="bg-indigo-200/30 dark:bg-gray-900 border-indigo-200 dark:border-gray-700">
           <CardHeader>
             <CardTitle className="flex text-lg md:text-xl items-center gap-2 text-gray-950 dark:text-white">
               <Upload className="h-5 w-5 text-blue-600 dark:text-blue-400" />
@@ -216,7 +216,7 @@ export default function FileAnalyzerPage() {
               </div>
 
               {file && (
-                <div className="flex items-center justify-between p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                <div className="flex flex-wrap gap-2 items-center justify-between p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
                   <div className="flex items-center gap-3">
                     <FileText className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
                     <div>
@@ -231,7 +231,7 @@ export default function FileAnalyzerPage() {
                   <Button
                     onClick={analyzeFile}
                     disabled={isAnalyzing}
-                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                    className="text-white bg-gradient-to-r w-full from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
                   >
                     {isAnalyzing ? (
                       <>

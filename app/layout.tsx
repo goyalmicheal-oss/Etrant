@@ -61,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="dark">
       <Head>
         <meta
           name="google-site-verification"
@@ -71,7 +71,7 @@ export default function RootLayout({
       <PostHogProvider>
         <SessionProvider>
           <UserProvider>
-            <body className={inter.className}>
+            <body className={`${inter.className} overflow-x-hidden`}>
               {children}
               <Script
                 src="https://checkout.razorpay.com/v1/checkout.js"

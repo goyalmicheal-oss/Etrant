@@ -3,7 +3,7 @@ import PricingCard from "@/components/pricing-card";
 
 export default async function SubscriptionPage() {
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-950 text-white py-12 px-4">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-950 text-white py-12 max-md:pt-24 px-4">
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <div className="text-center mb-16">

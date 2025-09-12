@@ -45,7 +45,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col h-full p-6">
-        <div className="mb-4">
+        <div className="max-md:hidden mb-4">
           <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
             {article.topic}
           </span>
@@ -53,6 +53,11 @@ export function ArticleCard({ article }: ArticleCardProps) {
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col justify-end">
+          <div className="md:hidden mb-4">
+            <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
+              {article.topic}
+            </span>
+          </div>
           <h2 className="text-2xl font-bold mb-4 leading-tight">
             {article.title}
           </h2>
