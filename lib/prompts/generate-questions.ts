@@ -1,5 +1,5 @@
 import { InterestCategory } from "@/types";
-import { INTERESTS } from "../repositories/question-repository";
+import { INTERESTS } from "@/data/interest";
 
 export function generateQuestionPrompt(interest: InterestCategory) {
   const interestObj = INTERESTS.find((int) => int.id === interest);
@@ -32,7 +32,7 @@ Generate 10 practice questions for the exam specified in the INPUT DATA section.
 Each object in the array must have the following exact structure and adhere to these constraints:
 
 {
-    "question": "string", // The question text. Length: 10 to 500 characters.
+    "question": "string", // The question text. Length: 10 to 400 characters.
     "difficulty": "string", // Must be one of: 'medium', or 'hard'.
     "category": "string", // Must be the exact Exam Category Label provided in the INPUT DATA.
     "tags": ["string"], // An array of 3 to 8 relevant, lowercase, hyphen-separated string tags.
@@ -40,13 +40,13 @@ Each object in the array must have the following exact structure and adhere to t
     "estimatedTime": "number", // An integer from 1 to 60, representing estimated minutes to solve.
     "options": [ // An array of exactly 4 option objects.
       {
-        "name": "string", // The text for this option.
+        "name": "string", // The text for this option. // Length: 1 to 20 words
         "isCorrect": "boolean" // true or false.
       }
     ],
     "previousYearQuestion": "string", // Identifier like "exam_name-year". Leave as an empty string "" if not applicable.
     "correctAnswer": "number", // The 0-based index of the correct option in the "options" array. This MUST match the option with "isCorrect": true.
-    "explanation": "string", // A detailed explanation for why the correct answer is correct and others are not. Optional, but highly recommended. Wordd should be strictly 10-50 words.
+    "explanation": "string", // A detailed explanation for why the correct answer is correct and others are not. Lenght should be strictly 10-50 words.
     "metadata": { // A nested object for metadata.
       "source": "string", // Must be "ai-generated".
       "complexity": "number", // An integer from 5 to 10, representing difficulty on a 1-10 scale ('medium' maps to 5-7, 'hard' to 8-10).

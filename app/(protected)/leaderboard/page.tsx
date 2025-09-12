@@ -12,7 +12,7 @@ export default async function LeaderboardPage() {
   const remaining = leaderboard.slice(0);
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 max-md:pt-24">
       {/* Header */}
       <div className="text-center md:mb-12 mb-6">
         <h1 className="text-gray-950 dark:text-white text-3xl md:text-5xl font-bold md:mb-4 mb-2">

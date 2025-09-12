@@ -59,7 +59,7 @@ export function McqCard({
 
   return (
     <>
-      <Card className="border-0 overflow-hidden md:h-full flex justify-center items-center">
+      <Card className="border-0 max-md:pt-24 overflow-hidden md:h-full flex justify-center items-center">
         <CardContent className="p-0 w-full">
           {/* Question Header */}
           <div className="text-white p-6">
