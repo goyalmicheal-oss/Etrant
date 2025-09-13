@@ -6,7 +6,6 @@ import { Card } from "@/components/ui/card";
 import { Check, Loader2 } from "lucide-react";
 import { InterestCategory } from "@/types";
 import { setInterests } from "@/actions/setInterest";
-import { useRouter } from "next/navigation";
 import { useUserStore } from "@/lib/store/useUserStore";
 import { INTERESTS } from "@/data/interest";
 import { toast } from "sonner";
@@ -16,7 +15,6 @@ export function InterestSelector() {
   const [loading, setLoading] = useState(false);
   const [selectedInterests, setSelectedInterests] =
     useState<InterestCategory | null>(null);
-  const router = useRouter();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -42,7 +40,7 @@ export function InterestSelector() {
           user?.email as string,
         );
         console.log("res", res);
-        setUser({ ...user, interest: selectedInterests });
+        setUser({ ...user, interest: selectedInterests as string });
         if (res.success) {
           // router.push("/ai-questions");
           toast.success("Successfully updated the interest.");
@@ -74,7 +72,7 @@ export function InterestSelector() {
               className={`md:p-4 p-2 cursor-pointer transition-all duration-200 hover:scale-105 ${
                 selectedInterests === interest.id
                   ? "bg-indigo-600 text-white border-2 border-white"
-                  : "bg-gray-900 dark:bg-white/10 text-white border-2 border-white/20 hover:bg-gray-800 dark:hover:bg-white/20"
+                  : "bg-gray-700 dark:bg-white/10 text-white border-2 border-white/20 hover:bg-gray-800 dark:hover:bg-white/20"
               }`}
               onClick={() => toggleInterest(interest.id)}
             >

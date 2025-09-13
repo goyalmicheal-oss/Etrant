@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Trophy,
   Flame,
-  TrendingUp,
   Award,
   BookOpen,
   Target,
@@ -13,36 +12,24 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import UserImage from "@/public/placeholder-user.jpg";
-import BadgeGallery from "@/components/badge-gallery";
 import Header from "@/components/header";
 import { useUserStore } from "@/lib/store/useUserStore";
 
-const dailyPoints = [
-  { day: "Mon", points: 120, date: "Dec 16" },
-  { day: "Tue", points: 180, date: "Dec 17" },
-  { day: "Wed", points: 150, date: "Dec 18" },
-  { day: "Thu", points: 220, date: "Dec 19" },
-  { day: "Fri", points: 190, date: "Dec 20" },
-  { day: "Sat", points: 250, date: "Dec 21" },
-  { day: "Sun", points: 300, date: "Dec 22" },
-];
-
 export default function ProfilePage() {
   const { user } = useUserStore();
-  const maxPoints = Math.max(...dailyPoints.map((d) => d.points));
 
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-gray-100 dark:bg-gray-950 text-white py-20 px-4 w-full">
+      <div className="min-h-screen bg-gray-100 dark:bg-gray-950 text-white py-20 max-md:pt-24 px-4 w-full">
         <div className="container mx-auto max-w-7xl">
-          <div className="space-y-12">
+          <div className="md:space-y-12 space-y-6">
             {/* Profile Header */}
-            <div className="flex flex-col md:flex-row items-start md:items-center md:justify-between bg-gray-300 dark:bg-gray-900 border border-gray-400 dark:border-gray-800 rounded-2xl md:p-8 p-4">
+            <div className="flex flex-col md:flex-row items-start md:items-center md:justify-between bg-gray-300 dark:bg-gray-900 border border-gray-400 dark:border-gray-800 rounded-xl md:p-8 p-4">
               <div className="flex items-center gap-6">
                 <Image
                   src={user?.image || UserImage}
-                  alt={user?.name as string}
+                  alt={user?.name || "User's Photo"}
                   width={100}
                   height={100}
                   className="md:w-20 md:h-20 w-12 h-12 rounded-full border-4 border-blue-500"
