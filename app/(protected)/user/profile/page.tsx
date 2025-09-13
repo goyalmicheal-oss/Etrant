@@ -29,7 +29,7 @@ export default function ProfilePage() {
               <div className="flex items-center gap-6">
                 <Image
                   src={user?.image || UserImage}
-                  alt={user?.name as string}
+                  alt={user?.name || "User's Photo"}
                   width={100}
                   height={100}
                   className="md:w-20 md:h-20 w-12 h-12 rounded-full border-4 border-blue-500"

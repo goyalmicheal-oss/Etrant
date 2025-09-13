@@ -40,7 +40,7 @@ export function InterestSelector() {
           user?.email as string,
         );
         console.log("res", res);
-        setUser({ ...user, interest: selectedInterests });
+        setUser({ ...user, interest: selectedInterests as string });
         if (res.success) {
           // router.push("/ai-questions");
           toast.success("Successfully updated the interest.");

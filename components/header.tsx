@@ -9,10 +9,12 @@ import { useEffect, useState } from "react";
 import { sidebarLinks } from "@/data/data";
 import { signOut } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import ThemeToggle from "./bar/theme-toggle";
 
 export default function Header() {
   const { user } = useUserStore();
   const [loading, setLoading] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleSignOut = async () => {
     setLoading(true);
@@ -24,18 +26,12 @@ export default function Header() {
     }
   };
 
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   useEffect(() => {
     if (isMobileMenuOpen) {
-      // Prevent background scrolling
       document.body.style.overflow = "hidden";
     } else {
-      // Restore scrolling
       document.body.style.overflow = "";
     }
-
-    // Cleanup when component unmounts
     return () => {
       document.body.style.overflow = "";
     };
@@ -78,7 +74,7 @@ export default function Header() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="lg:hidden text-white hover:bg-gray-800"
+                className="lg:hidden text-gray-950 dark:text-white dark:hover:bg-gray-800"
                 onClick={toggleMobileMenu}
                 aria-label="Toggle mobile menu"
               >
@@ -98,22 +94,24 @@ export default function Header() {
 
       {/* Mobile Menu Sidebar */}
       <div
-        className={`fixed top-0 bottom-0 right-0 h-full w-80 bg-gray-900 border-l border-gray-800 z-[999] transform transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`fixed top-0 bottom-0 right-0 h-full w-72 bg-gray-100 dark:bg-gray-900 border-l border-gray-800 z-[999] transform transition-transform duration-300 ease-in-out lg:hidden ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Mobile Menu Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-800">
+        <div className="flex items-center justify-between p-6 border-b border-gray-300 dark:border-gray-800">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 flex items-center justify-center">
               <Image src={Logo} alt="Etrant's Logo" className="h-full w-full" />
             </div>
-            <span className="text-xl font-black text-white">Etrant</span>
+            <span className="text-xl font-black text-gray-950 dark:text-white">
+              Etrant
+            </span>
           </div>
           <Button
             variant="ghost"
             size="icon"
-            className="text-white hover:bg-gray-800"
+            className="text-gray-950 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-800"
             onClick={closeMobileMenu}
             aria-label="Close mobile menu"
           >
@@ -127,18 +125,18 @@ export default function Header() {
             <Link key={link.link} href={link.link} onClick={closeMobileMenu}>
               <Button
                 variant="ghost"
-                className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-800 px-4 py-3 rounded-lg font-medium text-left"
+                className="w-full justify-start text-gray-950 dark:text-gray-300 hover:text-white hover:bg-gray-800 px-4 py-3 rounded-lg font-medium text-left"
               >
                 <link.icon />
                 {link.name}
               </Button>
             </Link>
           ))}
-          {/* Mobile Sign Up Button */}
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-800">
+        <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-300 dark:border-gray-800">
           <div className="flex flex-col gap-4">
+            <ThemeToggle />
             <Link
               href="/user/profile"
               onClick={closeMobileMenu}
