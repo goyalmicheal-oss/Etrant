@@ -163,6 +163,11 @@ export const stepsHowItWorks = [
 
 export const sidebarLinks = [
   {
+    name: "Daily Digest",
+    icon: Book,
+    link: "/daily-digest",
+  },
+  {
     name: "AI Questions",
     icon: BookDown,
     link: "/ai-questions",
@@ -171,11 +176,6 @@ export const sidebarLinks = [
     name: "Article Reel",
     icon: AlarmClockCheck,
     link: "/articles",
-  },
-  {
-    name: "Daily Digest",
-    icon: Book,
-    link: "/daily-digest",
   },
   {
     name: "File Analzyer",
