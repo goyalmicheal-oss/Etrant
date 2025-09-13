@@ -25,7 +25,7 @@ export default function ProfilePage() {
         <div className="container mx-auto max-w-7xl">
           <div className="md:space-y-12 space-y-6">
             {/* Profile Header */}
-            <div className="flex flex-col md:flex-row items-start md:items-center md:justify-between bg-gray-300 dark:bg-gray-900 border border-gray-400 dark:border-gray-800 rounded-xl md:p-8 p-4">
+            <div className="flex flex-col md:flex-row items-start md:items-center md:justify-between bg-gray-200 dark:bg-gray-900 border border-gray-400 dark:border-gray-800 rounded-xl md:p-8 p-4">
               <div className="flex items-center gap-6">
                 <Image
                   src={user?.image || UserImage}
@@ -48,7 +48,7 @@ export default function ProfilePage() {
 
             {/* Enhanced Key Stats Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Card className="bg-gray-300 dark:bg-gray-900/50 border-gray-400 dark:border-gray-800 h-full  dark:hover:border-blue-700 transition-colors">
+              <Card className="bg-gray-200 dark:bg-gray-900/50 border-gray-400 dark:border-gray-800 h-full  dark:hover:border-blue-700 transition-colors">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium text-gray-700 dark:text-gray-400">
                     Total Points
@@ -65,7 +65,7 @@ export default function ProfilePage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-gray-300 dark:bg-gray-900/50 border-gray-400 dark:border-gray-800 h-full hover:border-orange-700 transition-colors">
+              <Card className="bg-gray-200 dark:bg-gray-900/50 border-gray-400 dark:border-gray-800 h-full hover:border-orange-700 transition-colors">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium text-gray-700 dark:text-gray-400">
                     Current Streak
@@ -82,7 +82,7 @@ export default function ProfilePage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-gray-300 dark:bg-gray-900/50 border-gray-400 dark:border-gray-800 h-full hover:border-purple-700 transition-colors">
+              <Card className="bg-gray-200 dark:bg-gray-900/50 border-gray-400 dark:border-gray-800 h-full hover:border-purple-700 transition-colors">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium text-gray-700 dark:text-gray-400">
                     Subscription
@@ -99,7 +99,7 @@ export default function ProfilePage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-gray-300 dark:bg-gray-900/50 border-gray-400 dark:border-gray-800 h-full hover:border-green-700 transition-colors">
+              <Card className="bg-gray-200 dark:bg-gray-900/50 border-gray-400 dark:border-gray-800 h-full hover:border-green-700 transition-colors">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium text-gray-700 dark:text-gray-400">
                     Avg. Score
@@ -119,7 +119,7 @@ export default function ProfilePage() {
 
             {/* Additional Stats */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="bg-gray-300 dark:bg-gray-900/50 border-gray-400 dark:border-gray-800 text-center p-6">
+              <Card className="bg-gray-200 dark:bg-gray-900/50 border-gray-400 dark:border-gray-800 text-center p-6">
                 <BookOpen className="h-8 w-8 text-blue-600 dark:text-blue-400 mx-auto mb-3" />
                 <div className="text-2xl font-bold text-gray-950 dark:text-white">
                   {user?.stats.totalReels}
@@ -129,7 +129,7 @@ export default function ProfilePage() {
                 </div>
               </Card>
 
-              <Card className="bg-gray-300 dark:bg-gray-900/50 border-gray-400 dark:border-gray-800 text-center p-6">
+              <Card className="bg-gray-200 dark:bg-gray-900/50 border-gray-400 dark:border-gray-800 text-center p-6">
                 <Award className="h-8 w-8 text-green-600 dark:text-green-400 mx-auto mb-3" />
                 <div className="text-2xl font-bold text-gray-950 dark:text-white">
                   {user?.interest}
@@ -139,7 +139,7 @@ export default function ProfilePage() {
                 </div>
               </Card>
 
-              <Card className="bg-gray-300 dark:bg-gray-900/50 border-gray-400 dark:border-gray-800 text-center p-6">
+              <Card className="bg-gray-200 dark:bg-gray-900/50 border-gray-400 dark:border-gray-800 text-center p-6">
                 <Clock className="h-8 w-8 text-orange-600 dark:text-orange-400 mx-auto mb-3" />
                 <div className="text-2xl font-bold text-gray-950 dark:text-white">
                   {user?.stats?.studyTime}h
