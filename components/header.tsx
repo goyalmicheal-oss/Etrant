@@ -47,7 +47,7 @@ export default function Header() {
 
   return (
     <>
-      <div className="md:hidden fixed w-full top-0 z-50 backdrop-blur-sm border-b border-gray-300/50 dark:border-gray-900">
+      <div className="md:hidden fixed w-full top-0 z-40 backdrop-blur-sm border-b border-gray-300/50 dark:border-gray-900">
         <div className="flex items-center justify-between p-4 max-w-7xl mx-auto">
           <h1 className="md:text-lg font-semibold text-white">
             <Link href="/" className="flex items-center gap-2">
@@ -87,7 +87,7 @@ export default function Header() {
 
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          className="fixed inset-0 bg-black bg-opacity-50 dark:bg-opacity-70 z-[999] lg:hidden"
           onClick={closeMobileMenu}
         />
       )}
