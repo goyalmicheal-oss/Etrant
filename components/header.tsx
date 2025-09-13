@@ -94,7 +94,7 @@ export default function Header() {
 
       {/* Mobile Menu Sidebar */}
       <div
-        className={`fixed top-0 bottom-0 right-0 h-full w-72 bg-gray-100 dark:bg-gray-900 border-l border-gray-800 z-[999] transform transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`fixed top-0 bottom-0 right-0 h-full w-72 bg-gray-100 dark:bg-gray-900 border-l border-gray-300 dark:border-gray-800 z-[999] transform transition-transform duration-300 ease-in-out lg:hidden ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
