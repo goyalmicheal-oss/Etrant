@@ -99,7 +99,7 @@ export default function Header() {
         }`}
       >
         {/* Mobile Menu Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-300 dark:border-gray-800">
+        <div className="flex items-center justify-between p-6 pb-4  border-b border-gray-300 dark:border-gray-800">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 flex items-center justify-center">
               <Image src={Logo} alt="Etrant's Logo" className="h-full w-full" />
@@ -120,7 +120,7 @@ export default function Header() {
         </div>
 
         {/* Mobile Menu Content */}
-        <div className="flex flex-col p-6 space-y-4">
+        <div className="flex flex-col p-4 space-y-2">
           {sidebarLinks.map((link) => (
             <Link key={link.link} href={link.link} onClick={closeMobileMenu}>
               <Button
@@ -135,7 +135,7 @@ export default function Header() {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-300 dark:border-gray-800">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
             <ThemeToggle />
             <Link
               href="/user/profile"
