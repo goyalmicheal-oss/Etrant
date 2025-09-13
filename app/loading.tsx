@@ -2,7 +2,7 @@
 
 export default function Loading() {
   return (
-    <div className="min-h-screen bg-gray-950 flex items-center justify-center">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-950 flex items-center justify-center">
       <div className="text-center">
         <div className="relative mb-8">
           <div className=" w-20 h-20 mx-auto">
@@ -10,7 +10,7 @@ export default function Loading() {
           </div>
         </div>
 
-        <h1 className="text-3xl font-black text-white mb-4">
+        <h1 className="text-3xl font-black bg-gray-950 dark:text-white mb-4">
           Think{" "}
           <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             Etrant
@@ -18,7 +18,7 @@ export default function Loading() {
         </h1>
 
         {/* Loading Text */}
-        <p className="text-gray-400 text-lg mb-6">
+        <p className="text-gray-700 dark:text-gray-400 text-lg mb-6">
           Loading your learning experience...
         </p>
 

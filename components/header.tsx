@@ -47,7 +47,7 @@ export default function Header() {
 
   return (
     <>
-      <div className="md:hidden fixed w-full top-0 z-50 backdrop-blur-sm border-b border-gray-300/50 dark:border-gray-900">
+      <div className="md:hidden fixed w-full top-0 z-40 backdrop-blur-sm border-b border-gray-300/50 dark:border-gray-900">
         <div className="flex items-center justify-between p-4 max-w-7xl mx-auto">
           <h1 className="md:text-lg font-semibold text-white">
             <Link href="/" className="flex items-center gap-2">
@@ -87,7 +87,7 @@ export default function Header() {
 
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          className="fixed inset-0 bg-black bg-opacity-50 dark:bg-opacity-70 z-[999] lg:hidden"
           onClick={closeMobileMenu}
         />
       )}
@@ -99,7 +99,7 @@ export default function Header() {
         }`}
       >
         {/* Mobile Menu Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-300 dark:border-gray-800">
+        <div className="flex items-center justify-between p-6 pb-4  border-b border-gray-300 dark:border-gray-800">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 flex items-center justify-center">
               <Image src={Logo} alt="Etrant's Logo" className="h-full w-full" />
@@ -120,7 +120,7 @@ export default function Header() {
         </div>
 
         {/* Mobile Menu Content */}
-        <div className="flex flex-col p-6 space-y-4">
+        <div className="flex flex-col p-4 space-y-2">
           {sidebarLinks.map((link) => (
             <Link key={link.link} href={link.link} onClick={closeMobileMenu}>
               <Button
@@ -135,7 +135,7 @@ export default function Header() {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-300 dark:border-gray-800">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
             <ThemeToggle />
             <Link
               href="/user/profile"
