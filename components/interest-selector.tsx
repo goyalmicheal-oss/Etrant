@@ -6,7 +6,6 @@ import { Card } from "@/components/ui/card";
 import { Check, Loader2 } from "lucide-react";
 import { InterestCategory } from "@/types";
 import { setInterests } from "@/actions/setInterest";
-import { useRouter } from "next/navigation";
 import { useUserStore } from "@/lib/store/useUserStore";
 import { INTERESTS } from "@/data/interest";
 import { toast } from "sonner";
@@ -16,7 +15,6 @@ export function InterestSelector() {
   const [loading, setLoading] = useState(false);
   const [selectedInterests, setSelectedInterests] =
     useState<InterestCategory | null>(null);
-  const router = useRouter();
 
   useEffect(() => {
     const fetchUser = async () => {

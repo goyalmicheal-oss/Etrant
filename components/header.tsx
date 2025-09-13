@@ -5,7 +5,7 @@ import { useUserStore } from "@/lib/store/useUserStore";
 import Image from "next/image";
 import Logo from "@/public/etrant.png";
 import { Button } from "./ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { sidebarLinks } from "@/data/data";
 import { signOut } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
@@ -25,6 +25,21 @@ export default function Header() {
   };
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      // Prevent background scrolling
+      document.body.style.overflow = "hidden";
+    } else {
+      // Restore scrolling
+      document.body.style.overflow = "";
+    }
+
+    // Cleanup when component unmounts
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);

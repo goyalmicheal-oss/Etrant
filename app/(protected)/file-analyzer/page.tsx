@@ -14,7 +14,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Upload, FileText, Brain, RotateCcw, BookOpen } from "lucide-react";
-import { toast } from "@/hooks/use-toast";
+// import { toast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { IAnalysisResult } from "@/types";
 import McqQuestion from "@/components/file-analyzer/mcq-question";
 import FileAnalysis from "@/components/file-analyzer/Analysis";
@@ -54,20 +55,12 @@ export default function FileAnalyzerPage() {
       const maxSize = 10 * 1024 * 1024; // 10MB
 
       if (!allowedTypes.includes(selectedFile.type)) {
-        toast({
-          title: "Invalid file type",
-          description: "Please upload a text, PDF, or Word document.",
-          variant: "destructive",
-        });
+        toast.error("Invalid file type");
         return;
       }
 
       if (selectedFile.size > maxSize) {
-        toast({
-          title: "File too large",
-          description: "Please upload a file smaller than 10MB.",
-          variant: "destructive",
-        });
+        toast.error("File too large");
         return;
       }
 
