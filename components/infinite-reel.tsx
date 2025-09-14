@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { ArticleCard } from "@/components/article-card";
 import { useAppState } from "@/hooks/use-app-state";
 import { AILoader } from "./loader/ReelLoader";
+import { useUserStore } from "@/lib/store/useUserStore";
 
 interface Article {
   id: string;
@@ -22,8 +23,8 @@ export function InfiniteReel() {
   const [retryCount, setRetryCount] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [viewedArticles, setViewedArticles] = useState<Article[]>([]);
-  const [showQuiz, setShowQuiz] = useState(false);
-  const [quizData, setQuizData] = useState<any>(null);
+  // const [showQuiz, setShowQuiz] = useState(false);
+  // const [quizData, setQuizData] = useState<any>(null);
   const maxRetries = 3;
   const containerRef = useRef<HTMLDivElement>(null);
   const observer = useRef<IntersectionObserver>();
@@ -51,9 +52,9 @@ export function InfiniteReel() {
               }
 
               // Show quiz after every 5 articles
-              if (viewedArticles.length >= 1 && !showQuiz) {
-                generateQuiz();
-              }
+              // if (viewedArticles.length >= 1 && !showQuiz) {
+              //   generateQuiz();
+              // }
 
               // Load more articles when approaching the end
               if (index >= articles.length - 2 && hasMore && !loading) {
@@ -66,31 +67,31 @@ export function InfiniteReel() {
       );
       if (node) observer.current.observe(node);
     },
-    [loading, hasMore, viewedArticles, showQuiz],
+    [loading, hasMore, viewedArticles],
   );
 
-  const generateQuiz = async () => {
-    if (viewedArticles.length < 5) return;
-
-    try {
-      const recentArticles = viewedArticles.slice(-5);
-      const response = await fetch("/api/quiz", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ articles: recentArticles }),
-      });
-
-      if (response.ok) {
-        const quiz = await response.json();
-        setQuizData(quiz);
-        setShowQuiz(true);
-      }
-    } catch (error) {
-      console.error("Error generating quiz:", error);
-    }
-  };
+  // const generateQuiz = async () => {
+  //   if (viewedArticles.length < 5) return;
+  //
+  //   try {
+  //     const recentArticles = viewedArticles.slice(-5);
+  //     const response = await fetch("/api/quiz", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ articles: recentArticles }),
+  //     });
+  //
+  //     if (response.ok) {
+  //       const quiz = await response.json();
+  //       setQuizData(quiz);
+  //       setShowQuiz(true);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error generating quiz:", error);
+  //   }
+  // };
 
   const loadMoreArticles = async () => {
     if (loading) return;
@@ -148,7 +149,8 @@ export function InfiniteReel() {
     let scrollTimeout: NodeJS.Timeout;
 
     const handleScroll = () => {
-      if (isScrolling.current || showQuiz) return;
+      // if (isScrolling.current || showQuiz) return;
+      if (isScrolling.current) return;
 
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
@@ -176,7 +178,7 @@ export function InfiniteReel() {
       container.removeEventListener("scroll", handleScroll);
       clearTimeout(scrollTimeout);
     };
-  }, [currentIndex, showQuiz]);
+  }, [currentIndex]);
 
   useEffect(() => {
     loadMoreArticles();

@@ -115,6 +115,7 @@ export interface IUser {
   interest: string;
   streak: number;
   plan: string;
+  language: string;
   subscriptionActive: boolean;
   subscriptionEnd: string;
   lastActiveDate: string;

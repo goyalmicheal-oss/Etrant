@@ -33,7 +33,7 @@ export interface QuestionData {
 }
 
 export interface IWikipediaRepository {
-  getAIQuestions(category: string): Promise<QuestionData[]>;
+  getAIQuestions(category: string, language: string): Promise<QuestionData[]>;
 }
 
 // Initialize AI client
@@ -51,7 +51,10 @@ export class QuestionRepository implements IWikipediaRepository {
     return QuestionRepository.instance;
   }
 
-  async getAIQuestions(category: InterestCategory): Promise<QuestionData[]> {
+  async getAIQuestions(
+    category: InterestCategory,
+    language: string,
+  ): Promise<QuestionData[]> {
     try {
       const response = await ai.models.generateContent({
         model: "gemini-1.5-flash-latest",
@@ -60,7 +63,7 @@ export class QuestionRepository implements IWikipediaRepository {
           {
             parts: [
               {
-                text: generateQuestionPrompt(category),
+                text: generateQuestionPrompt(category, language),
               },
             ],
           },

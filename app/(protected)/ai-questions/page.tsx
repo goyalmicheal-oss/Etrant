@@ -23,7 +23,10 @@ export default async function AiQuestionPage() {
 
   return (
     <Suspense fallback={<CircleLoader />}>
-      <QuestionReel interests={userData?.interest as string} />
+      <QuestionReel
+        interests={userData?.interest as string}
+        language={userData?.language as string}
+      />
     </Suspense>
   );
 }

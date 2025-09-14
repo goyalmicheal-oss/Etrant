@@ -9,7 +9,8 @@ export interface User {
   interest: string | null;
   points: number | null;
   lastActiveDate: string | null;
-  rank: string | null;
+  language: string | null;
+  rank?: string | null;
   plan: string | null;
   subscriptionActive: boolean | null;
   subscriptionEnd: string | null;

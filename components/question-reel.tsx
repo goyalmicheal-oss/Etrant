@@ -7,9 +7,10 @@ import { AILoader } from "./loader/ReelLoader";
 
 interface InfiniteReelProps {
   interests: string;
+  language: string;
 }
 
-export function QuestionReel({ interests }: InfiniteReelProps) {
+export function QuestionReel({ interests, language }: InfiniteReelProps) {
   const [questions, setQuestions] = useState<QuestionData[]>([]);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -67,7 +68,7 @@ export function QuestionReel({ interests }: InfiniteReelProps) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ interests }),
+        body: JSON.stringify({ interests, language }),
       });
 
       if (response.ok) {

@@ -4,12 +4,12 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
-    const { interests: category } = await request.json();
+    const { interests: category, language } = await request.json();
     if (!category || typeof category !== "string") {
       return NextResponse.json(
         {
           error: "Bad Request",
-          message: "Category is required and must be a string",
+          message: "Category or language is required and must be a string",
         },
         { status: 400 },
       );
@@ -17,6 +17,7 @@ export async function POST(request: NextRequest) {
 
     const questions = await AIQuestions.getAIQuestions(
       category as InterestCategory,
+      language || "English",
     );
 
     return NextResponse.json({
