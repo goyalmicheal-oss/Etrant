@@ -219,9 +219,9 @@ export default function FileAnalyzerPage() {
 
         {/* MCQ Questions */}
         {mcqQuestions.length > 0 && (
-          <Card className="bg-indigo-200/20 dark:bg-gray-800 border-indigo-200 dark:border-gray-700">
+          <Card className="bg-indigo-200/20 dark:bg-gray-900 border-indigo-200 dark:border-gray-700">
             <CardHeader>
-              <div className="flex items-center justify-between">
+              <div className="flex max-md:flex-col md:items-center md:justify-between">
                 <CardTitle className="flex text-lg md:text-xl items-center gap-2 text-gray-950 dark:text-white">
                   <BookOpen className="h-5 w-5 text-green-600 dark:text-green-400" />
                   Practice Questions ({mcqQuestions.length})

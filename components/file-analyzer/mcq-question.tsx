@@ -21,11 +21,13 @@ export default function McqQuestion({
   return (
     <div className="border border-gray-700 rounded-lg p-4 space-y-4 bg-gray-200 dark:bg-gray-800/50">
       {/* Question Header */}
-      <div className="flex items-start justify-between gap-4">
-        <h3 className="font-medium text-lg leading-relaxed text-gray-950 dark:text-white">
+      <div className="flex flex-col md:flex-row items-start justify-between gap-4">
+        <h3 className="font-medium md:text-lg leading-relaxed text-gray-950 dark:text-white">
           {questionIndex + 1}. {question.question}
         </h3>
-        <Badge className={getDifficultyColor(question.difficulty)}>
+        <Badge
+          className={` border border-gray-700 ${getDifficultyColor(question.difficulty)}`}
+        >
           {question.difficulty}
         </Badge>
       </div>
@@ -43,7 +45,7 @@ export default function McqQuestion({
               key={optionIndex}
               onClick={() => handleAnswerSelect(question.question, optionIndex)}
               disabled={showResults}
-              className={`w-full text-left p-3 rounded-lg border transition-all ${
+              className={`w-full text-left p-3 rounded-full border transition-all ${
                 isSelected && !showResults
                   ? "border-blue-500 bg-blue-500/10"
                   : shouldHighlight
@@ -62,12 +64,12 @@ export default function McqQuestion({
                         ? "border-red-500 bg-red-500 text-white"
                         : isSelected
                           ? "border-blue-500 bg-blue-500 text-white"
-                          : "border-gray-500 text-gray-700 dark:text-gray-400"
+                          : "border-indigo-500 bg-indigo-700 text-gray-100"
                   }`}
                 >
                   {String.fromCharCode(65 + optionIndex)}
                 </span>
-                <span className="flex-1 text-gray-700 dark:text-gray-300">
+                <span className="flex-1 max-md:text-sm text-gray-700 dark:text-gray-300">
                   {option.name}
                 </span>
                 {showResults && shouldHighlight && (
@@ -84,8 +86,8 @@ export default function McqQuestion({
 
       {/* Explanation */}
       {showResults && (
-        <div className="mt-4 p-3 bg-blue-500/10 rounded-lg border-l-4 border-blue-500">
-          <p className="text-sm text-blue-300">
+        <div className="mt-4 p-3 rounded-lg border-l-4 border-indigo-500 bg-indigo-500/10">
+          <p className="text-sm dark:text-indigo-300 text-indigo-900">
             <strong>Explanation:</strong> {question.explanation}
           </p>
         </div>
