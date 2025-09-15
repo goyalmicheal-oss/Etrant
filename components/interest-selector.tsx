@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Check, Loader2 } from "lucide-react";
 import { InterestCategory } from "@/types";
 import { setInterests } from "@/actions/setInterest";
-import { useUserStore } from "@/lib/store/useUserStore";
+import { User, useUserStore } from "@/lib/store/useUserStore";
 import { INTERESTS } from "@/data/interest";
 import { toast } from "sonner";
 
@@ -40,7 +40,10 @@ export function InterestSelector() {
           user?.email as string,
         );
         console.log("res", res);
-        setUser({ ...user, interest: selectedInterests as string });
+        setUser({
+          ...(user as User),
+          interest: selectedInterests as InterestCategory,
+        });
         if (res.success) {
           // router.push("/ai-questions");
           toast.success("Successfully updated the interest.");

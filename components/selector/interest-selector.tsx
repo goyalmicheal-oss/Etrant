@@ -23,22 +23,48 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { INTERESTS } from "@/data/interest";
+import { setInterests } from "@/actions/setInterest";
+import { User, useUserStore } from "@/lib/store/useUserStore";
+import { InterestCategory } from "@/types";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
 
 const FormSchema = z.object({
-  email: z
-    .string({
-      required_error: "Please select an interest.",
-    })
-    .email(),
+  interest: z.string({
+    required_error: "Please select an interest.",
+  }),
 });
 
 export function InterestSelector() {
+  const { user, setUser } = useUserStore();
+  const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast("Interest submitted successfully!");
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+    if (!data.interest) return;
+    setLoading(true);
+    try {
+      const res = await setInterests(
+        data.interest as InterestCategory,
+        user?.email!,
+      );
+      if (res.success) {
+        setUser({
+          ...(user as User),
+          interest: data.interest as InterestCategory,
+        });
+        toast.success("Interest submitted successfully!");
+      } else {
+        toast.error("Something went wrong. Try Again.");
+      }
+    } catch (error) {
+      console.log("error: ", error);
+      toast.error("Something went wrong. Try Again.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -49,7 +75,7 @@ export function InterestSelector() {
       >
         <FormField
           control={form.control}
-          name="email"
+          name="interest"
           render={({ field }) => (
             <FormItem className="w-full">
               {/* <FormLabel>Interest</FormLabel> */}
@@ -75,9 +101,10 @@ export function InterestSelector() {
         />
         <Button
           className="bg-indigo-600 text-gray-100 hover:bg-indigo-700"
+          disabled={loading}
           type="submit"
         >
-          Done
+          {loading ? <Loader2 className="animate-spin" /> : "Done"}
         </Button>
       </form>
     </Form>

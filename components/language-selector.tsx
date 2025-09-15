@@ -22,14 +22,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useUserStore } from "@/lib/store/useUserStore";
 
 const FormSchema = z.object({
-  email: z.string({
+  language: z.string({
     required_error: "Please select a language.",
   }),
 });
 
 export function LanguageSelector() {
+  const { user, setUser } = useUserStore();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -46,7 +48,7 @@ export function LanguageSelector() {
       >
         <FormField
           control={form.control}
-          name="email"
+          name="language"
           render={({ field }) => (
             <FormItem className="w-full">
               {/* <FormLabel>Language</FormLabel> */}
