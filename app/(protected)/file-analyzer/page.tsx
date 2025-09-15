@@ -19,15 +19,7 @@ import { IAnalysisResult } from "@/types";
 import McqQuestion from "@/components/file-analyzer/mcq-question";
 import FileAnalysis from "@/components/file-analyzer/Analysis";
 import { useUserStore } from "@/lib/store/useUserStore";
-
-interface MCQQuestion {
-  id: number;
-  question: string;
-  options: string[];
-  correctAnswer: number;
-  explanation: string;
-  difficulty: "Easy" | "Medium" | "Hard";
-}
+import { QuestionData } from "@/types";
 
 export default function FileAnalyzerPage() {
   const [file, setFile] = useState<File | null>(null);
@@ -35,8 +27,8 @@ export default function FileAnalyzerPage() {
   const [analysisResult, setAnalysisResult] = useState<IAnalysisResult | null>(
     null,
   );
-  const [mcqQuestions, setMcqQuestions] = useState<MCQQuestion[]>([]);
-  const [userAnswers, setUserAnswers] = useState<{ [key: number]: number }>({});
+  const [mcqQuestions, setMcqQuestions] = useState<QuestionData[]>([]);
+  const [userAnswers, setUserAnswers] = useState<{ [key: string]: number }>({});
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -80,15 +72,27 @@ export default function FileAnalyzerPage() {
     formData.append("language", user?.language || "English");
 
     try {
-      const res = await fetch("/api/generate-mcq", {
+      const res = await fetch("/api/file-analyzer", {
         method: "POST",
         body: formData,
       });
       console.log("res", res);
+      if (!res.ok) {
+        throw new Error("Failed to analyze file");
+      }
 
-      setAnalysisResult;
-      toast.success("Your file has been successfully analyzed.(mockResult)");
+      const data = await res.json();
+      console.log("data", data);
+
+      if (data.success && data.questions) {
+        setMcqQuestions(data.questions);
+        console.log("questions", mcqQuestions);
+        toast.success("Your file has been successfully analyzed!");
+      } else {
+        toast.error("No questions generated. Try again with another file.");
+      }
     } catch (error) {
+      console.error(error);
       toast.error("There was an error analyzing your file. Please try again.");
     } finally {
       setIsAnalyzing(false);
@@ -96,18 +100,18 @@ export default function FileAnalyzerPage() {
   };
 
   // Handle answer selection
-  const handleAnswerSelect = (questionId: number, answerIndex: number) => {
+  const handleAnswerSelect = (question: string, answerIndex: number) => {
     if (showResults) return;
     setUserAnswers((prev) => ({
       ...prev,
-      [questionId]: answerIndex,
+      [question]: answerIndex,
     }));
   };
 
   // Calculate and show results
   const showQuizResults = () => {
     const correctAnswers = mcqQuestions.filter(
-      (q) => userAnswers[q.id] === q.correctAnswer,
+      (q) => userAnswers[q.question] === q.correctAnswer,
     ).length;
     setScore(correctAnswers);
     setShowResults(true);

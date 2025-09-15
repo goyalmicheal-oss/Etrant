@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { McqCard } from "./question-card";
-import { QuestionData } from "@/lib/repositories/question-repository";
+import { QuestionData } from "@/types";
 import { AILoader } from "./loader/ReelLoader";
 
 interface InfiniteReelProps {

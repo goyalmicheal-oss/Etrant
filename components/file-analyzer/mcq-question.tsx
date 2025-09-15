@@ -1,22 +1,14 @@
 import { getDifficultyColor } from "@/lib/utils";
 import { Badge } from "../ui/badge";
 import { CheckCircle, XCircle } from "lucide-react";
-
-interface IMCQQuestion {
-  id: number;
-  question: string;
-  options: string[];
-  correctAnswer: number;
-  explanation: string;
-  difficulty: "Easy" | "Medium" | "Hard";
-}
+import { QuestionData } from "@/types";
 
 interface McqQuestionProps {
-  question: IMCQQuestion;
+  question: QuestionData;
   questionIndex: number;
-  userAnswers: { [key: number]: number };
+  userAnswers: { [key: string]: number };
   showResults: boolean;
-  handleAnswerSelect: (questionId: number, answerIndex: number) => void;
+  handleAnswerSelect: (question: string, answerIndex: number) => void;
 }
 
 export default function McqQuestion({
@@ -41,7 +33,7 @@ export default function McqQuestion({
       {/* Options */}
       <div className="space-y-2">
         {question.options.map((option, optionIndex) => {
-          const isSelected = userAnswers[question.id] === optionIndex;
+          const isSelected = userAnswers[question.question] === optionIndex;
           const isCorrect = optionIndex === question.correctAnswer;
           const isWrong = showResults && isSelected && !isCorrect;
           const shouldHighlight = showResults && isCorrect;
@@ -49,7 +41,7 @@ export default function McqQuestion({
           return (
             <button
               key={optionIndex}
-              onClick={() => handleAnswerSelect(question.id, optionIndex)}
+              onClick={() => handleAnswerSelect(question.question, optionIndex)}
               disabled={showResults}
               className={`w-full text-left p-3 rounded-lg border transition-all ${
                 isSelected && !showResults
@@ -76,7 +68,7 @@ export default function McqQuestion({
                   {String.fromCharCode(65 + optionIndex)}
                 </span>
                 <span className="flex-1 text-gray-700 dark:text-gray-300">
-                  {option}
+                  {option.name}
                 </span>
                 {showResults && shouldHighlight && (
                   <CheckCircle className="h-5 w-5 text-green-400" />
