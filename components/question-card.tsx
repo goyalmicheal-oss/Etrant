@@ -117,7 +117,7 @@ export function McqCard({
                   " bg-purple-500 border-purple-400 text-purple-800 shadow-purple-100";
               } else {
                 buttonClass +=
-                  " bg-white border-gray-200 text-gray-700 hover:border-purple-300 hover:bg-purple-50";
+                  "dark:bg-black bg-white border-gray-200 text-gray-700 hover:border-purple-300 hover:bg-purple-50";
               }
 
               return (

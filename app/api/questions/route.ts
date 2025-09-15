@@ -1,3 +1,4 @@
+import { generateQuestionPrompt } from "@/lib/prompts/generate-questions";
 import { AIQuestions } from "@/lib/repositories/question-repository";
 import { InterestCategory } from "@/types";
 import { NextRequest, NextResponse } from "next/server";
@@ -14,12 +15,11 @@ export async function POST(request: NextRequest) {
         { status: 400 },
       );
     }
-
-    const questions = await AIQuestions.getAIQuestions(
+    const prompt = generateQuestionPrompt(
       category as InterestCategory,
-      language || "English",
+      language,
     );
-
+    const questions = await AIQuestions.getAIQuestions(prompt);
     return NextResponse.json({
       success: true,
       data: questions,
