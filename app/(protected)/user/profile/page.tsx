@@ -14,6 +14,8 @@ import Image from "next/image";
 import UserImage from "@/public/placeholder-user.jpg";
 import Header from "@/components/header";
 import { useUserStore } from "@/lib/store/useUserStore";
+import { LanguageSelector } from "@/components/language-selector";
+import { InterestSelector } from "@/components/selector/interest-selector";
 
 export default function ProfilePage() {
   const { user } = useUserStore();
@@ -45,7 +47,10 @@ export default function ProfilePage() {
                 </div>
               </div>
             </div>
-
+            <div className="flex max-md:flex-col gap-4">
+              <LanguageSelector />
+              <InterestSelector />
+            </div>
             {/* Enhanced Key Stats Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <Card className="bg-gray-200 dark:bg-gray-900/50 border-gray-400 dark:border-gray-800 h-full  dark:hover:border-blue-700 transition-colors">

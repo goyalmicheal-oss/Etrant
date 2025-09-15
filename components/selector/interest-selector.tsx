@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -23,55 +22,63 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { INTERESTS } from "@/data/interest";
 
 const FormSchema = z.object({
   email: z
     .string({
-      required_error: "Please select a language to display.",
+      required_error: "Please select an interest.",
     })
     .email(),
 });
 
-export function SelectForm() {
+export function InterestSelector() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast("You submitted the following values");
+    toast("Interest submitted successfully!");
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="w-full flex gap-2 items-center"
+      >
         <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Language</FormLabel>
+            <FormItem className="w-full">
+              {/* <FormLabel>Interest</FormLabel> */}
+              <FormLabel></FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a language for questions" />
+                  <SelectTrigger className="bg-gray-200 border border-gray-400 dark:border-gray-800 text-gray-950 dark:text-gray-100 dark:bg-gray-900">
+                    <SelectValue placeholder="Select an interest" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="m@example.com">English</SelectItem>
-                  <SelectItem value="m@google.com">Hindig</SelectItem>
-                  <SelectItem value="m@support.com">Telugu</SelectItem>
-                  <SelectItem value="m@support.com">Bengali</SelectItem>
+                  {INTERESTS.map((interest) => (
+                    <SelectItem key={interest.id} value={interest.id}>
+                      {interest.label}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
-              {/* <FormDescription> */}
-              {/*   You can manage email addresses in your{" "} */}
-              {/*   <Link href="/examples/forms">email settings</Link>. */}
-              {/* </FormDescription> */}
+              <FormDescription></FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button
+          className="bg-indigo-600 text-gray-100 hover:bg-indigo-700"
+          type="submit"
+        >
+          Done
+        </Button>
       </form>
     </Form>
   );
