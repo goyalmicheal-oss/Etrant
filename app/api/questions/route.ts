@@ -1,24 +1,25 @@
+import { generateQuestionPrompt } from "@/lib/prompts/generate-questions";
 import { AIQuestions } from "@/lib/repositories/question-repository";
 import { InterestCategory } from "@/types";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
-    const { interests: category } = await request.json();
+    const { interests: category, language } = await request.json();
     if (!category || typeof category !== "string") {
       return NextResponse.json(
         {
           error: "Bad Request",
-          message: "Category is required and must be a string",
+          message: "Category or language is required and must be a string",
         },
         { status: 400 },
       );
     }
-
-    const questions = await AIQuestions.getAIQuestions(
+    const prompt = generateQuestionPrompt(
       category as InterestCategory,
+      language,
     );
-
+    const questions = await AIQuestions.getAIQuestions(prompt);
     return NextResponse.json({
       success: true,
       data: questions,

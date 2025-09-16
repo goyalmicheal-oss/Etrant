@@ -14,20 +14,12 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Upload, FileText, Brain, RotateCcw, BookOpen } from "lucide-react";
-// import { toast } from "@/hooks/use-toast";
 import { toast } from "sonner";
 import { IAnalysisResult } from "@/types";
 import McqQuestion from "@/components/file-analyzer/mcq-question";
 import FileAnalysis from "@/components/file-analyzer/Analysis";
-
-interface MCQQuestion {
-  id: number;
-  question: string;
-  options: string[];
-  correctAnswer: number;
-  explanation: string;
-  difficulty: "Easy" | "Medium" | "Hard";
-}
+import { useUserStore } from "@/lib/store/useUserStore";
+import { QuestionData } from "@/types";
 
 export default function FileAnalyzerPage() {
   const [file, setFile] = useState<File | null>(null);
@@ -35,17 +27,17 @@ export default function FileAnalyzerPage() {
   const [analysisResult, setAnalysisResult] = useState<IAnalysisResult | null>(
     null,
   );
-  const [mcqQuestions, setMcqQuestions] = useState<MCQQuestion[]>([]);
-  const [userAnswers, setUserAnswers] = useState<{ [key: number]: number }>({});
+  const [mcqQuestions, setMcqQuestions] = useState<QuestionData[]>([]);
+  const [userAnswers, setUserAnswers] = useState<{ [key: string]: number }>({});
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { user } = useUserStore();
 
   // Handle file upload
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
     if (selectedFile) {
-      // Check file type and size
       const allowedTypes = [
         "text/plain",
         "application/pdf",
@@ -53,17 +45,14 @@ export default function FileAnalyzerPage() {
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       ];
       const maxSize = 10 * 1024 * 1024; // 10MB
-
       if (!allowedTypes.includes(selectedFile.type)) {
         toast.error("Invalid file type");
         return;
       }
-
       if (selectedFile.size > maxSize) {
         toast.error("File too large");
         return;
       }
-
       setFile(selectedFile);
       setAnalysisResult(null);
       setMcqQuestions([]);
@@ -72,79 +61,60 @@ export default function FileAnalyzerPage() {
     }
   };
 
-  // Simulate file analysis with Gemini AI
   const analyzeFile = async () => {
     if (!file) return;
 
     setIsAnalyzing(true);
 
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("category", user?.interest!);
+    formData.append("language", user?.language || "English");
+
     try {
-      // Simulate API call to Gemini AI
-      await new Promise((resolve) => setTimeout(resolve, 3000));
-
-      // Mock analysis result based on file type
-      const mockResult: IAnalysisResult = {
-        summary:
-          "This document covers fundamental concepts in machine learning, including supervised and unsupervised learning algorithms, neural networks, and practical applications in various industries. The content is structured to provide both theoretical understanding and practical implementation guidance.",
-        keyPoints: [
-          "Introduction to machine learning paradigms",
-          "Supervised learning algorithms (regression, classification)",
-          "Unsupervised learning techniques (clustering, dimensionality reduction)",
-          "Neural networks and deep learning fundamentals",
-          "Model evaluation and validation techniques",
-          "Real-world applications and case studies",
-        ],
-        topics: [
-          "Machine Learning",
-          "Neural Networks",
-          "Data Science",
-          "Algorithms",
-          "Statistics",
-        ],
-        difficulty: "Intermediate",
-        wordCount: Math.floor(Math.random() * 5000) + 2000,
-      };
-
-      setAnalysisResult(mockResult);
-      toast({
-        title: "Analysis complete!",
-        description: "Your file has been successfully analyzed.",
+      const res = await fetch("/api/file-analyzer", {
+        method: "POST",
+        body: formData,
       });
+      console.log("res", res);
+      if (!res.ok) {
+        throw new Error("Failed to analyze file");
+      }
+
+      const data = await res.json();
+      console.log("data", data);
+
+      if (data.success && data.questions) {
+        setMcqQuestions(data.questions);
+        console.log("questions", mcqQuestions);
+        toast.success("Your file has been successfully analyzed!");
+      } else {
+        toast.error("No questions generated. Try again with another file.");
+      }
     } catch (error) {
-      toast({
-        title: "Analysis failed",
-        description:
-          "There was an error analyzing your file. Please try again.",
-        variant: "destructive",
-      });
+      console.error(error);
+      toast.error("There was an error analyzing your file. Please try again.");
     } finally {
       setIsAnalyzing(false);
     }
   };
 
-  // Generate MCQ questions using Gemini AI
-
   // Handle answer selection
-  const handleAnswerSelect = (questionId: number, answerIndex: number) => {
+  const handleAnswerSelect = (question: string, answerIndex: number) => {
     if (showResults) return;
     setUserAnswers((prev) => ({
       ...prev,
-      [questionId]: answerIndex,
+      [question]: answerIndex,
     }));
   };
 
   // Calculate and show results
   const showQuizResults = () => {
     const correctAnswers = mcqQuestions.filter(
-      (q) => userAnswers[q.id] === q.correctAnswer,
+      (q) => userAnswers[q.question] === q.correctAnswer,
     ).length;
     setScore(correctAnswers);
     setShowResults(true);
-
-    toast({
-      title: "Quiz completed!",
-      description: `You scored ${correctAnswers} out of ${mcqQuestions.length} questions.`,
-    });
   };
 
   // Reset quiz
@@ -249,9 +219,9 @@ export default function FileAnalyzerPage() {
 
         {/* MCQ Questions */}
         {mcqQuestions.length > 0 && (
-          <Card className="bg-indigo-200/20 dark:bg-gray-800 border-indigo-200 dark:border-gray-700">
+          <Card className="bg-indigo-200/20 dark:bg-gray-900 border-indigo-200 dark:border-gray-700">
             <CardHeader>
-              <div className="flex items-center justify-between">
+              <div className="flex max-md:flex-col md:items-center md:justify-between">
                 <CardTitle className="flex text-lg md:text-xl items-center gap-2 text-gray-950 dark:text-white">
                   <BookOpen className="h-5 w-5 text-green-600 dark:text-green-400" />
                   Practice Questions ({mcqQuestions.length})

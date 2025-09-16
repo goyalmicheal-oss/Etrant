@@ -1,44 +1,8 @@
-import { InterestCategory } from "@/types";
 import { GoogleGenAI } from "@google/genai";
-import { generateQuestionPrompt } from "../prompts/generate-questions";
+import { IWikipediaRepository, QuestionData } from "@/types";
 
-interface OptionType {
-  name: string;
-  isCorrect: boolean;
-}
-
-export interface QuestionData {
-  question: string;
-  difficulty: "easy" | "medium" | "hard";
-  category: string;
-  tags: string[];
-  context: string;
-  estimatedTime: number;
-  options: OptionType[];
-  correctAnswer: number;
-  explanation?: string;
-  previousYearQuestion: string;
-  metadata: {
-    source: string;
-    complexity: number;
-    bloomsLevel:
-      | "remember"
-      | "understand"
-      | "apply"
-      | "analyze"
-      | "evaluate"
-      | "create";
-    learningObjective?: string;
-  };
-}
-
-export interface IWikipediaRepository {
-  getAIQuestions(category: string): Promise<QuestionData[]>;
-}
-
-// Initialize AI client
 const ai = new GoogleGenAI({
-  apiKey: process.env.GOOGLE_AI_API_KEY, // Make sure to set this in your .env.local
+  apiKey: process.env.GOOGLE_AI_API_KEY,
 });
 
 export class QuestionRepository implements IWikipediaRepository {
@@ -51,16 +15,15 @@ export class QuestionRepository implements IWikipediaRepository {
     return QuestionRepository.instance;
   }
 
-  async getAIQuestions(category: InterestCategory): Promise<QuestionData[]> {
+  async getAIQuestions(prompt: string): Promise<QuestionData[]> {
     try {
       const response = await ai.models.generateContent({
         model: "gemini-1.5-flash-latest",
-        // model: "gemini-2.0-flash-exp",
         contents: [
           {
             parts: [
               {
-                text: generateQuestionPrompt(category),
+                text: prompt,
               },
             ],
           },
@@ -105,7 +68,6 @@ export class QuestionRepository implements IWikipediaRepository {
       }
     } catch (error) {
       console.error("AI question generation failed:", {
-        category,
         error: error instanceof Error ? error.message : error,
       });
       throw new Error("Failed to generate questions");

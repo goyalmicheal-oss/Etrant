@@ -115,6 +115,7 @@ export interface IUser {
   interest: string;
   streak: number;
   plan: string;
+  language: string;
   subscriptionActive: boolean;
   subscriptionEnd: string;
   lastActiveDate: string;
@@ -148,4 +149,38 @@ export interface Question {
   correctAnswer: string | boolean | number;
   createdAt: Date;
   explanation: string;
+}
+
+interface OptionType {
+  name: string;
+  isCorrect: boolean;
+}
+
+export interface QuestionData {
+  question: string;
+  difficulty: "easy" | "medium" | "hard";
+  category: string;
+  tags: string[];
+  context: string;
+  estimatedTime: number;
+  options: OptionType[];
+  correctAnswer: number;
+  explanation?: string;
+  previousYearQuestion: string;
+  metadata: {
+    source: string;
+    complexity: number;
+    bloomsLevel:
+      | "remember"
+      | "understand"
+      | "apply"
+      | "analyze"
+      | "evaluate"
+      | "create";
+    learningObjective?: string;
+  };
+}
+
+export interface IWikipediaRepository {
+  getAIQuestions(category: string, language: string): Promise<QuestionData[]>;
 }

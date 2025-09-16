@@ -1,7 +1,10 @@
 import { InterestCategory } from "@/types";
 import { INTERESTS } from "@/data/interest";
 
-export function generateQuestionPrompt(interest: InterestCategory) {
+export function generateQuestionPrompt(
+  interest: InterestCategory,
+  language: string,
+) {
   const interestObj = INTERESTS.find((int) => int.id === interest);
   if (!interestObj) {
     throw new Error(`Invalid interest category: ${interest}`);
@@ -46,7 +49,7 @@ Each object in the array must have the following exact structure and adhere to t
     ],
     "previousYearQuestion": "string", // Identifier like "exam_name-year". Leave as an empty string "" if not applicable.
     "correctAnswer": "number", // The 0-based index of the correct option in the "options" array. This MUST match the option with "isCorrect": true.
-    "explanation": "string", // A detailed explanation for why the correct answer is correct and others are not. Lenght should be strictly 10-50 words.
+    "explanation": "string", // A detailed explanation for why the correct answer is correct and others are not. Lenght should be strictly 20-50 words.
     "metadata": { // A nested object for metadata.
       "source": "string", // Must be "ai-generated".
       "complexity": "number", // An integer from 5 to 10, representing difficulty on a 1-10 scale ('medium' maps to 5-7, 'hard' to 8-10).
@@ -60,6 +63,7 @@ Each object in the array must have the following exact structure and adhere to t
 - **Single Correct Answer:** Within the "options" array, exactly ONE object must have '"isCorrect": true'. The other three must have '"isCorrect": false'.
 - **Index Match:** The 'correctAnswer' index must correspond to the option where 'isCorrect' is 'true'.
 - **String Escaping:** Ensure all strings within the JSON are properly escaped (e.g., use '\"' for double quotes inside a string).
+- **Language**: Stricly Write all the question and options in ${language || "English"} language.
 
 ---
 ## FINAL CHECKLIST (Internal monologue before responding)
@@ -72,6 +76,7 @@ Each object in the array must have the following exact structure and adhere to t
 7. The correct options should be differennt for each question. Don't always put the correct answer in one option (e.g. option1 or option2 should not be always correct)
 8. Most of the questions level should be hard.
 9. Try to add as much previous year question as possible of the ${interestObj.label} exam.
+10. Is the generated questions and answer are written in ${language || "English"} language.
 
 Proceed with generation.
 `;
