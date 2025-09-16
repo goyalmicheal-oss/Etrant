@@ -48,6 +48,8 @@ export default function Sidebar() {
                   key={link.link}
                   href={link.link}
                   className="cursor-pointer"
+                  aria-label={link.name}
+                  title={link.name}
                 >
                   <div
                     className={`flex gap-3 p-3 text-sm rounded-lg max-lg:justify-center items-center duration-200 dark:text-gray-100 
@@ -62,7 +64,11 @@ export default function Sidebar() {
           </div>
         </div>
         <div className="flex flex-col gap-4">
-          <Link href="/user/profile" className="cursor-pointer">
+          <Link
+            aria-label="Profile"
+            href="/user/profile"
+            className="cursor-pointer"
+          >
             <div className="flex gap-4 px-3 py-2 rounded-lg items-center duration-200 hover:bg-gray-300 dark:hover:bg-gray-700">
               {user?.image ? (
                 <Button
@@ -109,6 +115,8 @@ export default function Sidebar() {
           <Button
             onClick={handleSignOut}
             className="flex bg-indigo-600 items-center gap-2 cursor-pointer text-gray-100 hover:bg-indigo-700 duration-200"
+            aria-label="Sign Out"
+            title="Sign Out"
           >
             <LogOut />
             <span className="max-lg:hidden">

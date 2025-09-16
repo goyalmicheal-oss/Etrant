@@ -22,7 +22,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useUserStore } from "@/lib/store/useUserStore";
+import { User, useUserStore } from "@/lib/store/useUserStore";
+import { useState } from "react";
+import { setInterests } from "@/actions/setInterest";
+import { InterestCategory } from "@/types";
+import { Loader2 } from "lucide-react";
 
 const FormSchema = z.object({
   language: z.string({
@@ -32,12 +36,35 @@ const FormSchema = z.object({
 
 export function LanguageSelector() {
   const { user, setUser } = useUserStore();
+  const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast("Language submitted successfully!");
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+    if (!data.language) return;
+    setLoading(true);
+    try {
+      const res = await setInterests(
+        user?.email!,
+        user?.interest,
+        data.language,
+      );
+      if (res.success) {
+        setUser({
+          ...(user as User),
+          language: data.language,
+        });
+        toast.success("Language submitted successfully!");
+      } else {
+        toast.error("Something went wrong. Try Again.");
+      }
+    } catch (error) {
+      console.log("error: ", error);
+      toast.error("Something went wrong. Try Again.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -51,12 +78,16 @@ export function LanguageSelector() {
           name="language"
           render={({ field }) => (
             <FormItem className="w-full">
-              {/* <FormLabel>Language</FormLabel> */}
+              {/* <FormLabel>Interest</FormLabel> */}
               <FormLabel></FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger className="bg-gray-200 border border-gray-400 dark:border-gray-800 text-gray-950 dark:text-gray-100 dark:bg-gray-900">
-                    <SelectValue placeholder="Select a language" />
+                    <SelectValue
+                      placeholder={
+                        `${user?.language} (Language)` || "Select a language"
+                      }
+                    />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -74,9 +105,10 @@ export function LanguageSelector() {
         />
         <Button
           className="bg-indigo-600 text-gray-100 hover:bg-indigo-700"
+          disabled={loading}
           type="submit"
         >
-          Done
+          {loading ? <Loader2 className="animate-spin" /> : "Done"}
         </Button>
       </form>
     </Form>

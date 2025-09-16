@@ -47,8 +47,9 @@ export function InterestSelector() {
     setLoading(true);
     try {
       const res = await setInterests(
-        data.interest as InterestCategory,
         user?.email!,
+        data.interest as InterestCategory,
+        user?.language!,
       );
       if (res.success) {
         setUser({
@@ -83,7 +84,11 @@ export function InterestSelector() {
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger className="bg-gray-200 border border-gray-400 dark:border-gray-800 text-gray-950 dark:text-gray-100 dark:bg-gray-900">
-                    <SelectValue placeholder="Select an interest" />
+                    <SelectValue
+                      placeholder={
+                        `${user?.interest} (Interest)` || "Select an interest"
+                      }
+                    />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
