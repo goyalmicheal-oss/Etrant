@@ -16,7 +16,7 @@ importers:
         version: 1.10.0(nodemailer@7.0.5)
       '@google/genai':
         specifier: ^1.12.0
-        version: 1.15.0
+        version: 1.15.0(supports-color@10.2.2)
       '@hookform/resolvers':
         specifier: ^3.9.1
         version: 3.10.0(react-hook-form@7.62.0(react@19.1.1))
@@ -169,7 +169,10 @@ importers:
         version: 7.0.5
       pdf-parse:
         specifier: ^1.1.1
-        version: 1.1.1
+        version: 1.1.1(supports-color@10.2.2)
+      pdf2json:
+        specifier: ^3.2.1
+        version: 3.2.1
       postgres:
         specifier: ^3.4.7
         version: 3.4.7
@@ -233,13 +236,16 @@ importers:
         version: 19.1.7(@types/react@19.1.10)
       drizzle-kit:
         specifier: ^0.31.4
-        version: 0.31.4
+        version: 0.31.4(supports-color@10.2.2)
       next-sitemap:
         specifier: ^4.2.3
         version: 4.2.3(next@15.2.4(@opentelemetry/api@1.9.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))
       postcss:
         specifier: ^8.5
         version: 8.5.6
+      supports-color:
+        specifier: ^10.2.2
+        version: 10.2.2
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.17
@@ -2540,6 +2546,11 @@ packages:
     resolution: {integrity: sha512-v6ZJ/efsBpGrGGknjtq9J/oC8tZWq0KWL5vQrk2GlzLEQPUDB1ex+13Rmidl1neNN358Jn9EHZw5y07FFtaC7A==}
     engines: {node: '>=6.8.1'}
 
+  pdf2json@3.2.1:
+    resolution: {integrity: sha512-Ktz7y9gN6qfIiuZUUrdoXwhaBP5xL8ovwxLWey7ey+oCija3dk01vQ2RSpfwwsFu/sKd7el1hwFPfcX+XgxFiQ==}
+    engines: {node: '>=20.18.0'}
+    hasBin: true
+
   pg-int8@1.0.1:
     resolution: {integrity: sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==}
     engines: {node: '>=4.0.0'}
@@ -2891,6 +2902,10 @@ packages:
     engines: {node: '>=16 || 14 >=14.17'}
     hasBin: true
 
+  supports-color@10.2.2:
+    resolution: {integrity: sha512-SS+jx45GF1QjgEXQx4NJZV9ImqmO2NPz5FNsIHrsDjh2YsHnawpan7SNQ1o8NuhrbHZy9AZhIoCUiCeaW/C80g==}
+    engines: {node: '>=18'}
+
   supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
@@ -2972,6 +2987,9 @@ packages:
     resolution: {integrity: sha512-Rb46I4cGGVBmjamjphe8L/UnvJD+uPPtTkNvX5mZgqdbavhI4EbgIWJiIHXJ8bc/i9EQGPRh4DwEURJ552Do0A==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
+  user@0.0.0:
+    resolution: {integrity: sha512-eRNM5isOvr6aEFAGi1CqAkmLkYxW2NJ5ThhbD+6IJXYKM1mo7Gtxx4mQIveHz/5K3p/SVnlW9k17ETn+QAu8IQ==}
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
@@ -3292,9 +3310,9 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@google/genai@1.15.0':
+  '@google/genai@1.15.0(supports-color@10.2.2)':
     dependencies:
-      google-auth-library: 9.15.1
+      google-auth-library: 9.15.1(supports-color@10.2.2)
       ws: 8.18.3
     transitivePeerDependencies:
       - bufferutil
@@ -4504,13 +4522,17 @@ snapshots:
 
   date-fns@4.1.0: {}
 
-  debug@3.2.7:
+  debug@3.2.7(supports-color@10.2.2):
     dependencies:
       ms: 2.1.3
+    optionalDependencies:
+      supports-color: 10.2.2
 
-  debug@4.4.1:
+  debug@4.4.1(supports-color@10.2.2):
     dependencies:
       ms: 2.1.3
+    optionalDependencies:
+      supports-color: 10.2.2
 
   decimal.js-light@2.5.1: {}
 
@@ -4533,12 +4555,12 @@ snapshots:
 
   dotenv@17.2.1: {}
 
-  drizzle-kit@0.31.4:
+  drizzle-kit@0.31.4(supports-color@10.2.2):
     dependencies:
       '@drizzle-team/brocli': 0.10.2
       '@esbuild-kit/esm-loader': 2.6.5
       esbuild: 0.25.9
-      esbuild-register: 3.6.0(esbuild@0.25.9)
+      esbuild-register: 3.6.0(esbuild@0.25.9)(supports-color@10.2.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -4598,9 +4620,9 @@ snapshots:
       has-tostringtag: 1.0.2
       hasown: 2.0.2
 
-  esbuild-register@3.6.0(esbuild@0.25.9):
+  esbuild-register@3.6.0(esbuild@0.25.9)(supports-color@10.2.2):
     dependencies:
-      debug: 4.4.1
+      debug: 4.4.1(supports-color@10.2.2)
       esbuild: 0.25.9
     transitivePeerDependencies:
       - supports-color
@@ -4718,10 +4740,10 @@ snapshots:
 
   function-bind@1.1.2: {}
 
-  gaxios@6.7.1:
+  gaxios@6.7.1(supports-color@10.2.2):
     dependencies:
       extend: 3.0.2
-      https-proxy-agent: 7.0.6
+      https-proxy-agent: 7.0.6(supports-color@10.2.2)
       is-stream: 2.0.1
       node-fetch: 2.7.0
       uuid: 9.0.1
@@ -4729,9 +4751,9 @@ snapshots:
       - encoding
       - supports-color
 
-  gcp-metadata@6.1.1:
+  gcp-metadata@6.1.1(supports-color@10.2.2):
     dependencies:
-      gaxios: 6.7.1
+      gaxios: 6.7.1(supports-color@10.2.2)
       google-logging-utils: 0.0.2
       json-bigint: 1.0.0
     transitivePeerDependencies:
@@ -4783,13 +4805,13 @@ snapshots:
       package-json-from-dist: 1.0.1
       path-scurry: 1.11.1
 
-  google-auth-library@9.15.1:
+  google-auth-library@9.15.1(supports-color@10.2.2):
     dependencies:
       base64-js: 1.5.1
       ecdsa-sig-formatter: 1.0.11
-      gaxios: 6.7.1
-      gcp-metadata: 6.1.1
-      gtoken: 7.1.0
+      gaxios: 6.7.1(supports-color@10.2.2)
+      gcp-metadata: 6.1.1(supports-color@10.2.2)
+      gtoken: 7.1.0(supports-color@10.2.2)
       jws: 4.0.0
     transitivePeerDependencies:
       - encoding
@@ -4799,9 +4821,9 @@ snapshots:
 
   gopd@1.2.0: {}
 
-  gtoken@7.1.0:
+  gtoken@7.1.0(supports-color@10.2.2):
     dependencies:
-      gaxios: 6.7.1
+      gaxios: 6.7.1(supports-color@10.2.2)
       jws: 4.0.0
     transitivePeerDependencies:
       - encoding
@@ -4817,10 +4839,10 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  https-proxy-agent@7.0.6:
+  https-proxy-agent@7.0.6(supports-color@10.2.2):
     dependencies:
       agent-base: 7.1.4
-      debug: 4.4.1
+      debug: 4.4.1(supports-color@10.2.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -5067,12 +5089,16 @@ snapshots:
       lru-cache: 10.4.3
       minipass: 7.1.2
 
-  pdf-parse@1.1.1:
+  pdf-parse@1.1.1(supports-color@10.2.2):
     dependencies:
-      debug: 3.2.7
+      debug: 3.2.7(supports-color@10.2.2)
       node-ensure: 0.0.0
     transitivePeerDependencies:
       - supports-color
+
+  pdf2json@3.2.1:
+    dependencies:
+      user: 0.0.0
 
   pg-int8@1.0.1: {}
 
@@ -5443,6 +5469,8 @@ snapshots:
       pirates: 4.0.7
       ts-interface-checker: 0.1.13
 
+  supports-color@10.2.2: {}
+
   supports-preserve-symlinks-flag@1.0.0: {}
 
   tailwind-merge@2.6.0: {}
@@ -5528,6 +5556,8 @@ snapshots:
   use-sync-external-store@1.5.0(react@19.1.1):
     dependencies:
       react: 19.1.1
+
+  user@0.0.0: {}
 
   util-deprecate@1.0.2: {}
 

@@ -178,15 +178,15 @@ export const sidebarLinks = [
     link: "/articles",
   },
   {
-    name: "File Analzyer",
+    name: "File Analyzer",
     icon: File,
     link: "/file-analyzer",
   },
-  {
-    name: "Interest",
-    icon: Star,
-    link: "/interest",
-  },
+  // {
+  //   name: "Interest",
+  //   icon: Star,
+  //   link: "/interest",
+  // },
   {
     name: "Leaderboard",
     icon: Trophy,
