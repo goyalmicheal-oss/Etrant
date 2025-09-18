@@ -76,17 +76,14 @@ export default function FileAnalyzerPage() {
         method: "POST",
         body: formData,
       });
-      console.log("res", res);
       if (!res.ok) {
         throw new Error("Failed to analyze file");
       }
 
       const data = await res.json();
-      console.log("data", data);
 
       if (data.success && data.questions) {
         setMcqQuestions(data.questions);
-        console.log("questions", mcqQuestions);
         toast.success("Your file has been successfully analyzed!");
       } else {
         toast.error("No questions generated. Try again with another file.");
@@ -228,7 +225,7 @@ export default function FileAnalyzerPage() {
                 </CardTitle>
                 <div className="flex gap-2">
                   {showResults && (
-                    <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
+                    <Badge className="bg-green-500/20 text-green-600 dark:text-green-400 border-green-500/30">
                       Score: {score}/{mcqQuestions.length}
                     </Badge>
                   )}
@@ -247,7 +244,7 @@ export default function FileAnalyzerPage() {
                       onClick={resetQuiz}
                       size="sm"
                       variant="outline"
-                      className="border-gray-600 text-gray-300 hover:bg-gray-700 bg-transparent"
+                      className="border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-700 bg-transparent"
                     >
                       <RotateCcw className="h-4 w-4 mr-1" />
                       Retry
