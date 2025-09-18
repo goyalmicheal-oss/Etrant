@@ -26,7 +26,7 @@ export default function McqQuestion({
           {questionIndex + 1}. {question.question}
         </h3>
         <Badge
-          className={` border border-gray-700 ${getDifficultyColor(question.difficulty)}`}
+          className={`border border-gray-700 ${getDifficultyColor(question.difficulty)} bg-gray-300 dark:bg-gray-400 text-gray-800 border-gray-700`}
         >
           {question.difficulty}
         </Badge>
@@ -52,7 +52,7 @@ export default function McqQuestion({
                     ? "border-green-500 bg-green-500/10"
                     : isWrong
                       ? "border-red-500 bg-red-500/10"
-                      : "border-gray-600 hover:border-gray-500 hover:bg-gray-700/50"
+                      : "border-gray-400 dark:hover:border-gray-500 dark:hover:bg-gray-700/50 hover:bg-gray-300"
               } ${showResults ? "cursor-default" : "cursor-pointer"}`}
             >
               <div className="flex items-center gap-3">
