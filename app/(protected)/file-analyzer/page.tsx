@@ -70,6 +70,8 @@ export default function FileAnalyzerPage() {
     formData.append("file", file);
     formData.append("category", user?.interest!);
     formData.append("language", user?.language || "English");
+    formData.append("userId", user?.id!);
+    formData.append("fileName", file.name);
 
     try {
       const res = await fetch("/api/file-analyzer", {
