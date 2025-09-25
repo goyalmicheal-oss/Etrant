@@ -6,6 +6,8 @@ import { InterestCategory } from "@/types";
 import PDFParser from "pdf2json";
 import mammoth from "mammoth";
 import fileToQuestionsPrompt from "@/lib/prompts/file-to-questions";
+import { files, mcqs } from "@/lib/db/schema";
+import { db } from "@/lib/db/db";
 
 export async function POST(req: NextRequest) {
   try {
@@ -13,6 +15,8 @@ export async function POST(req: NextRequest) {
     const category = formData.get("category") as InterestCategory | null;
     const language = formData.get("language") as string | null;
     const file = formData.get("file") as File | null;
+    const userId = formData.get("userId");
+    const fileName = formData.get("fileName");
 
     if (!category || !language || !file) {
       return NextResponse.json(
@@ -24,6 +28,32 @@ export async function POST(req: NextRequest) {
     const prompt = fileToQuestionsPrompt(category, language, textContent);
 
     const questions = await AIQuestions.getAIQuestions(prompt);
+    if (questions.length > 0) {
+      const [newFile] = await db
+        .insert(files)
+        .values({
+          userId: userId as string,
+          fileName: fileName as string,
+          uploadedAt: new Date(),
+        })
+        .returning();
+      await db.insert(mcqs).values(
+        questions.map((mcq) => ({
+          fileId: newFile.id,
+          question: mcq.question,
+          difficulty: mcq.difficulty,
+          category: mcq.category,
+          tags: mcq.tags,
+          context: mcq.context,
+          estimatedTime: mcq.estimatedTime,
+          options: mcq.options,
+          previousYearQuestion: mcq.previousYearQuestion,
+          correctAnswer: mcq.correctAnswer,
+          explanation: mcq.explanation ?? "",
+          metadata: mcq.metadata,
+        })),
+      );
+    }
     return NextResponse.json(
       { success: true, questions: questions },
       { status: 200 },

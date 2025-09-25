@@ -63,6 +63,41 @@ export const waitlist = pgTable("waitlist", {
   email: text("email").notNull(),
   createdAt: timestamp("created_at"),
 });
+// -------------------- FILE ANALYZE --------------------
+export const files = pgTable("files", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  userId: text("user_id")
+    .references(() => users.id, { onDelete: "cascade" })
+    .notNull(),
+  fileName: varchar("file_name", { length: 255 }).notNull(),
+  uploadedAt: timestamp("uploaded_at").defaultNow().notNull(),
+});
+// -------------------- FILE MCQ --------------------
+export const mcqs = pgTable("file_mcqs", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  fileId: text("file_id")
+    .references(() => files.id, { onDelete: "cascade" })
+    .notNull(),
+  question: text("question").notNull(),
+  difficulty: text("difficulty").notNull(), // "medium" or "hard"
+  category: text("category").notNull(),
+  tags: text("tags").array(),
+  context: text("context"),
+  estimatedTime: integer("estimated_time"),
+
+  options: jsonb("options").notNull(), // store 4 option objects
+  previousYearQuestion: varchar("previous_year_question", { length: 255 }),
+  correctAnswer: integer("correct_answer").notNull(),
+  explanation: text("explanation").notNull(),
+  metadata: jsonb("metadata"),
+
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 // -------------------- FEEDBACK --------------------
 export const feedbacks = pgTable("feedbacks", {
   id: serial("id").primaryKey(),
