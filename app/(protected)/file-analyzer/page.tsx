@@ -13,13 +13,22 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Upload, FileText, Brain, RotateCcw, BookOpen } from "lucide-react";
+import {
+  Upload,
+  FileText,
+  Brain,
+  RotateCcw,
+  BookOpen,
+  File,
+  HistoryIcon,
+} from "lucide-react";
 import { toast } from "sonner";
 import { IAnalysisResult } from "@/types";
 import McqQuestion from "@/components/file-analyzer/mcq-question";
 import FileAnalysis from "@/components/file-analyzer/Analysis";
 import { useUserStore } from "@/lib/store/useUserStore";
 import { QuestionData } from "@/types";
+import Link from "next/link";
 
 export default function FileAnalyzerPage() {
   const [file, setFile] = useState<File | null>(null);
@@ -127,6 +136,15 @@ export default function FileAnalyzerPage() {
     <div className="min-h-screen bg-gray-100 dark:bg-gray-950 w-full">
       {/* Hero Section with Geometric Background */}
       <div className="relative pt-24 pb-12 overflow-hidden">
+        <div className="w-full flex justify-end px-6 md:px-24">
+          <Link
+            href={"file-analyzer/files"}
+            className="flex justify-items-center gap-2 text-gray-300 md:px-4 p-2 md:py-2 rounded-lg bg-gray-800 hover:bg-indigo-600 duration-200"
+          >
+            <HistoryIcon className="w-5 h-5 md:w-6 md:h-6" />
+            <span className="max-md:hidden">File History</span>
+          </Link>
+        </div>
         <div className="relative max-w-4xl mx-auto px-6 text-center space-y-6">
           <div className="flex items-center justify-center gap-3 mb-6">
             <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">

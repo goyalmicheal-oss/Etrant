@@ -1,6 +1,14 @@
 import { auth } from "@/auth";
 import McqQuestion from "@/components/file-analyzer/mcq-question";
-import { McqCard } from "@/components/question-card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { ScrollArea } from "@radix-ui/react-scroll-area";
+import { BookOpen } from "lucide-react";
 import Link from "next/link";
 
 export default async function AnalyzerFilePage({
@@ -26,16 +34,14 @@ export default async function AnalyzerFilePage({
       `${process.env.NEXT_BASE_URL}/api/file-analyzer/mcqs/${fileId}`,
     );
     const questions = await mcq_response.json();
-    return (
-      <div className="text-white">
-        {/* {questions.map((question, index) => ( */}
-        {/* <McqQuestion key={question.id} currentQuestion={question} /> */}
-        {/* ))} */}
-      </div>
-    );
+    console.log("questions", questions);
+    return <div className="text-white"></div>;
   }
   return (
-    <section className="text-white">
+    <section className="text-white py-24 space-y-6">
+      <h2 className="text-2xl dark:text-gray-100 text-gray-950">
+        Your File History
+      </h2>
       <div className="flex flex-col items-center gap-6">
         {files.map((file: any) => (
           <Link
@@ -43,7 +49,7 @@ export default async function AnalyzerFilePage({
             key={file.id}
             className="p-4 dark:text-gray-100 text-gray-950 rounded-xl border border-gray-300 dark:border-gray-700"
           >
-            {file.fileName}
+            {file.fileName.split(".")[0]}
           </Link>
         ))}
       </div>

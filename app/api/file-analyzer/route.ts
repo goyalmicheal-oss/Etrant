@@ -34,6 +34,7 @@ export async function POST(req: NextRequest) {
         .values({
           userId: userId as string,
           fileName: fileName as string,
+          uploadedAt: new Date(),
         })
         .returning();
       await db.insert(mcqs).values(
