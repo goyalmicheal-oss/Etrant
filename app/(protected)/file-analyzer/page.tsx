@@ -19,7 +19,6 @@ import {
   Brain,
   RotateCcw,
   BookOpen,
-  File,
   HistoryIcon,
 } from "lucide-react";
 import { toast } from "sonner";

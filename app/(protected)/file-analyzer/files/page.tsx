@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import McqQuestion from "@/components/file-analyzer/mcq-question";
+import FileMCQ from "@/components/file-analyzer/file-mcq";
 import {
   Card,
   CardContent,
@@ -34,8 +34,7 @@ export default async function AnalyzerFilePage({
       `${process.env.NEXT_BASE_URL}/api/file-analyzer/mcqs/${fileId}`,
     );
     const questions = await mcq_response.json();
-    console.log("questions", questions);
-    return <div className="text-white"></div>;
+    return <>{questions.length > 0 && <FileMCQ questions={questions} />}</>;
   }
   return (
     <section className="text-white py-24 space-y-6">

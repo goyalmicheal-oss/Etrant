@@ -52,7 +52,7 @@ export default function McqQuestion({
                     ? "border-green-500 bg-green-500/10"
                     : isWrong
                       ? "border-red-500 bg-red-500/10"
-                      : "border-gray-400 dark:hover:border-gray-500 dark:hover:bg-gray-700/50 hover:bg-gray-300"
+                      : "border-gray-400 dark:border-gray-700 dark:hover:border-gray-700 dark:hover:bg-gray-700/50 hover:bg-gray-300"
               } ${showResults ? "cursor-default" : "cursor-pointer"}`}
             >
               <div className="flex items-center gap-3">
