@@ -1,10 +1,16 @@
 import { NextResponse } from "next/server";
 import { razorpay } from "@/lib/razorpay";
 import { subscriptions } from "@/data/subscription-plan";
+import { studentEmailDomains } from "@/data/student-email-domains";
 
 export async function POST(req: Request) {
   try {
     const { plan, userMail } = await req.json();
+
+    const student = studentEmailDomains.filter(
+      (email) => userMail.split("@")[1] === email,
+    );
+    // const final_subscriptions = student.length > 0 ? discount_price : plans;
 
     if (!plan) {
       return NextResponse.json({ error: "Plan is required" }, { status: 400 });
