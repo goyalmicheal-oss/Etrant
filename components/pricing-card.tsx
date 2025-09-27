@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useUserStore } from "@/lib/store/useUserStore";
 import CircleLoader from "./loader/simple-loader-circle";
+import { studentEmailDomains } from "@/data/student-email-domains";
 
 declare global {
   interface Window {
@@ -39,6 +40,9 @@ const PayCard = ({ plan }: { plan: IPlan }) => {
     });
 
     const data = await res.json();
+    const student = studentEmailDomains.filter(
+      (email) => session?.user?.email?.split("@")[1] === email,
+    );
 
     if (data.id) {
       const options = {
