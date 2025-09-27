@@ -23,12 +23,12 @@ const live: ISubscriptions[] = [
 ];
 export const student_subscriptions: ISubscriptions[] = [
   {
-    plan_id: "",
+    plan_id: "plan_RMih4l2S5cIVEQ",
     name: "Pro",
   },
 
   {
-    plan_id: "",
+    plan_id: "plan_RMihhceyIyErIW",
     name: "Max",
   },
 ];
