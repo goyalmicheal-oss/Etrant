@@ -21,5 +21,16 @@ const live: ISubscriptions[] = [
     name: "Max",
   },
 ];
+export const student_subscriptions: ISubscriptions[] = [
+  {
+    plan_id: "",
+    name: "Pro",
+  },
+
+  {
+    plan_id: "",
+    name: "Max",
+  },
+];
 
 export const subscriptions = environment === "Production" ? live : test;
