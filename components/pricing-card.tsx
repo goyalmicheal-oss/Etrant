@@ -1,12 +1,14 @@
 "use client";
 import { Check, Loader2 } from "lucide-react";
-import { plans, IPlan } from "@/data/data";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useUserStore } from "@/lib/store/useUserStore";
 import CircleLoader from "./loader/simple-loader-circle";
+import { plans, discount_price } from "@/data/data";
+import { studentEmailDomains } from "@/data/student-email-domains";
+import { IPlan } from "@/types";
 
 declare global {
   interface Window {
@@ -15,12 +17,27 @@ declare global {
 }
 
 export default function PricingCard() {
+  const { data: session } = useSession();
+  const student = studentEmailDomains.filter(
+    (email) => session?.user?.email?.split("@")[1] === email,
+  );
+  const final_plan = student.length > 0 ? discount_price : plans;
   return (
-    <div className="grid md:grid-cols-3 gap-16 md:gap-8 max-w-6xl mx-auto">
-      {plans.map((plan) => (
-        <PayCard plan={plan} key={plan.name} />
-      ))}
-    </div>
+    <>
+      {student.length > 0 && (
+        <div className="inline-flex items-center gap-2 bg-green-900/20 border border-green-700/30 rounded-full px-4 py-2">
+          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+          <span className="text-green-400 text-xs md:text-sm font-medium">
+            You get special student discount.
+          </span>
+        </div>
+      )}
+      <div className="grid md:grid-cols-3 gap-16 md:gap-8 max-w-6xl mx-auto">
+        {final_plan.map((plan) => (
+          <PayCard plan={plan} key={plan.name} />
+        ))}
+      </div>
+    </>
   );
 }
 
@@ -39,7 +56,6 @@ const PayCard = ({ plan }: { plan: IPlan }) => {
     });
 
     const data = await res.json();
-
     if (data.id) {
       const options = {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,

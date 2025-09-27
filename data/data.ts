@@ -16,6 +16,68 @@ import {
 } from "lucide-react";
 import { IPlan } from "@/types";
 
+export const discount_price: IPlan[] = [
+  {
+    name: "Free",
+    price: 0,
+    icon: Star,
+    description: "Perfect for getting started with Etrant",
+    features: [
+      "100 reels per month",
+      "No quizzes",
+      "Limited current affairs",
+      "Basic progress tracking",
+      "Community access",
+    ],
+    limitations: [
+      "Limited daily content",
+      "Basic features only",
+      "No offline access",
+    ],
+    buttonText: "Get Started Free",
+    buttonVariant: "outline" as const,
+    popular: false,
+  },
+  {
+    name: "Pro",
+    price: 49,
+    icon: Zap,
+    description: "Best for serious learners and exam preparation",
+    features: [
+      "2000 reels per month",
+      "Advanced AI quizzes",
+      "Full current affairs access",
+      "Detailed analytics",
+      "Priority support",
+      "Custom study plans",
+      "Progress insights",
+    ],
+    limitations: [],
+    buttonText: "Upgrade to Pro",
+    buttonVariant: "default" as const,
+    popular: true,
+  },
+  {
+    name: "Max",
+    price: 89,
+    icon: Crown,
+    description: "Ultimate learning experience with premium features",
+    features: [
+      "Unlimited Reels",
+      "Everything in Pro",
+      "Exclusive premium content",
+      "Advanced knowledge maps",
+      "Custom exam simulations",
+      "Priority content requests",
+      "Early access to new features",
+    ],
+    limitations: [],
+    buttonText: "Go Max",
+    buttonVariant: "default" as const,
+    popular: false,
+  },
+];
+
 export const plans: IPlan[] = [
   {
     name: "Free",

@@ -24,6 +24,7 @@ export const studentEmailDomains = [
 
   // NITs
   "nitc.ac.in",
+  "nith.ac.in",
   "nitdgp.ac.in",
   "nitk.ac.in",
   "nits.ac.in",
