@@ -21,11 +21,21 @@ export default async function AnalyzerFilePage({
   );
   const files = await res.json();
   if (fileId) {
+    const file_name = files
+      .filter((fl: any) => fl.id === fileId)[0]
+      .fileName.split(".")[0];
+    console.log("filename", file_name);
     const mcq_response = await fetch(
       `${process.env.NEXT_BASE_URL}/api/file-analyzer/mcqs/${fileId}`,
     );
     const questions = await mcq_response.json();
-    return <>{questions.length > 0 && <FileMCQ questions={questions} />}</>;
+    return (
+      <>
+        {questions.length > 0 && (
+          <FileMCQ questions={questions} file={file_name} />
+        )}
+      </>
+    );
   }
   return (
     <section className="text-white max-w-5xl py-24 space-y-6 w-full">
