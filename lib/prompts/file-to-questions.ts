@@ -7,7 +7,7 @@ export default function fileToQuestionsPrompt(
 ) {
   return `
 You are an expert question setter for competitive exams.  
-Your task is to generate high-quality multiple-choice questions (MCQs) based strictly on the INPUT DATA provided.  
+Your task is to generate 5 to 10 high-quality multiple-choice questions (MCQs) based strictly on the INPUT DATA provided.  
 
 ⚠️ RULES (follow exactly):
 1. Output must be **valid JSON only** — no explanations, no prose, no markdown.  
@@ -53,6 +53,6 @@ ${content}
 ---
 
 ### OUTPUT:
-Return an array of  MCQs in strict JSON format, each following the schema above.
+Return an array of 5 to 10 MCQs in strict JSON format, each following the schema above.
 `;
 }
