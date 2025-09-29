@@ -1,14 +1,5 @@
 import { auth } from "@/auth";
 import FileMCQ from "@/components/file-analyzer/file-mcq";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
-import { BookOpen } from "lucide-react";
 import Link from "next/link";
 
 export default async function AnalyzerFilePage({
@@ -37,16 +28,16 @@ export default async function AnalyzerFilePage({
     return <>{questions.length > 0 && <FileMCQ questions={questions} />}</>;
   }
   return (
-    <section className="text-white py-24 space-y-6">
+    <section className="text-white max-w-5xl py-24 space-y-6 w-full">
       <h2 className="text-2xl dark:text-gray-100 text-gray-950">
         Your File History
       </h2>
-      <div className="flex flex-col items-center gap-6">
+      <div className="flex flex-col items-center w-full gap-6">
         {files.map((file: any) => (
           <Link
             href={`?fileId=${file.id}`}
             key={file.id}
-            className="p-4 dark:text-gray-100 text-gray-950 rounded-xl border border-gray-300 dark:border-gray-700"
+            className="p-4 dark:text-gray-100 hover:bg-gray-800 duration-200 text-gray-950 w-full rounded-xl border border-gray-300 dark:border-gray-700"
           >
             {file.fileName.split(".")[0]}
           </Link>

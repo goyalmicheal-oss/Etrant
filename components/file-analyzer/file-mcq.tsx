@@ -46,6 +46,7 @@ export default function FileMCQ({ questions }: { questions: QuestionData[] }) {
   return (
     <Card className="border-none">
       <CardHeader>
+        <h2></h2>
         <div className="flex max-md:flex-col md:items-center md:justify-between">
           <CardTitle className="flex text-lg md:text-xl items-center gap-2 text-gray-950 dark:text-white">
             <BookOpen className="h-5 w-5 text-green-600 dark:text-green-400" />
