@@ -78,20 +78,7 @@ export class DailyDigestService {
         console.log(`No ${examType}-relevant articles found.`);
         return [];
       }
-      // const summarizedArticles = await this.summarizeArticles(
-      //   relevantArticles,
-      //   examType,
-      // );
-      // console.log("summary", summarizedArticles);
-
-      // const top5Articles = await this.rankAndSelectTop5(
-      //   summarizedArticles,
-      //   examType,
-      // );
-      // const articlesWithImages = await this.generateImages(top5Articles);
-
       return relevantArticles;
-      // return articlesWithImages;
     } catch (error) {
       console.error("Error generating daily digest:", error);
       throw error;
@@ -117,8 +104,6 @@ export class DailyDigestService {
       const xmlText = await response.text();
       const articles = this.parseRSSFeed(xmlText);
 
-      // Limit to top 20 articles for processing efficiency
-      // return articles.slice(0, 20);
       return articles.slice(0, 5);
     } catch (error) {
       console.error("Failed to fetch from Google News RSS:", error);
@@ -215,8 +200,9 @@ export class DailyDigestService {
     articles: Article[],
   ): Promise<IArticle[]> {
     const result = await this.genAI.models.generateContent({
-      model: "gemini-1.5-flash-latest",
-      // model: "gemini-2.0-flash-exp",
+      // model: "gemini-1.5-flash-latest",
+      //gemini-2.5-flash-lite
+      model: "gemini-2.5-flash-lite",
       contents: [
         {
           parts: [
