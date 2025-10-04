@@ -20,11 +20,10 @@ export default async function AnalyzerFilePage({
     },
   );
   const files = await res.json();
-  if (fileId) {
+  if (fileId && files.length > 0) {
     const file_name = files
       .filter((fl: any) => fl.id === fileId)[0]
       .fileName.split(".")[0];
-    console.log("filename", file_name);
     const mcq_response = await fetch(
       `${process.env.NEXT_BASE_URL}/api/file-analyzer/mcqs/${fileId}`,
     );

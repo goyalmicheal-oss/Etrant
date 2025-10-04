@@ -8,7 +8,6 @@ export async function GET(
   { params }: { params: Promise<{ fileId: string }> },
 ) {
   const { fileId } = await params;
-  console.log("filesid", fileId);
   try {
     const mcq = await db.select().from(mcqs).where(eq(mcqs.fileId, fileId));
     if (!mcq || mcq.length === 0) {
