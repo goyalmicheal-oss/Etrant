@@ -52,13 +52,10 @@ export default function FileMCQ({
   return (
     <Card className="border-none">
       <CardHeader>
-        <h2 className="text-2xl font-semibold dark:text-gray-100 text-gray-950 mb-2">
-          {file}
-        </h2>
         <div className="flex max-md:flex-col md:items-center md:justify-between">
           <CardTitle className="flex text-lg md:text-xl items-center gap-2 text-gray-900 dark:text-gray-100">
             <BookOpen className="h-5 w-5 text-green-600 dark:text-green-400" />
-            Practice Questions ({questions.length})
+            {file}
           </CardTitle>
           <div className="flex gap-2">
             {showResults && (
