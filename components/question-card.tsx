@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, XCircle } from "lucide-react";
-import { QuestionData } from "@/lib/repositories/question-repository";
+import { QuestionData } from "@/types";
 import confetti from "canvas-confetti";
 import { useUserStore } from "@/lib/store/useUserStore";
 import ShowExplanation from "./show-explanation";
@@ -59,7 +59,7 @@ export function McqCard({
 
   return (
     <>
-      <Card className="border-0 overflow-hidden md:h-full flex justify-center items-center">
+      <Card className="border-0 max-md:pt-24 overflow-hidden md:h-full flex justify-center items-center">
         <CardContent className="p-0 w-full">
           {/* Question Header */}
           <div className="text-white p-6">
@@ -72,7 +72,7 @@ export function McqCard({
               <div className="flex justify-center gap-2">
                 <Badge
                   variant="outline"
-                  className="bg-white/20 text-white border-white/30 text-xs"
+                  className="bg-gray-950/20 dark:bg-white/20 text-gray-950 dark:text-white border-gray-950/30 dark:border-white/30 text-xs"
                 >
                   {currentQuestion.tags[0]}
                 </Badge>
@@ -80,7 +80,7 @@ export function McqCard({
                 {currentQuestion.previousYearQuestion !== "" && (
                   <Badge
                     variant="outline"
-                    className="bg-red-800/20 text-white border-white/30 text-xs"
+                    className="bg-red-800/20 text-gray-950 dark:text-white border-red-800/50 dark:border-white/30 text-xs"
                   >
                     {currentQuestion.previousYearQuestion}
                   </Badge>
@@ -88,7 +88,7 @@ export function McqCard({
               </div>
             </div>
 
-            <h2 className="md:text-2xl text-xl font-semibold leading-relaxed">
+            <h2 className="md:text-2xl dark:text-gray-100 text-gray-950 text-xl font-semibold leading-relaxed">
               {currentQuestion.question}
             </h2>
           </div>
@@ -117,7 +117,7 @@ export function McqCard({
                   " bg-purple-500 border-purple-400 text-purple-800 shadow-purple-100";
               } else {
                 buttonClass +=
-                  " bg-white border-gray-200 text-gray-700 hover:border-purple-300 hover:bg-purple-50";
+                  "dark:bg-black bg-white border-gray-200 text-gray-700 hover:border-purple-300 hover:bg-purple-50";
               }
 
               return (
@@ -130,12 +130,12 @@ export function McqCard({
                     disabled={isAnswered}
                     className={buttonClass}
                   >
-                    <div className="flex p-4 bg-black/60 items-center justify-between md:text-lg">
+                    <div className="flex p-4 bg-gray-400/40 dark:bg-black/60 items-center justify-between md:text-lg">
                       <div className="flex items-center space-x-3">
-                        <div className="min-w-6 min-h-6 md:min-w-8 md:min-h-8 rounded-full bg-gradient-to-r from-purple-100 to-pink-100 flex items-center justify-center text-sm font-bold text-gray-800">
+                        <div className="min-w-6 min-h-6 md:min-w-8 md:min-h-8 rounded-full bg-indigo-600 text-gray-100 flex items-center justify-center text-sm font-bold">
                           {String.fromCharCode(65 + index)}
                         </div>
-                        <span className="font-medium text-white">
+                        <span className="font-medium text-gray-950 dark:text-white">
                           {option.name}
                         </span>
                       </div>

@@ -13,7 +13,6 @@ export const getUserData = async () => {
       body: JSON.stringify({ userId: session?.user?.id }),
     });
     const user = await res.json();
-    console.log("res", user);
 
     if (user) {
       return user as IUser;

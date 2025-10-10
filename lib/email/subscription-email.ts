@@ -20,7 +20,7 @@ export default async function sendSubscriptionEmail(
       
       <!-- Header -->
       <div style="text-align: center; padding: 20px; background-color: #1a73e8;">
-        <img src="https://raw.githubusercontent.com/akhil683/Etrant/refs/heads/main/public/etrant.png" alt="Etrant Logo" style="max-width: 120px;" />
+        <img src="https://raw.githubusercontent.com/akhil683/Portfolio_Blogs/refs/heads/main/images/etrant_high.png" alt="Etrant Logo" style="max-width: 120px;" />
       </div>
       
       <!-- Body -->

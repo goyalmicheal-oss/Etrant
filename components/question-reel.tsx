@@ -2,14 +2,15 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { McqCard } from "./question-card";
-import { QuestionData } from "@/lib/repositories/question-repository";
+import { QuestionData } from "@/types";
 import { AILoader } from "./loader/ReelLoader";
 
 interface InfiniteReelProps {
   interests: string;
+  language: string;
 }
 
-export function QuestionReel({ interests }: InfiniteReelProps) {
+export function QuestionReel({ interests, language }: InfiniteReelProps) {
   const [questions, setQuestions] = useState<QuestionData[]>([]);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -67,7 +68,7 @@ export function QuestionReel({ interests }: InfiniteReelProps) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ interests }),
+        body: JSON.stringify({ interests, language }),
       });
 
       if (response.ok) {
@@ -152,7 +153,7 @@ export function QuestionReel({ interests }: InfiniteReelProps) {
   return (
     <div
       ref={containerRef}
-      className="h-[calc(100vh-73px)] overflow-y-auto snap-y snap-mandatory scroll-smooth"
+      className="h-[calc(100vh-73px)] md:h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth"
       style={{
         scrollbarWidth: "none",
         msOverflowStyle: "none",

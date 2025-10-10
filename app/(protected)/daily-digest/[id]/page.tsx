@@ -34,8 +34,8 @@ export default async function DailyDigestPage({
     <div>
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Header Section */}
-        <div className="mb-8 border-b">
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-100 mb-2 md:mb-4 leading-tight">
+        <div className="mb-8 border-b border-gray-500 dark:border-gray-700">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-950 dark:text-gray-100 mb-2 md:mb-4 leading-tight">
             {digest?.title}
           </h1>
 
@@ -45,7 +45,7 @@ export default async function DailyDigestPage({
               <Badge
                 key={tag}
                 variant="secondary"
-                className="px-3 py-1 bg-indigo-700 border-indigo-500 hover:bg-indigo-800"
+                className="px-3 py-1 bg-indigo-700 border-indigo-500 text-gray-100 hover:bg-indigo-800"
               >
                 {tag}
               </Badge>
@@ -53,12 +53,12 @@ export default async function DailyDigestPage({
           </div>
         </div>
 
-        <p className="text-gray-300 leading-relaxed text-lg mb-8 pb-8 border-b">
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg mb-8 pb-8 border-b border-gray-500 dark:border-gray-700">
           {digest?.summary}
         </p>
         {/* Questions Section */}
 
-        <h3 className="text-xl mb-2 md:text-2xl font-semibold">
+        <h3 className="text-xl mb-2 md:text-2xl font-semibold text-gray-950 dark:text-gray-100">
           Relevant Questions
         </h3>
         <Accordion type="single" collapsible className="w-full">
@@ -69,13 +69,15 @@ export default async function DailyDigestPage({
                   <span className="bg-indigo-600 border border-indigo-400 text-gray-100 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold flex-shrink-0 mt-0.5">
                     {index + 1}
                   </span>
-                  <span className="font-medium text-gray-300">
+                  <span className="font-medium text-gray-800 dark:text-gray-300">
                     {qa.question}
                   </span>
                 </span>
               </AccordionTrigger>
               <AccordionContent className="pt-2 pb-4 pl-9">
-                <p className="text-gray-400 leading-relaxed">{qa.answer}</p>
+                <p className="text-gray-700 dark:text-gray-400 leading-relaxed">
+                  {qa.answer}
+                </p>
               </AccordionContent>
             </AccordionItem>
           ))}

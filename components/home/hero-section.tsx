@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Logo from "@/public/etrant.png";
 import Link from "next/link";
-import WaitlistForm from "../waitlist";
+// import WaitlistForm from "../waitlist";
 
 export default function HeroSection() {
   return (
@@ -51,27 +51,27 @@ export default function HeroSection() {
                 </p>
               </div>
 
-              <WaitlistForm />
-              {/* <div className="flex flex-col sm:flex-row gap-4"> */}
-              {/*   <Link href={"/auth"}> */}
-              {/*     <Button */}
-              {/*       size="lg" */}
-              {/*       className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white md:font-bold px-6 py-2 md:px-8 md:py-4 md:text-lg rounded-full shadow-2xl transform transition-all" */}
-              {/*     > */}
-              {/*       Start Learning Free */}
-              {/*       <ArrowRight className="ml-2 h-5 w-5" /> */}
-              {/*     </Button> */}
-              {/*   </Link> */}
-              {/*   <Link href={"/how-it-works"}> */}
-              {/*     <Button */}
-              {/*       size="lg" */}
-              {/*       variant="outline" */}
-              {/*       className="border-2 border-white/30 bg-white text-black hover:text-white hover:bg-white/10 px-6 py-2 md:px-8 md:py-4 md:text-lg rounded-full backdrop-blur-sm" */}
-              {/*     > */}
-              {/*       See How It Works */}
-              {/*     </Button> */}
-              {/*   </Link> */}
-              {/* </div> */}
+              {/* <WaitlistForm /> */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href={"/auth"}>
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white md:font-bold px-6 py-2 md:px-8 md:py-4 md:text-lg rounded-full shadow-2xl transform transition-all"
+                  >
+                    Start Learning Free
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+                <Link href={"/how-it-works"}>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-2 border-white/30 bg-white text-black hover:text-white hover:bg-white/10 px-6 py-2 md:px-8 md:py-4 md:text-lg rounded-full backdrop-blur-sm"
+                  >
+                    See How It Works
+                  </Button>
+                </Link>
+              </div>
             </div>
 
             {/* Right content - iPhone 16 Pro with dark theme website */}
@@ -92,7 +92,7 @@ export default function HeroSection() {
                           <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
                             <div className="w-2 h-2 bg-white rounded-full"></div>
                           </div>
-                          <span className="font-medium">etrant.akkhil.dev</span>
+                          <span className="font-medium">etrant.in</span>
                         </div>
                       </div>
                     </div>
@@ -123,7 +123,7 @@ export default function HeroSection() {
                       {/* Quiz interface - Dark theme */}
                       <div className="space-y-4">
                         {/* Question */}
-                        <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
+                        <div className="bg-gray-800 rounded-3xl p-4 border border-gray-700">
                           <h4 className="text-base font-semibold text-white leading-relaxed">
                             Which organelle is responsible for photosynthesis in
                             plant cells?
@@ -132,9 +132,9 @@ export default function HeroSection() {
 
                         {/* MCQ Options - Dark theme */}
                         <div className="space-y-2">
-                          <button className="w-full bg-gray-800 hover:bg-gray-750 border border-gray-700 rounded-lg p-3 text-left transition-all duration-200">
+                          <button className="w-full bg-gray-800 hover:bg-gray-750 border border-gray-700 rounded-full p-3 text-left transition-all duration-200">
                             <div className="flex items-center gap-3">
-                              <div className="w-6 h-6 rounded-full border-2 border-gray-500 flex items-center justify-center text-gray-400 text-sm font-bold">
+                              <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm font-bold">
                                 A
                               </div>
                               <span className="text-gray-300 text-sm">
@@ -143,9 +143,9 @@ export default function HeroSection() {
                             </div>
                           </button>
 
-                          <button className="w-full bg-blue-900/30 border-2 border-blue-500 rounded-lg p-3 text-left transition-all duration-200">
+                          <button className="w-full bg-green-900/30 border-2 border-green-700 rounded-full p-3 text-left transition-all duration-200">
                             <div className="flex items-center gap-3">
-                              <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm font-bold">
+                              <div className="w-6 h-6 rounded-full bg-green-700 flex items-center justify-center text-white text-sm font-bold">
                                 B
                               </div>
                               <span className="text-white text-sm font-medium">
@@ -154,9 +154,9 @@ export default function HeroSection() {
                             </div>
                           </button>
 
-                          <button className="w-full bg-gray-800 hover:bg-gray-750 border border-gray-700 rounded-lg p-3 text-left transition-all duration-200">
+                          <button className="w-full bg-gray-800 hover:bg-gray-750 border border-gray-700 rounded-full p-3 text-left transition-all duration-200">
                             <div className="flex items-center gap-3">
-                              <div className="w-6 h-6 rounded-full border-2 border-gray-500 flex items-center justify-center text-gray-400 text-sm font-bold">
+                              <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm font-bold">
                                 C
                               </div>
                               <span className="text-gray-300 text-sm">
@@ -165,9 +165,9 @@ export default function HeroSection() {
                             </div>
                           </button>
 
-                          <button className="w-full bg-gray-800 hover:bg-gray-750 border border-gray-700 rounded-lg p-3 text-left transition-all duration-200">
+                          <button className="w-full bg-gray-800 hover:bg-gray-750 border border-gray-700 rounded-full p-3 text-left transition-all duration-200">
                             <div className="flex items-center gap-3">
-                              <div className="w-6 h-6 rounded-full border-2 border-gray-500 flex items-center justify-center text-gray-400 text-sm font-bold">
+                              <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm font-bold">
                                 D
                               </div>
                               <span className="text-gray-300 text-sm">

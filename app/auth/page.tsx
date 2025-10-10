@@ -6,6 +6,5 @@ import { authMetadata } from "@/lib/config/site";
 export const metadata: Metadata = authMetadata;
 
 export default async function SignUpPage() {
-  // return <AuthLayout />;
-  return <div></div>;
+  return <AuthLayout />;
 }

@@ -7,7 +7,9 @@ export default async function DailyDigests() {
   if (articles.length < 1) {
     return (
       <div className="h-full w-full mt-48 flex justify-center items-center">
-        <p className="text-gray-400 text-2xl">No Latest News.</p>
+        <p className="text-gray-700 dark:text-gray-400 text-2xl">
+          No Latest News.
+        </p>
       </div>
     );
   }
@@ -16,9 +18,11 @@ export default async function DailyDigests() {
     <>
       {articles?.map((article) => (
         <Link href={`/daily-digest/${article.id}`} key={article?.title}>
-          <div className="bg-gray-900 p-4 rounded-xl border border-gray-700 hover:border-gray-500 duration-500">
-            <div className="border-b border-gray-500">
-              <h2 className="text-lg md:text-2xl">{article?.title}</h2>
+          <div className="bg-gray-300 dark:bg-gray-900 p-4 rounded-xl border border-gray-400 dark:border-gray-700 hover:border-gray-500 duration-500">
+            <div className="border-b border-gray-400 dark:border-gray-700">
+              <h2 className="text-lg md:text-xl text-gray-950 dark:text-gray-100">
+                {article?.title}
+              </h2>
               <div className="flex items-center flex-wrap gap-2 my-4">
                 {article?.topic?.split(",")?.map((topic: any) => {
                   const colors = [
@@ -41,7 +45,7 @@ export default async function DailyDigests() {
                 })}
               </div>
             </div>
-            <p className="mt-4 text-gray-300">
+            <p className="mt-4 text-gray-700 dark:text-gray-300">
               {article?.summary.slice(0, 300)}...
             </p>
           </div>

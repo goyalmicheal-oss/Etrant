@@ -9,6 +9,7 @@ import { UserProvider } from "@/components/providers/UserProvider";
 import Head from "next/head";
 import Script from "next/script";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -71,14 +72,16 @@ export default function RootLayout({
       <PostHogProvider>
         <SessionProvider>
           <UserProvider>
-            <body className={inter.className}>
-              {children}
-              <Script
-                src="https://checkout.razorpay.com/v1/checkout.js"
-                strategy="afterInteractive"
-              />
-              <Toaster />
-            </body>
+            <ThemeProvider>
+              <body className={`${inter.className} overflow-x-hidden`}>
+                {children}
+                <Script
+                  src="https://checkout.razorpay.com/v1/checkout.js"
+                  strategy="afterInteractive"
+                />
+                <Toaster />
+              </body>
+            </ThemeProvider>
           </UserProvider>
         </SessionProvider>
       </PostHogProvider>

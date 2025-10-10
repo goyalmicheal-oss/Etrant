@@ -82,7 +82,7 @@ export function UserMenu() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent
-          className="w-56 bg-gray-800 border-gray-700 text-white"
+          className="w-56 bg-gray-300 dark:bg-gray-800 border-gray-400 dark:border-gray-700 text-gray-950 dark:text-white"
           align="end"
           forceMount
         >
@@ -95,7 +95,7 @@ export function UserMenu() {
                 <p className="font-medium">{session?.user?.name}</p>
               )}
               {session?.user?.email && (
-                <p className="w-[200px] truncate text-sm text-gray-400">
+                <p className="w-[200px] truncate text-sm text-gray-700 dark:text-gray-400">
                   {session?.user?.email}
                 </p>
               )}
@@ -104,15 +104,17 @@ export function UserMenu() {
           <DropdownMenuSeparator className="bg-gray-700" />
           <div className="p-2">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-400">Streak:</span>
-              <span className="font-semibold text-orange-400">
+              <span className="text-gray-700 dark:text-gray-400">Streak:</span>
+              <span className="font-semibold text-orange-600 dark:text-orange-400">
                 {user?.streak || 0}
               </span>
             </div>
 
             <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-400">Interest:</span>
-              <span className="font-semibold text-orange-400">
+              <span className="text-gray-700 dark:text-gray-400">
+                Interest:
+              </span>
+              <span className="font-semibold text-orange-600 dark:text-orange-400">
                 {!user
                   ? "none"
                   : user?.interest === null

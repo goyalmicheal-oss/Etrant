@@ -50,7 +50,37 @@ export interface Quiz {
   timeLimit: number;
   difficulty: "easy" | "medium" | "hard";
 }
+export interface IPlan {
+  name: string;
+  price: number;
+  icon: any;
+  description: string;
+  features: string[];
+  limitations: string[];
+  buttonText: string;
+  buttonVariant:
+    | "link"
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | null
+    | undefined;
+  popular: boolean;
+}
 
+export interface ISubscriptions {
+  plan_id: string;
+  name: string;
+}
+export interface IAnalysisResult {
+  summary: string;
+  keyPoints: string[];
+  topics: string[];
+  difficulty: string;
+  wordCount: number;
+}
 export interface LeaderboardEntry {
   id: string;
   name: string;
@@ -85,6 +115,7 @@ export interface IUser {
   interest: string;
   streak: number;
   plan: string;
+  language: string;
   subscriptionActive: boolean;
   subscriptionEnd: string;
   lastActiveDate: string;
@@ -118,4 +149,38 @@ export interface Question {
   correctAnswer: string | boolean | number;
   createdAt: Date;
   explanation: string;
+}
+
+interface OptionType {
+  name: string;
+  isCorrect: boolean;
+}
+
+export interface QuestionData {
+  question: string;
+  difficulty: "easy" | "medium" | "hard";
+  category: string;
+  tags: string[];
+  context: string;
+  estimatedTime: number;
+  options: OptionType[];
+  correctAnswer: number;
+  explanation?: string;
+  previousYearQuestion: string;
+  metadata: {
+    source: string;
+    complexity: number;
+    bloomsLevel:
+      | "remember"
+      | "understand"
+      | "apply"
+      | "analyze"
+      | "evaluate"
+      | "create";
+    learningObjective?: string;
+  };
+}
+
+export interface IWikipediaRepository {
+  getAIQuestions(category: string, language: string): Promise<QuestionData[]>;
 }

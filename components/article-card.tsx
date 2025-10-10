@@ -40,12 +40,12 @@ export function ArticleCard({ article }: ArticleCardProps) {
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-purple-900/50 to-blue-900/50" />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-500 dark:from-black via-gray-700/10 dark:via-black/50 to-transparent" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 flex flex-col h-full p-6">
-        <div className="mb-4">
+        <div className="max-md:hidden mb-4">
           <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
             {article.topic}
           </span>
@@ -53,6 +53,11 @@ export function ArticleCard({ article }: ArticleCardProps) {
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col justify-end">
+          <div className="md:hidden mb-4">
+            <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
+              {article.topic}
+            </span>
+          </div>
           <h2 className="text-2xl font-bold mb-4 leading-tight">
             {article.title}
           </h2>

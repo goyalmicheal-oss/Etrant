@@ -41,9 +41,9 @@ export default function FeedbackForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-gray-900 border border-gray-700 text-white p-4 md:p-6 rounded-2xl shadow-md w-full max-w-md"
+      className="bg-gray-300 dark:bg-gray-900 border border-gray-400 dark:border-gray-700 text-white p-4 md:p-6 rounded-2xl shadow-md w-full max-w-xl md:min-w-xl"
     >
-      <h2 className="text-xl font-semibold text-gray-100 mb-4">
+      <h2 className="text-xl font-semibold text-gray-950 dark:text-gray-100 mb-4">
         We value your feedback
       </h2>
 
@@ -51,7 +51,7 @@ export default function FeedbackForm() {
         value={feedback}
         onChange={(e) => setFeedback(e.target.value)}
         placeholder="Write your feedback..."
-        className="w-full p-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-600"
+        className="w-full p-3 rounded-lg border border-gray-400 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 text-gray-950 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-600"
         rows={4}
       />
 

@@ -1,8 +1,4 @@
-export interface ISubscriptions {
-  plan_id: string;
-  name: string;
-}
-
+import { ISubscriptions } from "@/types";
 const environment = process.env.NEXT_ENVIRONMENT!;
 
 const test: ISubscriptions[] = [
@@ -22,6 +18,17 @@ const live: ISubscriptions[] = [
   },
   {
     plan_id: "plan_RApduJkBMLcCV7",
+    name: "Max",
+  },
+];
+export const student_subscriptions: ISubscriptions[] = [
+  {
+    plan_id: "plan_RMih4l2S5cIVEQ",
+    name: "Pro",
+  },
+
+  {
+    plan_id: "plan_RMihhceyIyErIW",
     name: "Max",
   },
 ];

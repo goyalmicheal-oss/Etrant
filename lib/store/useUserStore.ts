@@ -1,3 +1,4 @@
+import { InterestCategory } from "@/types";
 import { create } from "zustand";
 
 export interface User {
@@ -6,10 +7,11 @@ export interface User {
   email: string | null;
   image: string | null;
   streak: number | null;
-  interest: string | null;
+  interest: InterestCategory;
   points: number | null;
   lastActiveDate: string | null;
-  rank: string | null;
+  language: string | null;
+  rank?: string | null;
   plan: string | null;
   subscriptionActive: boolean | null;
   subscriptionEnd: string | null;

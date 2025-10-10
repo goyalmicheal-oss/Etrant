@@ -20,11 +20,11 @@ export default function SuccessPage() {
       <div className="text-center flex flex-col justify-center items-center gap-4 max-w-2xl mx-auto">
         {/* Error Message */}
         <Check className="w-36 h-36 bg-indigo-500 text-white rounded-full" />
-        <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
+        <h1 className="text-3xl md:text-5xl font-bold text-gray-950 dark:text-white mb-4">
           Yay, Payment Successfully
         </h1>
 
-        <p className="text-xl text-gray-400 mb-8 leading-relaxed">
+        <p className="text-xl text-gray-700 dark:text-gray-400 mb-8 leading-relaxed">
           Your subscription is created successfully. Enjoy you learning with
           Etrant.
         </p>
@@ -45,7 +45,7 @@ export default function SuccessPage() {
             <Button
               size="lg"
               variant="outline"
-              className="border-gray-600 text-gray-300 hover:bg-gray-800 px-8 py-4 text-lg bg-transparent hover:text-white"
+              className="border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-800 px-8 py-4 text-lg bg-transparent hover:text-white"
             >
               <Search className="mr-2 h-5 w-5" />
               AI Questions
