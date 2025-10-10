@@ -2,7 +2,14 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { auth } from "./auth";
 
-const publicRoutes = ["/", "/auth", "/pricing", "/how-it-works", "/"];
+const publicRoutes = [
+  "/",
+  "/auth",
+  "/pricing",
+  "/how-it-works",
+  "/privacy-policy",
+  "/terms-and-conditions",
+];
 
 const protectedRoutes = [
   "/articles",
@@ -21,7 +28,7 @@ export default async function middleware(req: NextRequest) {
 
   //Logged-in users should not see public pages
   if (session && publicRoutes.includes(pathname)) {
-    return NextResponse.redirect(new URL("/daily-digest", req.url));
+    return NextResponse.redirect(new URL("/articles", req.url));
   }
 
   //  Guests should not see protected pages
