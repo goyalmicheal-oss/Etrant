@@ -146,15 +146,15 @@ export default function Header() {
                 {user?.image ? (
                   <Button
                     variant="ghost"
-                    className="relative h-8 w-8 rounded-full"
+                    className="relative min-h-8 min-w-8 rounded-full"
                   >
                     {user?.subscriptionActive === true && (
-                      <p className="bg-yellow-700 text-[8px] px-1 py-0 rounded-full absolute z-30 top-0 -right-2">
+                      <p className="bg-yellow-700 text-[8px] px-1 py-0 rounded-full absolute z-30 top-0 right-2">
                         {user?.plan}
                       </p>
                     )}
                     <Avatar
-                      className={`min:w-8 h-8 border-2 ${user?.subscriptionActive === true ? "border-yellow-600" : "border-transparent"}`}
+                      className={`w-8 h-8 rounded-full overflow-hidden border-2 ${user?.subscriptionActive === true ? "border-yellow-600" : "border-transparent"}`}
                     >
                       <AvatarImage
                         src={user?.image || ""}

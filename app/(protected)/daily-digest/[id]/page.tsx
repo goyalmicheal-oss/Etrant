@@ -31,7 +31,7 @@ export default async function DailyDigestPage({
   }
 
   return (
-    <div>
+    <div className="max-md:pt-24">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Header Section */}
         <div className="mb-8 border-b border-gray-500 dark:border-gray-700">
