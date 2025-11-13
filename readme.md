@@ -173,14 +173,14 @@ flowchart TD
    GEMINI_API_KEY="your_gemini_api_key"
 
    #Email Variables
-   SMTP_HOST=smtp.gmail.com
-   SMTP_PORT=587
-   SMTP_USER=akhilpalsra@gmail.com
-   SMTP_PASS=yqts jcup kgua tmrm
+   SMTP_HOST="smto_host"
+   SMTP_PORT="port"
+   SMTP_USER="Your_email"
+   SMTP_PASS="smtp_password"
 
    #Analytics
-   NEXT_PUBLIC_POSTHOG_KEY=phc_Ur3RJkjewYJedlxMwTsCGeyJIAoyF434KqtneLQapGA
-   NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
+   NEXT_PUBLIC_POSTHOG_KEY="your_posthog_key"
+   NEXT_PUBLIC_POSTHOG_HOST="posthog_host"
 
    ```
 
