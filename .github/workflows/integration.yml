@@ -43,8 +43,8 @@ jobs:
       - name: Build
         run: pnpm build
         env:
-          AUTH_GOOGLE_ID: ${{secrets.AUTH-GOOGLE_ID}}
-          AUTH_GOOGLE_SECRET: ${{secrets.AUTH-GOOGLE_SECRET}}
+          AUTH_GOOGLE_ID: ${{secrets.AUTH_GOOGLE_ID}}
+          AUTH_GOOGLE_SECRET: ${{secrets.AUTH_GOOGLE_SECRET}}
           AUTH_SECRET: ${{secrets.AUTH_SECRET}}
           DATABASE_URL: ${{secrets.DATABASE_URL}}
           GEMINI_API_KEY: ${{secrets.GEMINI_API_KEY}}
