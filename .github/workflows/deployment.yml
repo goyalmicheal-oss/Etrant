@@ -1,0 +1,15 @@
+name: Deployment
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build . -t akhilpalsra1/etrant
+      - run: echo "${{secrets.DOCKERHUB_PASSWORD}}" | docker login -u "{{secrets.DOCKERHUB_USERNAME}}" --password-stdin
+      - run: docker push akhilpalsra1/etrant:latest
