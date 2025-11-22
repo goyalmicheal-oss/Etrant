@@ -7,11 +7,11 @@ import { getTodayDate } from "@/lib/utils";
 export async function GET(request: NextRequest) {
   try {
     const authHeader = request.headers.get("authorization");
-    if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
-      return new Response("Unauthorized", {
-        status: 401,
-      });
-    }
+    // if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+    //   return new Response("Unauthorized", {
+    //     status: 401,
+    //   });
+    // }
     const articles = await digestService.generateDailyDigest();
     if (!Array.isArray(articles)) {
       return NextResponse.json({

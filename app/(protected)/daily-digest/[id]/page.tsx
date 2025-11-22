@@ -1,5 +1,6 @@
 export const revalidate = 60;
 
+import { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import {
   Accordion,
@@ -19,12 +20,15 @@ export default async function DailyDigestPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const userData: IUser | null = await getUserData();
+
+  const [userData, digest] = await Promise.all([
+    getUserData(),
+    getSingleDigest(id),
+  ]);
 
   if (userData?.subscriptionActive !== true) {
     return <LockedPage />;
   }
-  const digest = await getSingleDigest(id);
 
   if (!digest) {
     notFound();
@@ -91,7 +95,7 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ id: string }>;
-}) {
+}): Promise<Metadata> {
   const { id } = await params;
   const digest = await getSingleDigest(id);
   if (!digest) {
