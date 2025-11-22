@@ -2,7 +2,7 @@
 
 <div align="center">
   
-![Etrant App](https://raw.githubusercontent.com/akhil683/wiki-reel/refs/heads/main/public/etrant.png)
+![Etrant App](https://github.com/akhil683/Etrant/blob/main/public/etrant.png?raw=true)
 
 **Scroll. Learn. Test. Repeat.**
 
