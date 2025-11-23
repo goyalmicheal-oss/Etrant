@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Filter and insert relevant articles
-    const relevantArticles = articles.filter(article => article.is_relevant);
+    const relevantArticles = articles.filter((article) => article.is_relevant);
 
     if (relevantArticles.length === 0) {
       return NextResponse.json({
@@ -81,8 +81,7 @@ export async function GET(request: NextRequest) {
       500,
       process.env.NODE_ENV === "development"
         ? { message: error instanceof Error ? error.message : "Unknown error" }
-        : undefined
+        : undefined,
     );
   }
 }
-
