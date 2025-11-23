@@ -9,6 +9,7 @@ import { Suspense } from "react";
 import CircleLoader from "@/components/loader/simple-loader-circle";
 
 export const metadata: Metadata = aiquestionsMeta;
+export const dynamic = "force-dynamic";
 
 export default async function AiQuestionPage() {
   const userData: IUser | null = await getUserData();

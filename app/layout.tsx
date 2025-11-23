@@ -11,7 +11,12 @@ import Script from "next/script";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  display: 'swap', // Optimize font loading
+  preload: true,
+  variable: '--font-inter',
+});
 
 export const metadata: Metadata = {
   title: {

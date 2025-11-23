@@ -192,6 +192,70 @@ export const userBadges = pgTable(
   (t) => [primaryKey({ columns: [t.userId, t.badgeId] })],
 );
 
+// -------------------- EXAM GROUPS --------------------
+export const examGroups = pgTable("exam_groups", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
+  examType: varchar("exam_type", { length: 100 }).notNull(), // e.g., "JEE", "NEET", "UPSC"
+  examYear: integer("exam_year"), // e.g., 2025
+  subject: varchar("subject", { length: 100 }), // e.g., "Physics", "Chemistry"
+  isPublic: boolean("is_public").default(true).notNull(),
+  maxMembers: integer("max_members").default(100),
+  memberCount: integer("member_count").default(0),
+  createdBy: text("created_by")
+    .references(() => users.id, { onDelete: "set null" }),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  lastActivityAt: timestamp("last_activity_at").defaultNow(),
+  tags: text("tags").array(), // searchable tags
+  avatarUrl: text("avatar_url"),
+});
+
+// -------------------- GROUP MEMBERS --------------------
+export const groupMembers = pgTable(
+  "group_members",
+  {
+    groupId: text("group_id")
+      .notNull()
+      .references(() => examGroups.id, { onDelete: "cascade" }),
+    userId: text("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    role: varchar("role", { length: 50 }).default("member").notNull(), // "admin", "moderator", "member"
+    joinedAt: timestamp("joined_at").defaultNow().notNull(),
+    lastReadAt: timestamp("last_read_at").defaultNow(),
+    isOnline: boolean("is_online").default(false),
+    lastSeenAt: timestamp("last_seen_at"),
+  },
+  (t) => [primaryKey({ columns: [t.groupId, t.userId] })],
+);
+
+// -------------------- GROUP MESSAGES --------------------
+export const groupMessages = pgTable("group_messages", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  groupId: text("group_id")
+    .notNull()
+    .references(() => examGroups.id, { onDelete: "cascade" }),
+  userId: text("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  content: text("content").notNull(),
+  messageType: varchar("message_type", { length: 50 }).default("text").notNull(), // "text", "image", "file"
+  fileUrl: text("file_url"),
+  fileName: varchar("file_name", { length: 255 }),
+  replyToId: text("reply_to_id"), // for threaded conversations
+  reactions: jsonb("reactions").$type<{ emoji: string; userIds: string[] }[]>(),
+  isEdited: boolean("is_edited").default(false),
+  isDeleted: boolean("is_deleted").default(false),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
 // -------------------- AUTH TABLES --------------------
 export const accounts = pgTable(
   "account",

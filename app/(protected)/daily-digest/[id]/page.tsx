@@ -1,4 +1,6 @@
-export const revalidate = 60;
+// Revalidate every 5 minutes for better performance while keeping content fresh
+export const revalidate = 300;
+
 
 import { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
