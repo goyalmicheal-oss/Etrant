@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = leaderboardMeta;
+export const dynamic = "force-dynamic";
 
 export default async function LeaderboardPage() {
   const leaderboard = await getLeaderboard();
