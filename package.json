@@ -8,7 +8,9 @@
     "lint": "next lint",
     "start": "next start",
     "postbuild": "next-sitemap",
-    "analyze": "cross-env ANALYZE=true next build"
+    "analyze": "cross-env ANALYZE=true next build",
+    "db:migrate": "node scripts/migrate-groups.js",
+    "db:push": "drizzle-kit push"
   },
   "dependencies": {
     "@ai-sdk/openai": "latest",
@@ -69,6 +71,8 @@
     "postgres": "^3.4.7",
     "posthog-js": "^1.260.1",
     "posthog-node": "^5.7.0",
+    "pusher": "^5.2.0",
+    "pusher-js": "^8.4.0",
     "razorpay": "^2.9.6",
     "react": "^19",
     "react-day-picker": "9.8.0",

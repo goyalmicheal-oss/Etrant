@@ -13,6 +13,7 @@ import {
   Target,
   Trophy,
   Zap,
+  UserRoundSearchIcon
 } from "lucide-react";
 import { IPlan } from "@/types";
 
@@ -244,11 +245,11 @@ export const sidebarLinks = [
     icon: File,
     link: "/file-analyzer",
   },
-  // {
-  //   name: "Interest",
-  //   icon: Star,
-  //   link: "/interest",
-  // },
+  {
+    name: "Groups",
+    icon: UserRoundSearchIcon,
+    link: "/groups",
+  },
   {
     name: "Leaderboard",
     icon: Trophy,

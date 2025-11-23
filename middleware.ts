@@ -21,6 +21,7 @@ const protectedRoutes = [
   "/daily-digest",
   "/user-feedback",
   "/file-analyzer",
+  "/groups",
 ];
 
 // Routes that should be excluded from middleware processing

@@ -9,6 +9,27 @@ import { createErrorResponse } from "@/lib/validation";
 
 const apiRateLimit = rateLimit(rateLimitConfigs.api);
 
+export async function GET(request: NextRequest) {
+  try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return createErrorResponse("Unauthorized", 401);
+    }
+
+    const userResult = await db.select().from(users).where(eq(users.id, session.user.id));
+    const user = userResult[0];
+
+    if (!user) {
+      return createErrorResponse("User not found", 404);
+    }
+
+    return NextResponse.json({ user });
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    return createErrorResponse("Internal Server Error", 500);
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     // Authentication check
