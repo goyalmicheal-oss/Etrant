@@ -2,6 +2,8 @@ import DailyDigests from "@/components/daily-digest";
 import CircleLoader from "@/components/loader/simple-loader-circle";
 import { Suspense } from "react";
 
+export const dynamic = "force-dynamic";
+
 export default async function DailyDigestPage() {
   return (
     <div className="p-6 max-md:pt-24 flex justify-center items-center flex-col">

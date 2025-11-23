@@ -3,7 +3,19 @@ import { IDailyDigest } from "@/types";
 import Link from "next/link";
 
 export default async function DailyDigests() {
-  const articles = (await getDailyDigest()) as IDailyDigest[];
+  const articles = await getDailyDigest();
+
+  if (!Array.isArray(articles)) {
+    console.error("Failed to fetch daily digest:", articles);
+    return (
+      <div className="h-full w-full mt-48 flex justify-center items-center">
+        <p className="text-gray-700 dark:text-gray-400 text-2xl">
+          Failed to load news.
+        </p>
+      </div>
+    );
+  }
+
   if (articles.length < 1) {
     return (
       <div className="h-full w-full mt-48 flex justify-center items-center">
