@@ -7,15 +7,15 @@ export default function TermsAndConditionsPage() {
     <div className="min-h-screen text-white px-4">
       <div className="container mx-auto max-w-4xl">
         <div className="mb-12">
-          <h1 className="text-2xl md:text-4xl font-bold text-white mb-4">
+          <h1 className="text-xl md:text-2xl font-bold text-white mb-4">
             Terms & Conditions
           </h1>
-          <p className="text-gray-400 md:text-lg">
+          <p className="text-gray-400 max-md:text-sm">
             Welcome to Etrant. By accessing and using our platform, you agree to
             the following Terms and Conditions.
           </p>
           <p className="text-gray-500 text-xs md:text-sm mt-2">
-            Last updated: December 2024
+            Last updated: July 2025
           </p>
         </div>
 
@@ -23,7 +23,7 @@ export default function TermsAndConditionsPage() {
         <div className="prose prose-invert max-w-none">
           <div className="space-y-8">
             <section>
-              <h2 className="md:text-2xl text-xl font-semibold text-white mb-4">
+              <h2 className="md:text-xl font-semibold text-white mb-4">
                 1. Acceptance of Terms
               </h2>
               <p className="text-gray-300 max-md:text-sm">
@@ -34,7 +34,7 @@ export default function TermsAndConditionsPage() {
             </section>
 
             <section>
-              <h2 className="md:text-2xl text-xl font-semibold text-white mb-4">
+              <h2 className="md:text-xl font-semibold text-white mb-4">
                 2. Eligibility
               </h2>
               <div className="text-gray-300 max-md:text-sm space-y-3">
@@ -47,7 +47,7 @@ export default function TermsAndConditionsPage() {
             </section>
 
             <section>
-              <h2 className="md:text-2xl text-xl font-semibold text-white mb-4">
+              <h2 className="md:text-xl font-semibold text-white mb-4">
                 3. Use of the Platform
               </h2>
               <p className="text-gray-300 max-md:text-sm space-y-3">
@@ -65,7 +65,7 @@ export default function TermsAndConditionsPage() {
             </section>
 
             <section>
-              <h2 className="md:text-2xl text-xl font-semibold text-white mb-4">
+              <h2 className="md:text-xl font-semibold text-white mb-4">
                 4. Account & Authentication
               </h2>
               <div className="text-gray-300 max-md:text-sm space-y-3">
@@ -82,7 +82,7 @@ export default function TermsAndConditionsPage() {
             </section>
 
             <section>
-              <h2 className="md:text-2xl text-xl font-semibold text-white mb-4">
+              <h2 className="md:text-xl font-semibold text-white mb-4">
                 5. Content Disclaimer
               </h2>
               <div className="text-gray-300 max-md:text-sm space-y-3">
@@ -100,7 +100,7 @@ export default function TermsAndConditionsPage() {
             </section>
 
             <section>
-              <h2 className="md:text-2xl text-xl font-semibold text-white mb-4">
+              <h2 className="md:text-xl font-semibold text-white mb-4">
                 6. Privacy
               </h2>
               <p className="text-gray-300 max-md:text-sm space-y-3">
@@ -111,7 +111,7 @@ export default function TermsAndConditionsPage() {
             </section>
 
             <section>
-              <h2 className="md:text-2xl text-xl font-semibold text-white mb-4">
+              <h2 className="md:text-xl font-semibold text-white mb-4">
                 7. Limitation of Liability
               </h2>
               <div className="text-gray-300 max-md:text-sm space-y-3">
@@ -126,7 +126,7 @@ export default function TermsAndConditionsPage() {
             </section>
 
             <section>
-              <h2 className="md:text-2xl text-xl font-semibold text-white mb-4">
+              <h2 className="md:text-xl font-semibold text-white mb-4">
                 8. Changes to Terms
               </h2>
               <p className="text-gray-300 max-md:text-sm">
@@ -137,7 +137,7 @@ export default function TermsAndConditionsPage() {
             </section>
 
             <section>
-              <h2 className="md:text-2xl text-xl font-semibold text-white mb-4">
+              <h2 className="md:text-xl font-semibold text-white mb-4">
                 9. Contact Us
               </h2>
               <p className="text-gray-300 max-md:text-sm mb-3">

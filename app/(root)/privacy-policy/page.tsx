@@ -7,10 +7,10 @@ export default function PrivacyPolicyPage() {
     <div className="min-h-screen bg-gray-950 text-white px-4">
       <div className="container mx-auto max-w-4xl">
         <div className="mb-12">
-          <h1 className="text-2xl md:text-4xl font-bold text-white mb-4">
+          <h1 className="text-xl md:text-2xl font-bold text-white mb-4">
             Privacy Policy
           </h1>
-          <p className="text-gray-400 md:text-lg">
+          <p className="text-gray-400 max-md:text-sm">
             At Etrant, we respect your privacy and are committed to protecting
             your personal data.
           </p>
@@ -22,7 +22,7 @@ export default function PrivacyPolicyPage() {
         <div className="prose prose-invert max-w-none">
           <div className="space-y-8">
             <section>
-              <h2 className="text-xl md:text-2xl font-semibold text-white mb-4">
+              <h2 className=" md:text-xl font-semibold text-white mb-4">
                 1. Information We Collect
               </h2>
               <p className="text-gray-300 max-md:text-sm mb-3">
@@ -45,7 +45,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="md:text-2xl text-xl font-semibold text-white mb-4">
+              <h2 className="md:text-xl  font-semibold text-white mb-4">
                 2. How We Use Your Information
               </h2>
               <p className="text-gray-300 mb-3 max-md:text-sm">
@@ -63,7 +63,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl md:text-2xl font-semibold text-white mb-4">
+              <h2 className=" md:text-xl font-semibold text-white mb-4">
                 3. Data Sharing & Third Parties
               </h2>
               <div className="text-gray-300 space-y-3 max-md:text-sm">
@@ -82,7 +82,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className=" text-xl md:text-2xl font-semibold text-white mb-4">
+              <h2 className=" md:text-xl font-semibold text-white mb-4">
                 4. Cookies & Tracking
               </h2>
               <p className="text-gray-300 mb-3 max-md:text-sm">
@@ -99,7 +99,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className=" text-xl md:text-2xl font-semibold text-white mb-4">
+              <h2 className=" md:text-xl font-semibold text-white mb-4">
                 5. Data Security
               </h2>
               <p className="text-gray-300 max-md:text-sm">
@@ -110,7 +110,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className=" text-xl md:text-2xl font-semibold text-white mb-4">
+              <h2 className="md:text-xl font-semibold text-white mb-4">
                 6. Your Rights
               </h2>
               <p className="text-gray-300 mb-3 max-md:text-sm">
@@ -124,7 +124,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl md:text-2xl font-semibold text-white mb-4">
+              <h2 className="md:text-xl font-semibold text-white mb-4">
                 Contact Us
               </h2>
               <p className="text-gray-300 mb-3 max-md:text-sm">

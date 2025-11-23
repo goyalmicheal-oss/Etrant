@@ -1,7 +1,7 @@
-Contact: mailto:security@etrant.com
+Contact: mailto:hello@akkhil.com
 Expires: 2026-12-31T23:59:59.000Z
 Preferred-Languages: en
-Canonical: https://etrant.com/.well-known/security.txt
+Canonical: https://etrant.akkhil.dev/.well-known/security.txt
 
 # Security Policy
 
