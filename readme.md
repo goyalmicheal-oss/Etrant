@@ -13,7 +13,7 @@ _An Instagram-like knowledge platform for students, aspirants, and curious minds
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=flat&logo=postgresql)](https://www.postgresql.org/)
 
-[🚀 Live Demo](https://wiki.akkhil.dev) • [🐛 Report Bug](https://github.com/akhil683/wiki-reel/issues) • [💡 Request Feature](https://github.com/akhil683/wiki-reel/issues)
+[🚀 Live Demo](https://etrant.akkhil.dev) • [🐛 Report Bug](https://github.com/akhil683/Etrant/issues) • [💡 Request Feature](https://github.com/akhil683/Etrant/issues)
 
 </div>
 
@@ -27,9 +27,10 @@ Etrant transforms the way students learn by combining the addictive swipe experi
 
 - **📱 Mobile-First Learning**: Learn on-the-go with a familiar social media interface
 - **🎯 Exam-Focused**: Tailored content for JEE, NEET, UPSC, and other competitive exams
-- **🤖 AI-Powered**: Smart content curation and personalized learning paths
+- **🤖 AI-Powered**: Smart content curation, personalized learning paths, and file analysis
 - **📊 Progress Tracking**: Visual knowledge maps and gamified learning experience
-- **📰 Stay Updated**: Daily UPSC-friendly current affairs digest
+- **� Social Learning**: Join study groups and chat with peers in real-time
+- **�📰 Stay Updated**: Daily UPSC-friendly current affairs digest
 
 ---
 
@@ -39,10 +40,25 @@ Etrant transforms the way students learn by combining the addictive swipe experi
 
 Swipe through AI-curated Etrant summaries designed for quick comprehension and retention.
 
-### 🧠 **Smart Quiz Engine**
+### 👥 **Study Groups & Chat**
+
+- Join exam-focused study groups (JEE, NEET, UPSC, etc.)
+- Real-time chat with peers powered by Pusher
+- Share resources and discuss topics
+- Track group activity and member status
+
+### 📄 **AI File Analyzer**
+
+- Upload your notes or textbooks (PDF, DOC, TXT)
+- Get AI-powered analysis and summaries
+- Generate custom MCQ quizzes from your documents
+- Track performance on document-specific tests
+
+### 🧠 **Smart Quiz Engine & AI Questions**
 
 - Select your target exam (JEE, NEET, UPSC, CAT, etc.)
 - Get personalized MCQ reels based on your syllabus
+- AI-generated practice questions tailored to your interests
 - Track performance with detailed analytics
 
 ### 📰 **Daily Current Affairs**
@@ -79,6 +95,8 @@ Swipe through AI-curated Etrant summaries designed for quick comprehension and r
 - React 19
 - TypeScript
 - TailwindCSS
+- Shadcn UI
+- Framer Motion
 - Posthog
 - Zustand
 
@@ -92,6 +110,7 @@ Swipe through AI-curated Etrant summaries designed for quick comprehension and r
 - Drizzle ORM
 - PostgreSQL (Neon)
 - NextAuth.js
+- Pusher (Real-time)
 
 </td>
 <td valign="top" width="33%">
@@ -99,6 +118,7 @@ Swipe through AI-curated Etrant summaries designed for quick comprehension and r
 **AI & APIs**
 
 - Google Gemini
+- OpenAI (DALL·E)
 
 </td>
 </tr>
@@ -118,6 +138,13 @@ flowchart TD
     F -->|Serve Content| G[Next.js API Routes]
     G -->|Render UI| H[React Reel Interface]
     H -->|User Interaction| I[Progress Tracking]
+    
+    U[User] -->|Upload File| FA[File Analyzer]
+    FA -->|Process| C
+    
+    U -->|Join Group| SG[Study Groups]
+    SG -->|Real-time Chat| P[Pusher]
+    P -->|Broadcast| SG
 
     I[Vercel Cron] -->|Daily Trigger| L[UPSC Digest Pipeline]
     J -->|Process News| B
@@ -132,6 +159,7 @@ flowchart TD
 - Node.js 18+
 - pnpm (recommended) or npm
 - PostgreSQL database (or Neon account)
+- Pusher account
 
 ### Installation
 
@@ -164,16 +192,21 @@ flowchart TD
    # AI Services
    GEMINI_API_KEY="your_gemini_api_key"
 
-   #Email Variables
-   SMTP_HOST="smto_host"
+   # Real-time (Pusher)
+   PUSHER_APP_ID="your_pusher_app_id"
+   PUSHER_KEY="your_pusher_key"
+   PUSHER_SECRET="your_pusher_secret"
+   PUSHER_CLUSTER="your_pusher_cluster"
+
+   # Email Variables
+   SMTP_HOST="smtp_host"
    SMTP_PORT="port"
    SMTP_USER="Your_email"
    SMTP_PASS="smtp_password"
 
-   #Analytics
+   # Analytics
    NEXT_PUBLIC_POSTHOG_KEY="your_posthog_key"
    NEXT_PUBLIC_POSTHOG_HOST="posthog_host"
-
    ```
 
 3. **Database Setup**
@@ -240,7 +273,10 @@ wiki-reel/
 ├── 📁 app/                   # Next.js App Router
 │   ├── 📁 auth/              # Authentication pages
 │   ├── 📁 api/               # API routes & cron jobs
-│   └── 📁 (protected)/       # Main reel interface
+│   └── 📁 (protected)/       # Main app interface
+│       ├── 📁 groups/        # Study groups & chat
+│       ├── 📁 file-analyzer/ # AI document analysis
+│       └── 📁 ai-questions/  # AI practice questions
 ├── 📁 components/            # Reusable UI components
 │   ├── 📁 ui/                # Shadcn UI components
 │   ├── 📁 reels/             # Reel-specific components
@@ -260,8 +296,8 @@ wiki-reel/
 ### 🚧 In Progress
 
 - [ ] **AI Flashcards**: Spaced repetition system for better retention
-- [ ] **Study Circles**: Peer learning groups based on exam categories
 - [ ] **Advanced Analytics**: Detailed performance insights and recommendations
+- [ ] **Mobile App**: Native mobile application (React Native)
 
 ### 🔮 Future Features
 
@@ -286,12 +322,12 @@ We welcome contributions from the community! Here's how you can help:
 
 ### 🐛 **Found a Bug?**
 
-1. Check [existing issues](https://github.com/akhil683/wiki-reel/issues)
+1. Check [existing issues](https://github.com/akhil683/Etrant/issues)
 2. Create a detailed bug report with steps to reproduce
 
 ### 💡 **Have a Feature Idea?**
 
-1. Open a [feature request](https://github.com/akhil683/wiki-reel/issues/new?template=feature_request.md)
+1. Open a [feature request](https://github.com/akhil683/Etrant/issues/new?template=feature_request.md)
 2. Describe the problem it solves and potential implementation
 
 ### 🔧 **Ready to Code?**
@@ -325,6 +361,6 @@ We welcome contributions from the community! Here's how you can help:
 
 <div align="center">
 
-[⭐ Star this repo](https://github.com/akhil683/wiki-reel) • [🍴 Fork it](https://github.com/akhil683/wiki-reel/fork) • [📢 Share it](https://twitter.com/intent/tweet?text=Check%20out%20WikiReel%20-%20Instagram-like%20learning%20platform!&url=https://github.com/akhil683/wiki-reel)
+[⭐ Star this repo](https://github.com/akhil683/Etrant) • [🍴 Fork it](https://github.com/akhil683/Etrant/fork) • [📢 Share it](https://twitter.com/intent/tweet?text=Check%20out%20Etrant%20-%20Instagram-like%20learning%20platform!&url=https://github.com/akhil683/Etrant)
 
 </div>
