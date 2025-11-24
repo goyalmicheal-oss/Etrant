@@ -2,7 +2,7 @@
 
 <div align="center">
   
-![Etrant App](https://raw.githubusercontent.com/akhil683/wiki-reel/refs/heads/main/public/etrant.png)
+![Etrant App](https://github.com/akhil683/Etrant/blob/main/public/etrant.png?raw=true)
 
 **Scroll. Learn. Test. Repeat.**
 
@@ -66,6 +66,14 @@ Swipe through AI-curated Etrant summaries designed for quick comprehension and r
 - Automated pipeline delivers fresh content daily at midnight IST
 - Top 20 Indian news articles filtered for UPSC relevance
 - AI-generated visuals for enhanced engagement
+
+### 🏦 **Subscription System**
+
+- Monthly subscription plans for premium access
+- Razorpay payment gateway integration
+- Unlock advanced reels, analytics, and features
+- Secure, fast, and seamless checkout experience
+- Automatic payment verification and subscription activation
 
 ### 🏆 **Gamification System**
 
