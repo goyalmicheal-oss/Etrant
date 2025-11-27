@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/accordion";
 import { notFound } from "next/navigation";
 import getSingleDigest from "@/actions/get-single-digest";
-import { IUser } from "@/types";
 import LockedPage from "@/components/locked-page";
 import { getUserData } from "@/actions/getInterest";
 

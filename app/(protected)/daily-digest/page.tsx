@@ -2,7 +2,8 @@ import DailyDigests from "@/components/daily-digest";
 import CircleLoader from "@/components/loader/simple-loader-circle";
 import { Suspense } from "react";
 
-export const dynamic = "force-dynamic";
+// Enable ISR (Incremental Static Regeneration) with 1 hour cache
+export const revalidate = 3600;
 
 export default async function DailyDigestPage() {
   return (
