@@ -1,55 +1,26 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { Search, Users, Calendar, BookOpen, Plus } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import type { ExamGroup } from "@/types/groups";
 import { Button } from "@/components/ui/button";
 import CircleLoader from "@/components/loader/simple-loader-circle";
+import { useGroups, useJoinGroup } from "@/hooks/use-groups";
 
 export default function GroupsPage() {
-  const [groups, setGroups] = useState<ExamGroup[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [examTypeFilter, setExamTypeFilter] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    fetchGroups();
-  }, [searchQuery, examTypeFilter]);
+  const { data: groups = [], isLoading } = useGroups(searchQuery, examTypeFilter);
+  const joinGroupMutation = useJoinGroup();
 
-  const fetchGroups = async () => {
-    setIsLoading(true);
+  const handleJoinGroup = async (groupId: string) => {
     try {
-      const params = new URLSearchParams();
-      if (searchQuery) params.append("query", searchQuery);
-      if (examTypeFilter) params.append("examType", examTypeFilter);
-
-      const response = await fetch(`/api/groups?${params.toString()}`);
-      const data = await response.json();
-      setGroups(data.groups || []);
-    } catch (error) {
-      console.error("Error fetching groups:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const joinGroup = async (groupId: string) => {
-    try {
-      const response = await fetch(`/api/groups/${groupId}/join`, {
-        method: "POST",
-      });
-
-      if (response.ok) {
-        window.location.href = `/groups/${groupId}`;
-      } else {
-        const data = await response.json();
-        alert(data.error || "Failed to join group");
-      }
+      await joinGroupMutation.mutateAsync(groupId);
+      window.location.href = `/groups/${groupId}`;
     } catch (error) {
       console.error("Error joining group:", error);
-      alert("Failed to join group");
     }
   };
 
@@ -104,11 +75,10 @@ export default function GroupsPage() {
           <Button
             size={"sm"}
             onClick={() => setExamTypeFilter("")}
-            className={` transition-colors duration-200 ${
-              examTypeFilter === ""
-                ? "bg-indigo-600 text-white"
-                : "bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700"
-            }`}
+            className={` transition-colors duration-200 ${examTypeFilter === ""
+              ? "bg-indigo-600 text-white"
+              : "bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700"
+              }`}
           >
             All
           </Button>
@@ -117,11 +87,10 @@ export default function GroupsPage() {
               size={"sm"}
               key={type}
               onClick={() => setExamTypeFilter(type)}
-              className={`transition-colors duration-200 ${
-                examTypeFilter === type
-                  ? "bg-indigo-600 text-white"
-                  : "bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700"
-              }`}
+              className={`transition-colors duration-200 ${examTypeFilter === type
+                ? "bg-indigo-600 text-white"
+                : "bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700"
+                }`}
             >
               {type}
             </Button>
@@ -213,7 +182,7 @@ export default function GroupsPage() {
                   </Link>
                 ) : (
                   <Button
-                    onClick={() => joinGroup(group.id)}
+                    onClick={() => handleJoinGroup(group.id)}
                     className="w-full px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors duration-200 mt-2"
                   >
                     Join Group

@@ -1,5 +1,4 @@
 import { getDailyDigest } from "@/lib/db/get-daily-digest";
-import { IDailyDigest } from "@/types";
 import Link from "next/link";
 
 export default async function DailyDigests() {
