@@ -86,8 +86,20 @@ export async function GET(
                 )
             );
 
+        const mappedMessages = messages.map((m) => {
+            const { userName, userImage, ...rest } = m;
+            return {
+                ...rest,
+                user: {
+                    id: m.userId,
+                    name: userName,
+                    image: userImage,
+                },
+            };
+        });
+
         return NextResponse.json({
-            messages: messages.reverse(), // Reverse to show oldest first
+            messages: mappedMessages.reverse(), // Reverse to show oldest first
             count: messages.length,
         });
     } catch (error) {
