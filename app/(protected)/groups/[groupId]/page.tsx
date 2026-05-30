@@ -142,7 +142,7 @@ export default function GroupChatPage() {
 
   if (isLoading) {
     return (
-      <div className="flex max-md:h-[calc(100vh-64px)] max-md:mt-[64px] w-full bg-gray-100 dark:bg-gray-800/50 justify-center items-center overflow-hidden">
+      <div className="flex-1 flex h-full bg-gray-100 dark:bg-gray-800/50 justify-center items-center overflow-hidden">
         <Loader2 className="animate-spin w-full " />
       </div>
     )
@@ -151,7 +151,7 @@ export default function GroupChatPage() {
 
   if (!group) {
     return (
-      <div className="flex flex-col items-center justify-center h-[calc(100vh-64px)]">
+      <div className="flex-1 flex flex-col items-center justify-center h-full">
         <h2 className="text-2xl font-bold mb-4">Group not found</h2>
         <Link href="/groups">
           <Button>Back to Groups</Button>
@@ -161,7 +161,7 @@ export default function GroupChatPage() {
   }
 
   return (
-    <div className="flex max-md:h-[calc(100vh-64px)] max-md:mt-[64px] w-full bg-gray-100 dark:bg-gray-950 overflow-hidden">
+    <div className="flex-1 flex h-full overflow-hidden">
 
 
       {/* Right Side - Chat Area */}

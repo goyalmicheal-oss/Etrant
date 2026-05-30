@@ -6,7 +6,7 @@ export default function GroupChatLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div className="flex max-md:h-[calc(100vh-64px)] max-md:mt-[64px] w-full bg-gray-100 dark:bg-gray-950 overflow-hidden">
+        <div className="flex h-screen max-md:h-[calc(100vh-64px)] max-md:mt-[64px] w-full bg-gray-100 dark:bg-gray-950 overflow-hidden">
             {/* Left Sidebar - Persistent, won't re-render when groupId changes */}
             <GroupsSidebar />
 
