@@ -4,119 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JEE / NEET High-Velocity Active Recall Sprint Portal</title>
-    
-    <!-- Load Native MathJax Engine for Zero-Latency LaTeX Parsing -->
+    <!-- MathJax for rendering textbook LaTeX equations natively -->
     <script id="MathJax-script" async src="https://jsdelivr.net"></script>
-
     <style>
         :root {
-            --navy-deep: #1A237E;
-            --blue-accent: #0D47A1;
-            --text-main: #212121;
-            --bg-light: #F5F5F5;
-            --success-green: #2E7D32;
-            --error-red: #C62828;
-            --gray-border: #E0E0E0;
-            --purple-accent: #4A148C;
+            --navy-deep: #1A237E; --blue-accent: #0D47A1; --text-main: #212121; --bg-light: #F5F5F5;
+            --success-green: #2E7D32; --error-red: #C62828; --gray-border: #E0E0E0; --purple-accent: #4A148C;
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-main);
-            margin: 0;
-            padding: 15px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .portal-wrapper {
-            width: 100%;
-            max-width: 650px;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-            padding: 25px;
-            box-sizing: border-box;
-            margin-top: 10px;
-        }
-
-        h1 {
-            color: var(--navy-deep);
-            font-size: 22px;
-            margin-top: 0;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        h2 {
-            color: var(--blue-accent);
-            font-size: 18px;
-            margin-top: 0;
-            border-bottom: 2px solid var(--bg-light);
-            padding-bottom: 8px;
-        }
-
-        .tagline {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 25px;
-            font-style: italic;
-        }
-
-        /* View State Classes mapping layout targets cleanly */
-        .view-section { display: none; }
-        .view-section.active { display: block; }
-
-        /* Hub Card Components */
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg-light); color: var(--text-main); margin: 0; padding: 15px; display: flex; justify-content: center; }
+        .portal-wrapper { width: 100%; max-width: 650px; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); padding: 25px; box-sizing: border-box; margin-top: 10px; }
+        h1 { color: var(--navy-deep); font-size: 22px; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.5px; }
+        h2 { color: var(--blue-accent); font-size: 18px; margin-top: 0; border-bottom: 2px solid var(--bg-light); padding-bottom: 8px; }
+        .tagline { font-size: 13px; color: #666; margin-bottom: 25px; font-style: italic; }
+        .view-section { display: none; } .view-section.active { display: block; }
         .hub-grid { display: flex; flex-direction: column; gap: 15px; }
-        .hub-card { padding: 20px; background: #FAFAFA; border: 2px solid var(--gray-border); border-radius: 8px; cursor: pointer; transition: all 0.2s; text-align: left; }
-        .hub-card:hover { background: #E3F2FD; border-color: var(--blue-accent); color: var(--blue-accent); transform: translateY(-1px); }
+        .hub-card { padding: 20px; background: #FAFAFA; border: 2px solid var(--gray-border); border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+        .hub-card:hover { background: #E3F2FD; border-color: var(--blue-accent); color: var(--blue-accent); }
         .hub-card-title { font-weight: bold; font-size: 15px; display: block; margin-bottom: 5px; }
-        .hub-card-desc { font-size: 12px; color: #555; font-weight: normal; line-height: 1.4; }
-
-        /* Search Layout components */
+        .hub-card-desc { font-size: 12px; color: #555; line-height: 1.4; }
         .search-container { position: relative; margin-bottom: 20px; }
         .search-bar { width: 100%; padding: 14px 16px; box-sizing: border-box; border: 2px solid var(--gray-border); border-radius: 8px; font-size: 15px; outline: none; }
-        .search-bar:focus { border-color: var(--blue-accent); }
         .directory-list { list-style: none; padding: 0; margin: 0; max-height: 300px; overflow-y: auto; }
         .directory-item { padding: 14px 16px; background: #FAFAFA; border: 1px solid var(--gray-border); border-radius: 6px; margin-bottom: 10px; font-weight: 600; font-size: 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
         .directory-item:hover { background: #E3F2FD; color: var(--blue-accent); }
         .subject-badge { font-size: 10px; padding: 3px 8px; border-radius: 12px; text-transform: uppercase; font-weight: bold; }
-        .badge-physics { background: #FFE0B2; color: #E65100; }
-        .badge-chemistry { background: #E1BEE7; color: #4A148C; }
-
-        /* Active Quiz Interaction Button Framework */
+        .badge-physics { background: #FFE0B2; color: #E65100; } .badge-chemistry { background: #E1BEE7; color: #4A148C; }
         .back-btn { background: none; border: none; color: var(--blue-accent); font-weight: bold; font-size: 14px; cursor: pointer; padding: 0; margin-bottom: 20px; }
         .question-box { background: #F8F9FA; border-left: 5px solid var(--navy-deep); padding: 20px; border-radius: 4px; font-size: 16px; line-height: 1.6; margin-bottom: 25px; }
         .options-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 20px; }
         .option-button { width: 100%; padding: 14px; text-align: left; background: #ffffff; border: 2px solid var(--gray-border); border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; box-sizing: border-box; }
-        .option-button:hover:not([disabled]) { background: #F5F5F5; }
         .option-button.correct { background-color: #E8F5E9 !important; border-color: var(--success-green) !important; color: var(--success-green) !important; font-weight: bold; }
         .option-button.wrong { background-color: #FFEBEE !important; border-color: var(--error-red) !important; color: var(--error-red) !important; }
         .status-banner { padding: 12px; border-radius: 6px; font-weight: bold; text-align: center; font-size: 14px; display: none; margin-bottom: 15px; }
         .status-banner.success { background: #C8E6C9; color: var(--success-green); display: block; }
         .status-banner.fail { background: #FFCDD2; color: var(--error-red); display: block; }
-
-        /* Chemistry matrix layouts */
         .matrix-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 25px; }
         .block-card { background: #FAFAFA; border: 2px solid var(--gray-border); border-radius: 8px; padding: 15px; text-align: center; font-weight: bold; cursor: pointer; transition: all 0.2s; }
         .block-card:hover { border-color: var(--purple-accent); background: #F3E5F5; color: var(--purple-accent); }
         .display-panel { background: #ECEFF1; border: 1px solid #CFD8DC; border-radius: 6px; padding: 20px; min-height: 80px; font-size: 14px; line-height: 1.6; }
         .display-title { color: var(--purple-accent); font-weight: bold; margin-bottom: 5px; font-size: 16px; }
-
-        /* Formula row sheets styles */
         .notes-list { display: flex; flex-direction: column; gap: 12px; }
         .notes-row { display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #FAFAFA; border: 1px solid var(--gray-border); border-radius: 6px; }
         .download-btn { background: var(--success-green); color: #fff; text-decoration: none; padding: 8px 14px; font-size: 12px; font-weight: bold; border-radius: 4px; }
     </style>
 </head>
 <body>
-
 <div class="portal-wrapper">
-    
-    <!-- MODULE 1: CENTRAL HUB ENTRANCE PAGE -->
+
+    <!-- VIEW 1: ENTRANCE DASHBOARD HUB -->
     <div id="viewHub" class="view-section active">
         <h1>JEE / NEET HIGH-VELOCITY CORE HUB</h1>
         <div class="tagline">Data-Lite Student Survival Utilities • 100% Free Zero-Friction Network</div>
@@ -136,38 +71,69 @@
         </div>
     </div>
 
-    <!-- MODULE 2: INTERACTIVE MCQ RECALL SPRINT ENGINE -->
+    <!-- VIEW 2: ACTIVE RECALL SPRINT ENGINE -->
     <div id="viewQuiz" class="view-section">
-        <button class="back-btn" onclick="switchView('viewHub')">← Back to Core Hub</button>
-        <h2>2-Minute Sprint Quiz Directory</h2>
+        <button class="back-btn" onclick="switchView('viewHub')">← Back to Hub</button>
+        <h2>Active Recall Sprint Quiz</h2>
         <div class="search-container">
-            <input type="text" class="search-bar" id="searchBarInput" placeholder="Type chapter name or core concept keywords..." onkeyup="executeProgrammaticFilter()">
+            <input type="text" class="search-bar" id="quizSearch" placeholder="Search topics (e.g., Electrostatics, Thermodynamics)..." oninput="filterQuizTopics()">
         </div>
-        <ul class="directory-list" id="masterRenderList"></ul>
-        
-        <div id="quizEngineBlock" style="display:none; margin-top: 20px;">
-            <button class="back-btn" onclick="closeQuizEngine()">← Back to Quiz Directory</button>
-            <h2 id="activeTopicTitle">Concept Focus Module</h2>
-            <div class="question-box" id="activeQuestionTarget">Loading Question Node Parameter...</div>
-            <div id="feedbackBanner" class="status-banner"></div>
-            <div class="options-grid" id="activeOptionsGridTarget"></div>
+        <ul class="directory-list" id="quizTopicList">
+            <!-- Dynamically populated -->
+        </ul>
+        <div id="activeQuizEngine" style="display: none;">
+            <button class="back-btn" onclick="closeQuizEngine()">← Back to Topics</button>
+            <div class="question-box" id="questionBox"></div>
+            <div id="statusBanner" class="status-banner"></div>
+            <div class="options-grid" id="optionsGrid"></div>
         </div>
     </div>
 
-    <!-- MODULE 3: DOWNLOADABLE CHEAT SHEETS COMPONENT -->
+    <!-- VIEW 3: PRINT-READY CHEAT SHEETS INDEX -->
     <div id="viewNotes" class="view-section">
-        <button class="back-btn" onclick="switchView('viewHub')">← Back to Core Hub</button>
-        <h2>Print-Ready 1-Page Cheat Sheets</h2>
-        <div class="tagline">Download instantly and study on physical paper.</div>
+        <button class="back-btn" onclick="switchView('viewHub')">← Back to Hub</button>
+        <h2>High-Yield Formula Cheat Sheets</h2>
         <div class="notes-list">
             <div class="notes-row">
                 <div>
-                    <b style="font-size:14px;">Kinematics: Velocity-Dependent Acceleration & Calculus Core</b><br>
-                    <span style="font-size:11px; color:#777;">PDF Size: 450 KB • 1-Page Layout Optimized</span>
+                    <div style="font-weight: bold; font-size: 14px;">Complete Physics Formula Map</div>
+                    <div style="font-size: 11px; color:#666;">1-Page Micro-Print Target PDF</div>
                 </div>
-                <a href="https://google.com" target="_blank" class="download-btn">Download</a>
+                <a href="https://google.com" target="_blank" class="download-btn">Get PDF</a>
             </div>
             <div class="notes-row">
                 <div>
-                    <b style="font-size:14px;">Electrostatics: Gauss's Law & Non-Uniform Sphere Fields</b><br>
+                    <div style="font-weight: bold; font-size: 14px;">Organic Chemistry Reaction Pathways</div>
+                    <div style="font-size: 11px; color:#666;">High-Density NTA Exception Chart</div>
+                </div>
+                <a href="https://google.com" target="_blank" class="download-btn">Get PDF</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW 4: INTERACTIVE CHEMISTRY MATRIX -->
+    <div id="viewMatrix" class="view-section">
+        <button class="back-btn" onclick="switchView('viewHub')">← Back to Hub</button>
+        <h2>NCERT Trend Matrix Anomalies</h2>
+        <div class="matrix-grid">
+            <div class="block-card" onclick="showMatrixDetail('d-Block')">d-Block</div>
+            <div class="block-card" onclick="showMatrixDetail('f-Block')">f-Block</div>
+            <div class="block-card" onclick="showMatrixDetail('Inert Pair')">Inert Pair</div>
+        </div>
+        <div class="display-panel">
+            <div class="display-title" id="matrixTitle">Select a block profile</div>
+            <div id="matrixContent">Click any element block category card above to view high-traffic anomalies instantly.</div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Global single-page view router
+    function switchView(viewId) {
+        document.querySelectorAll('.view-section').forEach(section => {
+            section.classList.remove('active');
+        });
+        document.getElementById(viewId).classList.add('active');
+if (viewId === 'viewQuiz') {closeQuizEngine();renderQuizTopics();}}// Active Recall Quiz Datasetconst dataset = [{ id: 1, topic: "Electrostatics", subject: "physics", text: "What is the electric field inside a perfectly conducting hollow spherical shell?", options: ["Zero", "Maximum", "Infinite", "Depends on radius"], correct: 0 },{ id: 2, topic: "Thermodynamics", subject: "physics", text: "In an adiabatic process, the relationship between Pressure and Volume is given by:", options: ["PV = Constant", "PV^γ = Constant", "P/V = Constant", "P^γV = Constant"], correct: 1 },{ id: 3, topic: "Chemical Bonding", subject: "chemistry", text: "Which of the following molecules has a linear VSEPR geometry structure?", options: ["H2O", "CO2", "SO2", "O3"], correct: 1 }];function renderQuizTopics() {const list = document.getElementById('quizTopicList');list.innerHTML = '';document.getElementById('quizSearch').value = '';list.style.display = 'block';dataset.forEach(item => {const li = document.createElement('li');li.className = 'directory-item';li.onclick = () => launchQuiz(item.id);li.innerHTML = ${item.topic} <span class="subject-badge badge-${item.subject}">${item.subject}</span>;list.appendChild(li);});}function filterQuizTopics() {const query = document.getElementById('quizSearch').value.toLowerCase();const items = document.querySelectorAll('#quizTopicList .directory-item');items.forEach((item, index) => {const text = dataset[index].topic.toLowerCase();item.style.display = text.includes(query) ? 'flex' : 'none';});}function launchQuiz(id) {document.getElementById('quizTopicList').style.display = 'none';document.querySelector('.search-container').style.display = 'none';const targetEngine = document.getElementById('activeQuizEngine');targetEngine.style.display = 'block';const qData = dataset.find(x => x.id === id);document.getElementById('questionBox').innerText = qData.text;const banner = document.getElementById('statusBanner');banner.className = 'status-banner';banner.style.display = 'none';const grid = document.getElementById('optionsGrid');grid.innerHTML = '';qData.options.forEach((opt, idx) => {const btn = document.createElement('button');btn.className = 'option-button';btn.innerText = opt;btn.onclick = () => evaluateAnswer(btn, idx, qData.correct);grid.appendChild(btn);});}function evaluateAnswer(selectedBtn, pickedIdx, correctIdx) {const buttons = document.querySelectorAll('#optionsGrid .option-button');buttons.forEach(btn => btn.disabled = true); // Disable subsequent clicksconst banner = document.getElementById('statusBanner');if (pickedIdx === correctIdx) {selectedBtn.classList.add('correct');banner.innerText = "⚡ CORRECT! Concept Anchored.";banner.className = "status-banner success";} else {selectedBtn.classList.add('wrong');buttons[correctIdx].classList.add('correct');banner.innerText = "❌ INCORRECT! Review Core Exceptions.";banner.className = "status-banner fail";}}function closeQuizEngine() {document.getElementById('activeQuizEngine').style.display = 'none';document.getElementById('quizTopicList').style.display = 'block';document.querySelector('.search-container').style.display = 'block';}// Chemistry Matrix Engine Profilesconst matrixProfiles = {'d-Block': { title: "d-Block Anomalies (Chromium & Copper)", text: "Chromium [Ar] 3d⁵ 4s¹ and Copper [Ar] 3d¹⁰ 4s¹ bypass regular Aufbau fillings to maximize stability via completely half-filled and fully-filled d-subshell symmetric electron distributions." },'f-Block': { title: "f-Block Lanthanide Contraction", text: "Steady decrease in atomic and ionic radii from Lanthanum to Lutetium due to poor, imperfect shielding properties of 4f electrons. Results in identical atomic radii size properties between 4d and 5d transition series (e.g., Zr and Hf)." },'Inert Pair': { title: "Inert Pair Effect Exception Matrix", text: "The reluctance of s-electrons of the outermost shell to participate in bonding due to poor shielding by internal d and f electrons. Prominent in heavier post-transition elements (Bi³⁺ is more stable than Bi⁵⁺, Pb²⁺ is more stable than Pb⁴⁺)." }};function showMatrixDetail(key) {const profile = matrixProfiles[key];document.getElementById('matrixTitle').innerText = profile.title;document.getElementById('matrixContent').innerText = profile.text;}
 
